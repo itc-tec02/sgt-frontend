@@ -12,16 +12,15 @@ const routes: Routes = [
   },
   {
     path: '',
-    canActivate: [ isAuthenticatedGuard ],
+    // canActivate: [ isAuthenticatedGuard ],
     component: AppLayoutComponent,
-    children:[
-      {path:'', component: DashboardLayoutComponent}
-    ]
-    // loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardModule ),
+    // children:[
+    //   {path:'', component: DashboardLayoutComponent}
+    // ]
   },
   {
     path: '**',
-    redirectTo: 'auth'
+    redirectTo: ''
   },
 
 ];

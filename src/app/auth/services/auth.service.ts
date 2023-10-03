@@ -34,7 +34,6 @@ export class AuthService {
     return true;
   }
 
-
   login( id: string, password: string ): Observable<boolean> {
 
     const url  = `${ this.baseUrl }/auth/login`;
@@ -60,16 +59,14 @@ export class AuthService {
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${ token }`);
 
-
-      return this.http.get<CheckTokenResponse>(url, { headers })
-        .pipe(
-          map( ({ user, token }) => this.setAuthentication( user, token )),
-          catchError(() => {
-            this._authStatus.set( AuthStatus.notAuthenticated );
-            return of(false);
-          })
-        );
-
+    return this.http.get<CheckTokenResponse>(url, { headers })
+      .pipe(
+        map( ({ user, token }) => this.setAuthentication( user, token )),
+        catchError(() => {
+          this._authStatus.set( AuthStatus.notAuthenticated );
+          return of(false);
+        })
+      );
   }
 
   logout() {

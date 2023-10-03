@@ -1,0 +1,19 @@
+<!-- <div class="card flex justify-content-center card-home-local">
+  <p-card header="Transformador" [style]="{ width: '260px' }">
+      <ng-template pTemplate="header">
+          <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+      </ng-template>
+  </p-card>
+</div> -->
+
+
+
+  <div *ngFor="let cardTitle of testCards" class="card-container">
+    <p-card [header]="cardTitle" [style]="{ width: '260px' }">
+      <ng-template pTemplate="header">
+        <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+      </ng-template>
+    </p-card>
+  </div>
+
+

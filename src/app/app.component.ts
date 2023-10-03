@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
 
   constructor(private primengConfig: PrimeNGConfig, private layoutService: LayoutService) { }
 
-
   private authService = inject( AuthService );
   private router = inject( Router );
 
@@ -42,7 +41,7 @@ export class AppComponent implements OnInit {
         return;
 
       case AuthStatus.notAuthenticated:
-        this.router.navigateByUrl('/auth/login');
+        // this.router.navigateByUrl('/auth/login');
         return;
 
     }
