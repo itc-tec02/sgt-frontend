@@ -1,6 +1,7 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
+import { MenuItem } from 'primeng/api';
 
 @Component({
     selector: 'app-menu',
@@ -8,7 +9,8 @@ import { LayoutService } from './service/app.layout.service';
 })
 export class AppMenuComponent implements OnInit {
 
-  model: any[] = [];
+  model: MenuItem[] = [];
+  // model: any[] = [];
 
   constructor(public layoutService: LayoutService) { }
 
@@ -17,31 +19,31 @@ export class AppMenuComponent implements OnInit {
       {
         label: 'Administración Transformadores',
         items: [
-          { label: 'Transformador', icon: 'pi pi-fw pi-home', routerLink: ['/']},
-          { label: 'Puesto', icon: 'pi pi-fw pi-home' },
+          { label: 'Transformador', icon: 'pi pi-fw pi-wrench', routerLink: ['/trafo']},
+          { label: 'Puesto', icon: 'pi pi-fw pi-building', routerLink: ['/puesto'] },
         ]
       },
       {
         label: 'Órdenes de Trabajo',
         items: [
-          { label: 'Orden', icon: 'pi pi-fw pi-id-card' },
+          { label: 'Orden', icon: 'pi pi-fw pi-book', routerLink: ['/ott'] },
         ]
       },
       {
         label: 'Mantenimiento',
         items: [
-          { label: 'Grupos', icon: 'pi pi-fw pi-eye' },
-          { label: 'Centro de Responsabilidad', icon: 'pi pi-fw pi-eye' },
-          { label: 'Potencia Nominal ', icon: 'pi pi-fw pi-eye' },
-          { label: 'Actualizar Datos ', icon: 'pi pi-fw pi-eye' },
+          { label: 'Grupos', icon: 'pi pi-fw pi-server', routerLink: ['/grupos']},
+          { label: 'Centro de Responsabilidad', icon: 'pi pi-fw pi-sitemap', routerLink: ['/cr'] },
+          { label: 'Potencia Nominal ', icon: 'pi pi-fw pi-bolt', routerLink: ['/potn'] },
+          { label: 'Actualizar Datos ', icon: 'pi pi-fw pi-file-edit', routerLink: ['/sor'] },
         ]
       },
       {
         label: 'Seguridad',
         items: [
-          { label: 'Usuarios', icon: 'pi pi-fw pi-prime' },
-          { label: 'Perfiles', icon: 'pi pi-fw pi-desktop' },
-          { label: 'Cambiar Clavev', icon: 'pi pi-fw pi-desktop' },
+          { label: 'Usuarios', icon: 'pi pi-fw pi-list', routerLink: ['/auth'] },
+          { label: 'Perfiles', icon: 'pi pi-fw pi-users', routerLink: ['/prfl'] },
+          { label: 'Cambiar Clave', icon: 'pi pi-fw pi-user-edit', routerLink: ['/user/pass'] },
         ]
       },
     ];

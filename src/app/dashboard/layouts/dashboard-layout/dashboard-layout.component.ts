@@ -1,6 +1,7 @@
 import { Component, OnInit, computed, inject } from '@angular/core';
 import { User } from 'src/app/auth/interfaces';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './dashboard-layout.component.html',
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class DashboardLayoutComponent implements OnInit {
 
   // private authService = inject( AuthService );
-
+  private router = inject(Router)
   // public user = computed(() => this.authService.currentUser() );
   // onLogout() {
   //   this.authService.logout();
@@ -28,7 +29,8 @@ export class DashboardLayoutComponent implements OnInit {
   }
 
   onLogout() {
-    this.authService.logout();
+    // this.authService.logout();
+    this.router.navigateByUrl('/auth')
   }
 
 }

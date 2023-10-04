@@ -18,8 +18,9 @@ import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
 import { DashboardModule } from '../dashboard/dashboard.module';
-import { HomeComponent } from './home/home.component';
-import { CardModule } from 'primeng/card';
+import { MenuModule } from 'primeng/menu';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,6 @@ import { CardModule } from 'primeng/card';
         AppMenuComponent,
         AppSidebarComponent,
         AppLayoutComponent,
-        HomeComponent,
     ],
     imports: [
         BrowserModule,
@@ -45,7 +45,9 @@ import { CardModule } from 'primeng/card';
         RouterModule,
         AppConfigModule,
         DashboardModule,
-        CardModule,
+        MenuModule,
+        TieredMenuModule,
+        HomeModule
     ],
     exports: [AppLayoutComponent]
 })

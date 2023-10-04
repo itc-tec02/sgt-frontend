@@ -1,10 +1,53 @@
 .card-home-local {
-  background-color: transparent;
-  border: transparent;
-
+  /* Estilo para el contenedor principal */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
 }
 
 .card-container {
-  display: inline-block;
-  margin : 15px; /* Puedes ajustar el margen según tus preferencias */
+  /* Estilo para el contenedor de las tarjetas */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  /* Estilo para cada tarjeta */
+  width: 180px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.card a {
+  /* Estilo para el enlace dentro de la tarjeta */
+  text-decoration: none;
+  color: #333;
+}
+
+.card-header {
+  /* Estilo para el encabezado de la tarjeta (imagen) */
+  text-align: center;
+  padding: 5px;
+}
+
+.card-header img {
+  /* Estilo para la imagen en el encabezado */
+  max-width: 100%;
+  height: auto;
+}
+
+.card-body {
+  /* Estilo para el cuerpo de la tarjeta */
+  padding: 5px;
+}
+
+.card-title {
+  /* Estilo para el título de la tarjeta */
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
 }

@@ -1,19 +1,37 @@
-<!-- <div class="card flex justify-content-center card-home-local">
-  <p-card header="Transformador" [style]="{ width: '260px' }">
+<!--
+<div *ngIf="isHome()" class="card-home-local">
+  <div *ngFor="let card of testCards" class="card-container">
+    <p-card [header]="card.title" [style]="{ width: '180px' }">
       <ng-template pTemplate="header">
-          <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
-      </ng-template>
-  </p-card>
-</div> -->
-
-
-
-  <div *ngFor="let cardTitle of testCards" class="card-container">
-    <p-card [header]="cardTitle" [style]="{ width: '260px' }">
-      <ng-template pTemplate="header">
-        <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+        <a routerLink={{card.ruta}} >
+          <img [alt]="card.title" [src]="card.img" />
+        </a>
       </ng-template>
     </p-card>
   </div>
+</div> -->
+
+<router-outlet *ngIf="!isHome()"/>
+
+<div class="card-home-local">
+  <!-- Verifica si isHome() es verdadero antes de mostrar las tarjetas -->
+  <div *ngIf="isHome()" class="card-container">
+    <!-- Utiliza un bucle para recorrer las tarjetas -->
+    <div *ngFor="let card of testCards" class="card">
+      <a [routerLink]="card.ruta">
+        <div class="card-header">
+          <img [alt]="card.title" [src]="card.img" />
+        </div>
+        <div class="card-body">
+          <h2 class="card-title"><b>{{ card.title }}</b></h2>
+          <!-- Puedes agregar más contenido aquí si es necesario -->
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
 
 

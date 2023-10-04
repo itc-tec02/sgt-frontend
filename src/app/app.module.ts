@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppLayoutModule } from './layout/app.layout.module';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AppLayoutModule } from './layout/app.layout.module';
     HttpClientModule,
 
     AppLayoutModule,
+    MenuModule,
   ],
   providers: [ ],
   bootstrap: [AppComponent]
