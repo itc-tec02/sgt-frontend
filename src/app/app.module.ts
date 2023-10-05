@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppLayoutModule } from './layout/app.layout.module';
 import { MenuModule } from 'primeng/menu';
+import { ProductService } from './demo/service/product.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { MenuModule } from 'primeng/menu';
     AppLayoutModule,
     MenuModule,
   ],
-  providers: [ ],
+  providers: [ ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

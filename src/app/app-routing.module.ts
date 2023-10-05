@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    // canActivate: [ isAuthenticatedGuard ],
+    canActivate: [ isAuthenticatedGuard ],
     component: AppLayoutComponent,
     children:[
       { path: '', loadChildren: () => import('./layout/home/home.module').then( m => m.HomeModule) },
