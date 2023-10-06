@@ -45,6 +45,11 @@ export class DashboardLayoutComponent implements OnInit {
   public indistria: any[] = []
   public marca: any[] = []
   public estadoEquipo: any[] = []
+  public modelo: any[] = []
+  public potNominal: any[] = []
+  public estaInst: any[] = []
+  public tipoTrafo: any[] = []
+
 
   constructor(private productService: ProductService, private messageService: MessageService) { }
 
@@ -77,6 +82,7 @@ export class DashboardLayoutComponent implements OnInit {
           { label: 'LOWSTOCK', value: 'lowstock' },
           { label: 'OUTOFSTOCK', value: 'outofstock' }
       ];
+      //* Provisional despues se tomará del servicio de Trafo
       this.fabricante = [
         { label: 'ABB', value: 'abb' }
       ];
@@ -108,6 +114,7 @@ export class DashboardLayoutComponent implements OnInit {
         { label:'PERUANA', value: 'peruana' },
         { label:'VENEZOLANA', value: 'venezolana' },
       ];
+      //! Es provisional despues se tomaran todos los dropdown de la base de datos
       this.marca = [
         { label:'ABB', value: 'abb' },
         { label:'ACEC', value: 'acec' },
@@ -123,7 +130,44 @@ export class DashboardLayoutComponent implements OnInit {
         { label:'ITB', value: 'itb' },
         { label:'MALONEY ELECTRIC', value: 'maloney electric' },
         { label:'TAMURA', value: 'tamura' },
+      ];
+      this.estadoEquipo = [
+        { label:'CHATARRA', value:'chatarra' },
+        { label:'MALOGRADO', value:'malogrado' },
+        { label:'NUEVO', value:'nuevo' },
+        { label:'USADO', value:'usado' },
+      ];
+      this.modelo = [
+        { label:'MODELO 1', value:'modelo 1' },
+      ];
+      this.potNominal = [
+        { label: 900, value: 900 },
+        { label: 1000, value: 1000 },
+        { label: 1200, value: 1200 },
+        { label: 1250, value: 1250 },
+        { label: 1300, value: 1300 },
+        { label: 1500, value: 1500 },
+        { label: 1600, value: 1600 },
+        { label: 2000, value: 2000 },
+        { label: 2300, value: 2300 },
+        { label: 2500, value: 2500 },
+      ];
+      this.estaInst = [
+        { label:'DESCONOCIDO', value:'desconocido' },
+        { label:'EN SERVICIO', value:'en servicio' },
+        { label:'FUERA DE SERVICIO', value:'fuera de servicio' },
+        { label:'PROYECTO PARA REEMPLZAR', value:'proyecto para reemplzar' },
+        { label:'PROYECTADO PARA RETIRO', value:'proyectado para retiro' },
+        { label:'PROYECTADO PARA SERVICIO', value:'proyectado para servicio' },
+        { label:'RETIRADO', value:'retirado' },
+        { label:'SIN DATOS', value:'sin datos' },
+      ];
+      this.tipoTrafo = [
+        { label:'Monofásico', value:'sin datos' },
+        { label:'Trifásico', value:'sin datos' },
       ]
+      // public tipoTrafo: any[] = []
+
 
   }
 
@@ -170,6 +214,8 @@ export class DashboardLayoutComponent implements OnInit {
 
   saveProduct() {
       this.submitted = true;
+      console.log(this.product.inventoryStatus);
+
 
       if (this.product.name?.trim()) {
           if (this.product.id) {
