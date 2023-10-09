@@ -1,21 +1,33 @@
 # Use an official Node.js runtime as a parent image
-FROM node:18
+FROM node:latest as builder
 
 # Set the working directory in the container
-WORKDIR /usr/src/app
-
-# Copy package.json and package-lock.json to the container
-COPY package*.json ./
-COPY angular.json ./
-
-# Install app dependencies
-RUN npm install
+WORKDIR /app
 
 # Copy the rest of the application code to the container
 COPY . .
 
-# Expose a port (e.g., 4200) that your Angular app is running on
-EXPOSE 4200
+# Install app dependencies
+RUN npm i && npm run ng build
 
-# Define the command to start your Angular app
-CMD ["npm", "start"]
+#Create the nginx stage for serving content
+FROM nginx:alpine
+
+#Set the working directory to nginx asset directory
+WORKDIR /usr/share/nginx/html
+
+#Remove default nginx static assets
+RUN rm -rf ./*
+
+#Copy static assets from builder stage
+COPY --from=builder /app/dist/sgt-front-dpz .
+
+#Containers run nginx with global directives and daemon off
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
+
+#docker build -t "nombreaplicacion" .
+
+#----> El punto es muy importante para indicar la ruta raiz.
+#Para eso el dockerfile debe estar en la raiz del proyecto.
+
+#docker run --rm -it -p 8080:80 "angular-nginx-docker"]

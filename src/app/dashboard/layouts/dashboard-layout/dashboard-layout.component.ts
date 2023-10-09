@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChild, computed, inject } from '@angular/core';
-import { User } from 'src/app/auth/interfaces';
-import { AuthService } from 'src/app/auth/services/auth.service';
 import { Router } from '@angular/router';
 
 
@@ -9,6 +7,8 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { Product } from 'src/app/demo/api/product';
+import { TrafoService } from '../../services/trafo-service.service';
+import { Trafo } from '../../interfaces/trafo.inerface';
 
 
 @Component({
@@ -19,6 +19,7 @@ import { Product } from 'src/app/demo/api/product';
 export class DashboardLayoutComponent implements OnInit {
 
   productDialog: boolean = false;
+  private _trafos: Trafo[]= []
 
   deleteProductDialog: boolean = false;
 
@@ -51,11 +52,13 @@ export class DashboardLayoutComponent implements OnInit {
   public tipoTrafo: any[] = []
 
 
-  constructor(private productService: ProductService, private messageService: MessageService) { }
+  constructor(private productService: ProductService, private messageService: MessageService, private trafoService: TrafoService) { }
 
   ngOnInit() {
       // this.productService.getProducts().then(data => this.products = data);
       // console.log(this.products);
+      this.trafoService.getTrafos().subscribe( (trafos) => {this._trafos = trafos; console.log(this._trafos)  })
+
       this.products = [
         {
           id: 'ITC ID',
@@ -167,8 +170,10 @@ export class DashboardLayoutComponent implements OnInit {
         { label:'Trifásico', value:'sin datos' },
       ]
       // public tipoTrafo: any[] = []
+  }
 
-
+  get trafos() {
+    return this._trafos;
   }
 
   openNew() {

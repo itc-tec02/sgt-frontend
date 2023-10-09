@@ -25,8 +25,6 @@ export class LoginPageComponent {
 
   login() {
     const { usuario, password } = this.myForm.value;
-    console.log(this.myForm);
-
 
     this.authService.login(usuario, password)
       .subscribe({
@@ -36,7 +34,6 @@ export class LoginPageComponent {
           Swal.fire('Error', message, 'info' )
         }
       })
-
   }
 
 }
