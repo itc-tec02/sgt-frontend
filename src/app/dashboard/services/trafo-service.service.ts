@@ -13,8 +13,7 @@ export class TrafoService {
 
   private _trafos: Trafo[] = []
 
-  constructor(private  http: HttpClient) { }
-
+  constructor(private  http: HttpClient) {}
 
   getTrafos(): Observable<Trafo[]> {
     return this.http.get<Trafo[]>(`${this.baseUrl}/trafos`)
@@ -23,5 +22,4 @@ export class TrafoService {
   get trafos() {
     return this._trafos;
   }
-
 }

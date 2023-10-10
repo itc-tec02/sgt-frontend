@@ -18,8 +18,8 @@ import { Trafo } from '../../interfaces/trafo.inerface';
 })
 export class DashboardLayoutComponent implements OnInit {
 
-  productDialog: boolean = false;
-  private _trafos: Trafo[]= []
+  trafoDialog: boolean = false;
+  public trafos: Trafo[]= []
 
   deleteProductDialog: boolean = false;
 
@@ -27,9 +27,9 @@ export class DashboardLayoutComponent implements OnInit {
 
   products: Product[] = [];
 
-  product: Product = {};
+  trafo: Trafo = {};
 
-  selectedProducts: Product[] = [];
+  selectedTrafos: Trafo[] = [];
 
   submitted: boolean = false;
 
@@ -43,7 +43,7 @@ export class DashboardLayoutComponent implements OnInit {
   public editFlag: boolean = false;
   public fabricante: any[] = []
   public propietario: any[] = []
-  public indistria: any[] = []
+  public industria: any[] = []
   public marca: any[] = []
   public estadoEquipo: any[] = []
   public modelo: any[] = []
@@ -57,22 +57,9 @@ export class DashboardLayoutComponent implements OnInit {
   ngOnInit() {
       // this.productService.getProducts().then(data => this.products = data);
       // console.log(this.products);
-      this.trafoService.getTrafos().subscribe( (trafos) => {this._trafos = trafos; console.log(this._trafos)  })
+      this.trafoService.getTrafos().subscribe( (trafos) => {this.trafos = trafos; console.log(this.trafos)  })
 
-      this.products = [
-        {
-          id: 'ITC ID',
-          code: 'test01',
-          name: 'Edson',
-          description: 'Prueba',
-          price: 5000,
-          quantity: 2,
-          inventoryStatus: { label:'pruebita', value:'Holis' },
-          category: 'consultores',
-          image: 'Logo_IT _Vector.png',
-          rating: 10,
-        }
-      ]
+
       this.cols = [
           { field: 'product', header: 'Product' },
           { field: 'price', header: 'Price' },
@@ -101,7 +88,7 @@ export class DashboardLayoutComponent implements OnInit {
         { label:'Prefectura', value: 'prefectura' },
         { label:'Sin Datos', value: 'sin datos' },
       ];
-      this.indistria = [
+      this.industria = [
 
         { label:'ALEMANA', value: 'alemana' },
         { label:'AMERICANA', value: 'americana' },
@@ -172,14 +159,10 @@ export class DashboardLayoutComponent implements OnInit {
       // public tipoTrafo: any[] = []
   }
 
-  get trafos() {
-    return this._trafos;
-  }
-
   openNew() {
-      this.product = {};
+      this.trafo = {};
       this.submitted = false;
-      this.productDialog = true;
+      this.trafoDialog = true;
       this.editFlag = false;
   }
 
@@ -187,61 +170,60 @@ export class DashboardLayoutComponent implements OnInit {
       this.deleteProductsDialog = true;
   }
 
-  editProduct(product: Product) {
-      this.product = { ...product };
-      this.productDialog = true;
+  editProduct(trafo: Trafo) {
+      this.trafo = { ...trafo };
+      this.trafoDialog = true;
       this.editFlag = true
   }
 
-  deleteProduct(product: Product) {
+  deleteProduct(trafo: Trafo) {
       this.deleteProductDialog = true;
-      this.product = { ...product };
+      this.trafo = { ...trafo };
   }
 
   confirmDeleteSelected() {
       this.deleteProductsDialog = false;
-      this.products = this.products.filter(val => !this.selectedProducts.includes(val));
+      this.trafos = this.trafos.filter(val => !this.selectedTrafos.includes(val));
       this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformadores inactivados con Éxito.', life: 3000 });
-      this.selectedProducts = [];
+      this.selectedTrafos = [];
   }
 
   confirmDelete() {
       this.deleteProductDialog = false;
-      this.products = this.products.filter(val => val.id !== this.product.id);
+      this.trafos = this.trafos.filter(val => val.cia !== this.trafo.cia);
       this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador inactivado con Éxito.', life: 3000 });
-      this.product = {};
+      this.trafo = {};
   }
 
   hideDialog() {
-      this.productDialog = false;
+      this.trafoDialog = false;
       this.submitted = false;
   }
 
   saveProduct() {
       this.submitted = true;
-      console.log(this.product.inventoryStatus);
 
 
-      if (this.product.name?.trim()) {
-          if (this.product.id) {
-              // @ts-ignore
-              this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-              this.products[this.findIndexById(this.product.id)] = this.product;
-              this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador actualizado con Éxito.', life: 3000 });
-          } else {
-              this.product.id = this.createId();
-              this.product.code = this.createId();
-              this.product.image = 'product-placeholder.svg';
-              // @ts-ignore
-              this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-              this.products.push(this.product);
-              this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador creado con Éxito.', life: 3000 });
-          }
+      // if (this.trafo.NroCIA?.trim()) {
+      //     if (this.trafo.id) {
+      //         // @ts-ignore
+      //         this.trafo.inventoryStatus = this.trafo.inventoryStatus.value ? this.trafo.inventoryStatus.value : this.trafo.inventoryStatus;
+      //         this.products[this.findIndexById(this.trafo.id)] = this.trafo;
+      //         this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador actualizado con Éxito.', life: 3000 });
+      //     } else {
+      //         this.trafo.id = this.createId();
+      //         this.trafo.code = this.createId();
+      //         this.trafo.image = 'product-placeholder.svg';
+      //         // @ts-ignore
+      //         this.trafo.inventoryStatus = this.trafo.inventoryStatus ? this.trafo.inventoryStatus.value : 'INSTOCK';
+      //         this.products.push(this.trafo);
+      //         this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador creado con Éxito.', life: 3000 });
+      //     }
 
-          this.products = [...this.products];
-          this.productDialog = false;
-          this.product = {};
-      }
+      //     this.products = [...this.products];
+      //     this.productDialog = false;
+      //     this.trafo = {};
+      // }
   }
 
   findIndexById(id: string): number {
