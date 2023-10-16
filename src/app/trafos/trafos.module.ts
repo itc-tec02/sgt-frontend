@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
+import { TrafosRoutingModule } from './trafos-routing.module';
+import { DashboardLayoutComponent } from './pages/list-trafo/list-trafo.component';
 
 
 import { TableModule } from 'primeng/table';
@@ -26,7 +26,7 @@ import { DialogModule } from 'primeng/dialog';
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule,
+    TrafosRoutingModule,
     TableModule,
     FileUploadModule,
     ButtonModule,
@@ -45,4 +45,4 @@ import { DialogModule } from 'primeng/dialog';
 
   ]
 })
-export class DashboardModule { }
+export class TrafosModule { }

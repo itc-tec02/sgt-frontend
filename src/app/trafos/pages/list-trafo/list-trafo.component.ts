@@ -12,8 +12,8 @@ import { Trafo } from '../../interfaces/trafo.inerface';
 
 
 @Component({
-  templateUrl: './dashboard-layout.component.html',
-  styleUrls: ['./dashboard-layout.component.css'],
+  templateUrl: './list-trafo.component.html',
+  styleUrls: ['./list-trafo.component.css'],
   providers: [MessageService]
 })
 export class DashboardLayoutComponent implements OnInit {

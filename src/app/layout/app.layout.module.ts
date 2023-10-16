@@ -17,7 +17,7 @@ import { AppFooterComponent } from './app.footer.component';
 import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
-import { DashboardModule } from '../dashboard/dashboard.module';
+import { TrafosModule } from '../trafos/trafos.module'
 import { MenuModule } from 'primeng/menu';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { HomeModule } from './home/home.module';
@@ -44,7 +44,7 @@ import { HomeModule } from './home/home.module';
         RippleModule,
         RouterModule,
         AppConfigModule,
-        DashboardModule,
+        TrafosModule,
         MenuModule,
         TieredMenuModule,
         HomeModule

@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { isNotAuthenticatedGuard, isAuthenticatedGuard } from './auth/guards';
 import { AppLayoutComponent } from './layout/app.layout.component';
-import { DashboardLayoutComponent } from './dashboard/layouts/dashboard-layout/dashboard-layout.component';
+import { DashboardLayoutComponent } from './trafos/pages/list-trafo/list-trafo.component';
+// import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
       { path:'users', component: DashboardLayoutComponent},
       { path:'prfl', component: DashboardLayoutComponent},
       { path:'user/pass', component: DashboardLayoutComponent},
+      // { path:'404', component: NotfoundComponent},
       { path:'**', redirectTo: ''},
     ]
   },
