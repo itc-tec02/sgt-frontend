@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardLayoutComponent } from './list-trafo.component';
+import { ListTrafoComponent } from './list-trafo.component';
 
-describe('DashboardLayoutComponent', () => {
-  let component: DashboardLayoutComponent;
-  let fixture: ComponentFixture<DashboardLayoutComponent>;
+describe('ListTrafoComponent', () => {
+  let component: ListTrafoComponent;
+  let fixture: ComponentFixture<ListTrafoComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DashboardLayoutComponent]
+      declarations: [ListTrafoComponent]
     });
-    fixture = TestBed.createComponent(DashboardLayoutComponent);
+    fixture = TestBed.createComponent(ListTrafoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

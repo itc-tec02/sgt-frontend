@@ -16,7 +16,6 @@ export interface Trafo {
 }
 
 
-
 // {
 //   "NroCIA": "1119",
 //   "NroSerie": null,

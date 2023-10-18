@@ -8,9 +8,12 @@ import { AppLayoutModule } from './layout/app.layout.module';
 import { MenuModule } from 'primeng/menu';
 import { ProductService } from './demo/service/product.service';
 
+import { NotfoundComponent } from './demo/components/notfound/notfound.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,

@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { TrafosRoutingModule } from './trafos-routing.module';
-import { ListTrafoComponent } from './pages/list-trafo/list-trafo.component';
-import { EditTrafoComponent } from './pages/edit-trafo/edit-trafo.component';
+import { OttsRoutingModule } from './otts-routing.module';
+import { ListOrdenComponent } from './pages/list-orden/list-orden.component';
+import { EditOrdenComponent } from './pages/edit-orden/edit-orden.component';
 
 
 import { TableModule } from 'primeng/table';
@@ -23,8 +23,8 @@ import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
-    ListTrafoComponent,
-    EditTrafoComponent
+    ListOrdenComponent,
+    EditOrdenComponent
   ],
   imports: [
     ButtonModule,
@@ -36,14 +36,13 @@ import { DialogModule } from 'primeng/dialog';
     InputNumberModule,
     InputTextareaModule,
     InputTextModule,
+    OttsRoutingModule,
     RadioButtonModule,
     RatingModule,
     RippleModule,
     TableModule,
     ToastModule,
     ToolbarModule,
-    TrafosRoutingModule,
-
   ]
 })
-export class TrafosModule { }
+export class OttsModule { }

@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { isNotAuthenticatedGuard, isAuthenticatedGuard } from './auth/guards';
+
+
 import { AppLayoutComponent } from './layout/app.layout.component';
-import { DashboardLayoutComponent } from './trafos/pages/list-trafo/list-trafo.component';
-// import { NotfoundComponent } from './demo/components/notfound/notfound.component';
+import { isNotAuthenticatedGuard, isAuthenticatedGuard } from './auth/guards';
+import { ListOrdenComponent } from './otts/pages/list-orden/list-orden.component';
+import { ListTrafoComponent } from './trafos/pages/list-trafo/list-trafo.component';
+import { NotfoundComponent } from './demo/components/notfound/notfound.component';
+
 
 
 const routes: Routes = [
@@ -18,25 +22,20 @@ const routes: Routes = [
     component: AppLayoutComponent,
     children:[
       { path: '', loadChildren: () => import('./layout/home/home.module').then( m => m.HomeModule) },
-      { path:'trafo', component: DashboardLayoutComponent},
-      { path:'puesto', component: DashboardLayoutComponent},
-      { path:'ott', component: DashboardLayoutComponent},
-      { path:'grupos', component: DashboardLayoutComponent},
-      { path:'cr', component: DashboardLayoutComponent},
-      { path:'potn', component: DashboardLayoutComponent},
-      { path:'sor', component: DashboardLayoutComponent},
-      { path:'users', component: DashboardLayoutComponent},
-      { path:'prfl', component: DashboardLayoutComponent},
-      { path:'user/pass', component: DashboardLayoutComponent},
-      // { path:'404', component: NotfoundComponent},
-      { path:'**', redirectTo: ''},
+      { path:'trafo', component: ListTrafoComponent},
+      { path:'puesto', component: NotfoundComponent},
+      { path:'ott', component: ListOrdenComponent},
+      { path:'grupos', component: NotfoundComponent},
+      { path:'cr', component: NotfoundComponent},
+      { path:'potn', component: NotfoundComponent},
+      { path:'sor', component: NotfoundComponent},
+      { path:'users', component: NotfoundComponent},
+      { path:'prfl', component: NotfoundComponent},
+      { path:'user/pass', component: NotfoundComponent},
+      { path:'notfound', component: NotfoundComponent},
+      { path:'**', redirectTo: 'notfound'},
     ]
-  },
-  // {
-  //   path: '**',
-  //   redirectTo: ''
-  // },
-
+  }
 ];
 
 @NgModule({

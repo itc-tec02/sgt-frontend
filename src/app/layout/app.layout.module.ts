@@ -17,10 +17,12 @@ import { AppFooterComponent } from './app.footer.component';
 import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
-import { TrafosModule } from '../trafos/trafos.module'
 import { MenuModule } from 'primeng/menu';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { HomeModule } from './home/home.module';
+
+import { TrafosModule } from '../trafos/trafos.module'
+import { OttsModule } from '../otts/otts.module';
 
 @NgModule({
     declarations: [
@@ -44,10 +46,14 @@ import { HomeModule } from './home/home.module';
         RippleModule,
         RouterModule,
         AppConfigModule,
-        TrafosModule,
         MenuModule,
         TieredMenuModule,
-        HomeModule
+
+        //*Modulos Personalizados
+        HomeModule,
+        TrafosModule,
+        OttsModule,
+
     ],
     exports: [AppLayoutComponent]
 })

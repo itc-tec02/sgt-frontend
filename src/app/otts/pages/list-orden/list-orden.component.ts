@@ -1,19 +1,19 @@
-import { Component, OnInit, ViewChild, computed, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { Product } from 'src/app/demo/api/product';
-import { TrafoService } from '../../services/trafo-service.service';
-import { Trafo } from '../../interfaces/trafo.inerface';
-
+import { TrafoService } from 'src/app/trafos/services/trafo-service.service';
+import { Trafo } from 'src/app/trafos/interfaces/trafo.inerface';
 
 @Component({
-  templateUrl: './list-trafo.component.html',
-  styleUrls: ['./list-trafo.component.css'],
+  // selector: 'app-list-orden',
+  templateUrl: './list-orden.component.html',
+  styleUrls: ['./list-orden.component.scss'],
   providers: [MessageService]
 })
-export class ListTrafoComponent implements OnInit {
+export class ListOrdenComponent implements OnInit {
 
   trafoDialog: boolean = false;
   public trafos: Trafo[]= []

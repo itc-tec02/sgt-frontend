@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListTrafoComponent } from './pages/list-trafo/list-trafo.component';
-import { EditTrafoComponent } from './pages/edit-trafo/edit-trafo.component';
+import { ListOrdenComponent } from './pages/list-orden/list-orden.component';
+import { EditOrdenComponent } from './pages/edit-orden/edit-orden.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ListTrafoComponent,
+    component: ListOrdenComponent,
   },
   {
-    path: 'edit/:id',
-    component: EditTrafoComponent,
+    path:'edit/:id',
+    component: EditOrdenComponent,
   },
   {
     path:'**',
@@ -22,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TrafosRoutingModule { }
+export class OttsRoutingModule { }
