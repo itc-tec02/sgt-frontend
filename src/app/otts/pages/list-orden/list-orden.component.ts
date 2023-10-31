@@ -4,8 +4,9 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { Product } from 'src/app/demo/api/product';
-import { TrafoService } from 'src/app/trafos/services/trafo-service.service';
-import { Trafo } from 'src/app/trafos/interfaces/trafo.inerface';
+import { Orden } from '../../interfaces/ott.interface';
+import { OttService } from '../../services/ott-service.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   // selector: 'app-list-orden',
@@ -15,25 +16,20 @@ import { Trafo } from 'src/app/trafos/interfaces/trafo.inerface';
 })
 export class ListOrdenComponent implements OnInit {
 
-  trafoDialog: boolean = false;
-  public trafos: Trafo[]= []
+  orderDialog: boolean = false;
+  public orders: Orden[]= []
 
   deleteProductDialog: boolean = false;
 
   deleteProductsDialog: boolean = false;
 
   products: Product[] = [];
-
-  trafo: Trafo = {};
-
-  selectedTrafos: Trafo[] = [];
+  order: Orden = {};
+  selectedOrders: Orden[] = [];
 
   submitted: boolean = false;
-
   cols: any[] = [];
-
   statuses: any[] = [];
-
   rowsPerPageOptions = [5, 10, 20];
 
   // Varaibles Trafos
@@ -49,13 +45,17 @@ export class ListOrdenComponent implements OnInit {
   public tipoTrafo: any[] = []
 
 
-  constructor(private productService: ProductService, private messageService: MessageService, private trafoService: TrafoService) { }
+  constructor(
+    private productService: ProductService,
+    private messageService: MessageService,
+    private ottService: OttService,
+    private authService: AuthService) { }
 
   ngOnInit() {
-      // this.productService.getProducts().then(data => this.products = data);
-      // console.log(this.products);
-      this.trafoService.getTrafos().subscribe( (trafos) => {this.trafos = trafos; console.log(this.trafos)  })
+      // const currentUser = this.authService.currentUser()
 
+      this.ottService.getOtts(this.authService.currentUser()!.id).subscribe( (orden) => {this.orders = orden; console.log(this.orders) })
+      // this.authService.currentUser.id
 
       this.cols = [
           { field: 'product', header: 'Product' },
@@ -157,9 +157,9 @@ export class ListOrdenComponent implements OnInit {
   }
 
   openNew() {
-      this.trafo = {};
+      this.order = {};
       this.submitted = false;
-      this.trafoDialog = true;
+      this.orderDialog = true;
       this.editFlag = false;
   }
 
@@ -167,33 +167,33 @@ export class ListOrdenComponent implements OnInit {
       this.deleteProductsDialog = true;
   }
 
-  editProduct(trafo: Trafo) {
-      this.trafo = { ...trafo };
-      this.trafoDialog = true;
+  editProduct(orden: Orden) {
+      this.order = { ...orden };
+      this.orderDialog = true;
       this.editFlag = true
   }
 
-  deleteProduct(trafo: Trafo) {
+  deleteProduct(orden: Orden) {
       this.deleteProductDialog = true;
-      this.trafo = { ...trafo };
+      this.order = { ...orden };
   }
 
   confirmDeleteSelected() {
       this.deleteProductsDialog = false;
-      this.trafos = this.trafos.filter(val => !this.selectedTrafos.includes(val));
+      this.orders = this.orders.filter(val => !this.selectedOrders.includes(val));
       this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformadores inactivados con Éxito.', life: 3000 });
-      this.selectedTrafos = [];
+      this.selectedOrders = [];
   }
 
   confirmDelete() {
       this.deleteProductDialog = false;
-      this.trafos = this.trafos.filter(val => val.cia !== this.trafo.cia);
+      this.orders = this.orders.filter(val => val.ott !== this.order.ott);
       this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador inactivado con Éxito.', life: 3000 });
-      this.trafo = {};
+      this.order = {};
   }
 
   hideDialog() {
-      this.trafoDialog = false;
+      this.orderDialog = false;
       this.submitted = false;
   }
 

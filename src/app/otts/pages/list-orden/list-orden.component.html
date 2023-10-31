@@ -17,13 +17,13 @@
           </p-toolbar>
 
           <!-- <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id"> -->
-            <p-table #dt [value]="trafos" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedTrafos" selectionMode="multiple" [rowHover]="true" dataKey="NroCIA">
+            <p-table #dt [value]="orders" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros" [(selection)]="selectedOrders" selectionMode="multiple" [rowHover]="true" dataKey="ott">
               <ng-template pTemplate="caption">
                   <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                       <h5 class="m-0">Lista Orden de Trabajo</h5>
                       <span class="block mt-2 md:mt-0 p-input-icon-left">
                           <i class="pi pi-search"></i>
-                          <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
+                          <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Busca..."  class="w-full sm:w-auto"/>
                       </span>
                   </div>
               </ng-template>
@@ -32,64 +32,55 @@
                       <th style="width: 3rem">
                           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                       </th>
-                      <th pSortableColumn="cia">N° CIA <p-sortIcon field="cia"></p-sortIcon></th>
-                      <th pSortableColumn="serie">N° Serie <p-sortIcon field="serie"></p-sortIcon></th>
+                      <th pSortableColumn="ott">N° OTT <p-sortIcon field="ott"></p-sortIcon></th>
+                      <th pSortableColumn="descripcion">Descripción <p-sortIcon field="descripcion"></p-sortIcon></th>
                       <!-- <th>Image</th> -->
-                      <th pSortableColumn="marca">Marca <p-sortIcon field="marca"></p-sortIcon></th>
-                      <th pSortableColumn="modelo">Modelo <p-sortIcon field="modelo"></p-sortIcon></th>
-                      <th pSortableColumn="kvc">Kva <p-sortIcon field="kvc"></p-sortIcon></th>
-                      <th pSortableColumn="fabricante">Fabricante <p-sortIcon field="fabricante"></p-sortIcon></th>
-                      <th pSortableColumn="propietario">Propietario <p-sortIcon field="propietario"></p-sortIcon></th>
-                      <th pSortableColumn="tipoFase">Tipo Fase <p-sortIcon field="tipoFase"></p-sortIcon></th>
-                      <th pSortableColumn="estadoTrafo">Estado <p-sortIcon field="estadoTrafo"></p-sortIcon></th>
-                      <th pSortableColumn="ubicacionActual">Ubicacion Actual <p-sortIcon field="ubicacionActual"></p-sortIcon></th>
-                      <th pSortableColumn="ott">N° de OTT <p-sortIcon field="ott"></p-sortIcon></th>
-                      <th pSortableColumn="responsable">Responasble <p-sortIcon field="responsable"></p-sortIcon></th>
+                      <th pSortableColumn="nroOc">N° OC <p-sortIcon field="nroOc"></p-sortIcon></th>
+                      <th pSortableColumn="estado">Estado <p-sortIcon field="estado"></p-sortIcon></th>
+                      <th pSortableColumn="etapaOtt">Etapa <p-sortIcon field="etapaOtt"></p-sortIcon></th>
+                      <th pSortableColumn="areaResponsable">Área Responsable <p-sortIcon field="areaResponsable"></p-sortIcon></th>
+                      <th pSortableColumn="personResponsable">Persona Responsable <p-sortIcon field="personResponsable"></p-sortIcon></th>
+                      <th pSortableColumn="fecRecepcion">Fecha Recepción <p-sortIcon field="fecRecepcion"></p-sortIcon></th>
+                      <th pSortableColumn="usrCreador" >Creador <p-sortIcon field="usrCreador"></p-sortIcon></th>
                       <th></th>
                   </tr>
               </ng-template>
-              <ng-template pTemplate="body" let-trafo>
+              <ng-template pTemplate="body" let-order>
                   <tr>
                       <td>
-                          <p-tableCheckbox [value]="trafo"></p-tableCheckbox>
+                          <p-tableCheckbox [value]="order"></p-tableCheckbox>
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Cia</span>
-                          {{ trafo.cia }}
+                          {{ order.ott }}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Serie</span>
-                          {{trafo.serie}}
+                          {{order.descripcion}}
                       </td>
                       <td style="width:14%; min-width:8rem;"><span class="p-column-title">Marca</span>
-                          {{trafo.marca}}
+                          {{order.nroOc}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Modelo</span>
-                          {{trafo.modelo}}
+                          {{order.estado}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Kvc</span>
-                          {{trafo.kvc | number }}
+                          {{order.etapaOtt}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Fabricante</span>
-                          {{trafo.fabricante}}
+                          {{order.areaResponsable}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Tipo Fase</span>
-                          {{trafo.tipoFase}}
+                          {{order.personResponsable}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Estado Trafo</span>
-                          {{trafo.estadoTrafo}}
+                          {{order.fecRecepcion | date: 'dd/MM/yyyy' }}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Ubicacion Actual</span>
-                          {{trafo.ubicacionActual}}
-                      </td>
-                      <td style="width:14%; min-width:10rem;"><span class="p-column-title">OTT</span>
-                          {{trafo.ott}}
-                      </td>
-                      <td style="width:14%; min-width:10rem;"><span class="p-column-title">Responsable</span>
-                          {{trafo.responsable}}
+                          {{order.usrCreador}}
                       </td>
                       <td>
                           <div class="flex">
-                              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(trafo)"></button>
-                              <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(trafo)"></button>
+                              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(order)"></button>
+                              <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(order)"></button>
                           </div>
                       </td>
                   </tr>
@@ -97,30 +88,30 @@
           </p-table>
       </div>
 
-      <p-dialog [(visible)]="trafoDialog" [style]="{width: '450px'}" [header]="( editFlag ?  'Editar':'Nuevo' ) + ' Transformador'" [modal]="true" class="p-fluid">
+      <p-dialog [(visible)]="orderDialog" [style]="{width: '450px'}" [header]="( editFlag ?  'Editar':'Nuevo' ) + ' Orden'" [modal]="true" class="p-fluid">
           <ng-template pTemplate="content">
               <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
               <div class="formgrid grid">
                 <div class="field col">
-                  <label for="cia">N° CIA</label>
-                  <input type="text" pInputText id="name" [(ngModel)]="trafo.cia" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !trafo.cia}"/>
-                  <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !trafo.cia">Name is required.</small>
+                  <label for="ott">N° CIA</label>
+                  <input type="text" pInputText id="ott" [(ngModel)]="order.ott" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !order.ott}"/>
+                  <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !order.ott">Name is required.</small>
                 </div>
                 <div class="field col">
-                  <label for="serie">N° Serie</label>
-                  <input type="text" pInputText id="serie" [(ngModel)]="trafo.serie" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !trafo.serie}"/>
-                  <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !trafo.serie">Name is required.</small>
+                  <label for="descripcion">N° Serie</label>
+                  <input type="text" pInputText id="descripcion" [(ngModel)]="order.descripcion" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !order.descripcion}"/>
+                  <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !order.descripcion">Name is required.</small>
                 </div>
               </div>
               <div class="field">
-                  <label for="description">Description</label>
-                  <textarea id="description" pInputTextarea [(ngModel)]="trafo.serie" required rows="3" cols="20"></textarea>
+                  <label for="nroOc">Description</label>
+                  <textarea id="nroOc" pInputTextarea [(ngModel)]="order.nroOc" required rows="3" cols="20"></textarea>
               </div>
               <div class="field">
                   <label for="status">Propietario</label>
-                  <p-dropdown [(ngModel)]="trafo.propietario" inputId="propietario" optionValue="label" [options]="propietario" placeholder="Select">
+                  <p-dropdown [(ngModel)]="order.estado" inputId="propietario" optionValue="label" [options]="propietario" placeholder="Seleccionar">
                       <ng-template pTemplate="selectedItem">
-                          <span *ngIf="trafo && trafo.propietario" >{{trafo.propietario}}</span>
+                          <span *ngIf="order && order.areaResponsable" >{{order.areaResponsable}}</span>
                       </ng-template>
                       <ng-template let-option pTemplate="item">
                           <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
@@ -132,11 +123,11 @@
                   <label class="mb-3">Tipo de Transformador</label>
                   <div class="formgrid grid">
                       <div class="field-radiobutton col-6">
-                          <p-radioButton id="category1" name="category" value="Accessories" [(ngModel)]="trafo.tipoFase"></p-radioButton>
+                          <p-radioButton id="category1" name="category" value="Accessories" [(ngModel)]="order.personResponsable"></p-radioButton>
                           <label for="category1">Monofásico</label>
                       </div>
                       <div class="field-radiobutton col-6">
-                          <p-radioButton id="category2" name="category" value="Clothing" [(ngModel)]="trafo.tipoFase"></p-radioButton>
+                          <p-radioButton id="category2" name="category" value="Clothing" [(ngModel)]="order.personResponsable"></p-radioButton>
                           <label for="category2">Trifásico</label>
                       </div>
 
@@ -146,7 +137,7 @@
               <div class="formgrid grid">
                   <div class="field col">
                       <label for="kvc">Kvc</label>
-                      <p-inputNumber id="kvc" [(ngModel)]="trafo.kvc" ></p-inputNumber>
+                      <p-inputNumber id="kvc" [(ngModel)]="order.usrCreador" ></p-inputNumber>
                   </div>
                   <!-- <div class="field col">
                       <label for="quantity">Quantity</label>
@@ -165,7 +156,7 @@
           <div class="flex align-items-center justify-content-center">
               <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
               <!-- <span *ngIf="product">Are you sure you want to delete <b>{{product.name}}</b>?</span> -->
-              <span *ngIf="trafo">¿Está seguro que desea inactivar el transformador <b>{{trafo.cia}}</b>?</span>
+              <span *ngIf="order">¿Está seguro que desea inactivar la Orden de Trabajo <b>{{order.ott}}</b>?</span>
           </div>
           <ng-template pTemplate="footer">
               <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductDialog = false"></button>
@@ -177,7 +168,7 @@
           <div class="flex align-items-center justify-content-center">
               <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
               <!-- <span>Are you sure you want to delete selected products?</span> -->
-              <span>¿Está seguro que desea inactivar los transformadores seleccionados?</span>
+              <span>¿Está seguro que desea inactivar las Ordenes seleccionadas?</span>
           </div>
           <ng-template pTemplate="footer">
               <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductsDialog = false"></button>
