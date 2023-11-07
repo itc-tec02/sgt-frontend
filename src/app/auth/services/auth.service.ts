@@ -38,6 +38,8 @@ export class AuthService {
 
     const url  = `${ this.baseUrl }/auth/login`;
     const body = { id, password };
+    console.log(body);
+    
 
     return this.http.post<LoginResponse>( url, body )
       .pipe(

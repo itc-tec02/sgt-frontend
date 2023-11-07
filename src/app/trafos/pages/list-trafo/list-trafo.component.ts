@@ -36,6 +36,10 @@ export class ListTrafoComponent implements OnInit {
 
   rowsPerPageOptions = [5, 10, 20];
 
+  filteredTrafos: Trafo[] = [];
+
+  filterApplied: boolean = false;
+
   // Varaibles Trafos
   public editFlag: boolean = false;
   public fabricante: any[] = []
@@ -55,6 +59,8 @@ export class ListTrafoComponent implements OnInit {
       // this.productService.getProducts().then(data => this.products = data);
       // console.log(this.products);
       this.trafoService.getTrafos().subscribe( (trafos) => {this.trafos = trafos; console.log(this.trafos)  })
+
+      this.filteredTrafos = [...this.trafos];
 
 
       this.cols = [
@@ -245,6 +251,18 @@ export class ListTrafoComponent implements OnInit {
   }
 
   onGlobalFilter(table: Table, event: Event) {
-      table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
-  }
+    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+    const filteredTrafos = this.trafos.filter((trafo) => trafo.cia?.toLowerCase().includes(filterValue));
+
+    if (filterValue) {
+      this.filterApplied = true;
+    }else {
+      this.filteredTrafos = [...this.trafos];
+      this.filterApplied = false;
+    }
+
+    this.filteredTrafos = filteredTrafos;
+}
+  
 }

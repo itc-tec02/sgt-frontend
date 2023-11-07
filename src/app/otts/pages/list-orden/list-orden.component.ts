@@ -32,6 +32,9 @@ export class ListOrdenComponent implements OnInit {
   statuses: any[] = [];
   rowsPerPageOptions = [5, 10, 20];
 
+  filteredOrders: Orden[] = []
+  filterApplied: boolean = false;
+
   // Varaibles Trafos
   public editFlag: boolean = false;
   public fabricante: any[] = []
@@ -245,6 +248,19 @@ export class ListOrdenComponent implements OnInit {
   }
 
   onGlobalFilter(table: Table, event: Event) {
-      table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
-  }
+      
+      const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+      const filteredOrders = this.orders.filter((orders) => orders.ott?.toLowerCase().includes(filterValue));
+  
+      if (filterValue) {
+        this.filterApplied = true;
+        console.log("true")
+      }else {
+        this.filteredOrders = [...this.orders];
+        this.filterApplied = false;
+      }
+  
+      this.filteredOrders = filteredOrders;
+    }
 }
