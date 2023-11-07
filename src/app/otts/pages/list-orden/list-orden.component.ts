@@ -251,7 +251,20 @@ export class ListOrdenComponent implements OnInit {
       
       const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
 
-      const filteredOrders = this.orders.filter((orders) => orders.ott?.toLowerCase().includes(filterValue));
+      //const filteredOrders = this.orders.filter((orders) => orders.ott?.toLowerCase().includes(filterValue));
+
+      const filteredOrders = this.orders.filter((orders) => {
+        return (
+          (orders.ott?.toLowerCase().includes(filterValue)) ||
+          (orders.areaResponsable?.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(filterValue)) ||
+          (orders.descripcion?.toLowerCase().includes(filterValue)) ||
+          (orders.estado?.toLowerCase().includes(filterValue)) ||
+          (orders.etapaOtt?.toLowerCase().includes(filterValue)) ||
+          (orders.fecRecepcion?.toLowerCase().includes(filterValue)) ||
+          (orders.personResponsable?.toLowerCase().includes(filterValue)) ||
+          (orders.usrCreador?.toLowerCase().includes(filterValue))
+          );
+        });
   
       if (filterValue) {
         this.filterApplied = true;

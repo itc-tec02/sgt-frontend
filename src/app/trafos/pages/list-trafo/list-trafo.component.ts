@@ -253,7 +253,24 @@ export class ListTrafoComponent implements OnInit {
   onGlobalFilter(table: Table, event: Event) {
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
 
-    const filteredTrafos = this.trafos.filter((trafo) => trafo.cia?.toLowerCase().includes(filterValue));
+    //const filteredTrafos = this.trafos.filter((trafo) => trafo.cia?.toLowerCase().includes(filterValue));
+
+    const filteredTrafos = this.trafos.filter((trafo) => {
+      return (
+        (trafo.cia?.toLowerCase().includes(filterValue)) ||
+        (trafo.serie?.toLowerCase().includes(filterValue)) ||
+        (trafo.marca?.toLowerCase().includes(filterValue)) ||
+        (trafo.estadoTrafo?.toLowerCase().includes(filterValue)) ||
+        (trafo.fabricante?.toString().includes(filterValue)) ||
+        (trafo.kvc?.toLowerCase().includes(filterValue)) ||
+        (trafo.modelo?.toLowerCase().includes(filterValue)) ||
+        (trafo.ott?.toLowerCase().includes(filterValue)) ||
+        (trafo.propietario?.toLowerCase().includes(filterValue)) || 
+        (trafo.responsable?.toLowerCase().includes(filterValue)) ||
+        (trafo.tipoFase?.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(filterValue)) ||
+        (trafo.ubicacionActual?.toLowerCase().includes(filterValue))
+      );
+    });
 
     if (filterValue) {
       this.filterApplied = true;
