@@ -35,6 +35,7 @@ export class ListOrdenComponent implements OnInit {
   filteredOrders: Orden[] = []
   filterApplied: boolean = false;
 
+
   // Varaibles Trafos
   public editFlag: boolean = false;
   public fabricante: any[] = []
@@ -276,4 +277,5 @@ export class ListOrdenComponent implements OnInit {
   
       this.filteredOrders = filteredOrders;
     }
+
 }

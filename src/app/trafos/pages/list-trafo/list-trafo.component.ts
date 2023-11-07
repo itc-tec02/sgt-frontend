@@ -58,9 +58,9 @@ export class ListTrafoComponent implements OnInit {
   ngOnInit() {
       // this.productService.getProducts().then(data => this.products = data);
       // console.log(this.products);
-      this.trafoService.getTrafos().subscribe( (trafos) => {this.trafos = trafos; console.log(this.trafos)  })
+      this.trafoService.getTrafos().subscribe( (trafo) => {this.trafos = trafo; console.log(this.trafos)  })
 
-      this.filteredTrafos = [...this.trafos];
+      //this.filteredTrafos = [...this.trafos];
 
 
       this.cols = [
@@ -272,14 +272,14 @@ export class ListTrafoComponent implements OnInit {
       );
     });
 
-    if (filterValue) {
-      this.filterApplied = true;
-    }else {
-      this.filteredTrafos = [...this.trafos];
-      this.filterApplied = false;
-    }
+      if (filterValue) {
+        this.filterApplied = true;
+      }else {
+        this.filteredTrafos = [...this.trafos];
+        this.filterApplied = false;
+      }
 
     this.filteredTrafos = filteredTrafos;
-}
+  }
   
 }
