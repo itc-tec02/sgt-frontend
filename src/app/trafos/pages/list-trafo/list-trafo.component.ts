@@ -6,6 +6,8 @@ import { ProductService } from 'src/app/demo/service/product.service';
 import { Product } from 'src/app/demo/api/product';
 import { TrafoService } from '../../services/trafo-service.service';
 import { Trafo } from '../../interfaces/trafo.inerface';
+import * as _ from "lodash";
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -39,6 +41,7 @@ export class ListTrafoComponent implements OnInit {
   filteredTrafos: Trafo[] = [];
 
   filterApplied: boolean = false;
+
 
   // Varaibles Trafos
   public editFlag: boolean = false;
@@ -176,7 +179,7 @@ export class ListTrafoComponent implements OnInit {
   editProduct(trafo: Trafo) {
       this.trafo = { ...trafo };
       this.trafoDialog = true;
-      this.editFlag = true
+      this.editFlag = true;
   }
 
   deleteProduct(trafo: Trafo) {
@@ -227,7 +230,9 @@ export class ListTrafoComponent implements OnInit {
       //     this.productDialog = false;
       //     this.trafo = {};
       // }
+      
   }
+  
 
   findIndexById(id: string): number {
       let index = -1;

@@ -58,7 +58,7 @@
                       <th pSortableColumn="estadoTrafo">Estado <p-sortIcon field="estadoTrafo"></p-sortIcon></th>
                       <th pSortableColumn="ubicacionActual">Ubicacion Actual <p-sortIcon field="ubicacionActual"></p-sortIcon></th>
                       <th pSortableColumn="ott">N° de OTT <p-sortIcon field="ott"></p-sortIcon></th>
-                      <th pSortableColumn="responsable">Responasble <p-sortIcon field="responsable"></p-sortIcon></th>
+                      <th pSortableColumn="responsable">Responsable <p-sortIcon field="responsable"></p-sortIcon></th>
                       <th></th>
                   </tr>
               </ng-template>
@@ -117,12 +117,12 @@
               <div class="formgrid grid">
                 <div class="field col">
                   <label for="cia">N° CIA</label>
-                  <input type="text" pInputText id="name" [(ngModel)]="trafo.cia" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !trafo.cia}"/>
+                  <input type="text" [disabled] = "editFlag ? true:false" pInputText id="name" [(ngModel)]="trafo.cia" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !trafo.cia}"/>
                   <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !trafo.cia">Name is required.</small>
                 </div>
                 <div class="field col">
                   <label for="serie">N° Serie</label>
-                  <input type="text" pInputText id="serie" [(ngModel)]="trafo.serie" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !trafo.serie}"/>
+                  <input type="text" [disabled] = "editFlag ? true:false" pInputText id="serie" [(ngModel)]="trafo.serie" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !trafo.serie}"/>
                   <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !trafo.serie">Name is required.</small>
                 </div>
               </div>
@@ -146,11 +146,11 @@
                   <label class="mb-3">Tipo de Transformador</label>
                   <div class="formgrid grid">
                       <div class="field-radiobutton col-6">
-                          <p-radioButton id="category1" name="category" value="Accessories" [(ngModel)]="trafo.tipoFase"></p-radioButton>
+                          <p-radioButton id="category1" name="category" value="Monofásico" [(ngModel)]="trafo.tipoFase"></p-radioButton>
                           <label for="category1">Monofásico</label>
                       </div>
                       <div class="field-radiobutton col-6">
-                          <p-radioButton id="category2" name="category" value="Clothing" [(ngModel)]="trafo.tipoFase"></p-radioButton>
+                          <p-radioButton id="category2" name="category" value="Trifásico" [(ngModel)]="trafo.tipoFase"></p-radioButton>
                           <label for="category2">Trifásico</label>
                       </div>
 
