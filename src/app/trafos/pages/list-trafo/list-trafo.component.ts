@@ -8,6 +8,7 @@ import { TrafoService } from '../../services/trafo-service.service';
 import { Trafo } from '../../interfaces/trafo.inerface';
 import * as _ from "lodash";
 import { ActivatedRoute, Router } from '@angular/router';
+import { SelectItem } from 'primeng/api';
 
 
 @Component({

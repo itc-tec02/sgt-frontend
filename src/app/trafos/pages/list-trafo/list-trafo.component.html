@@ -130,9 +130,10 @@
                   <label for="description">Description</label>
                   <textarea id="description" pInputTextarea [(ngModel)]="trafo.serie" required rows="3" cols="20"></textarea>
               </div>
-              <div class="field">
+              <div class="formgrid grid">
+              <div class="field col">
                   <label for="status">Propietario</label>
-                  <p-dropdown [(ngModel)]="trafo.propietario" inputId="propietario" optionValue="label" [options]="propietario" placeholder="Select">
+                  <p-dropdown [(ngModel)]="trafo.propietario" inputId="propietario" optionValue="label" [options]="propietario" [filter]="true" [placeholder]="trafo.propietario ? trafo.propietario : 'Select'">
                       <ng-template pTemplate="selectedItem">
                           <span *ngIf="trafo && trafo.propietario" >{{trafo.propietario}}</span>
                       </ng-template>
@@ -141,6 +142,31 @@
                       </ng-template>
                   </p-dropdown>
               </div>
+
+              <div class="field col" >
+                <label for="status" >Estado de Equipo</label>
+                <p-dropdown [(ngModel)]="trafo.estadoTrafo" inputId="estadoTrafo" optionValue="label" [options]="estadoEquipo" [placeholder]="trafo.estadoTrafo ? trafo.estadoTrafo : 'Select'">
+                    <ng-template pTemplate="selectedItem">
+                        <span *ngIf="trafo && trafo.estadoTrafo" >{{trafo.estadoTrafo}}</span>
+                    </ng-template>
+                    <ng-template let-option pTemplate="item">
+                        <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            </div>
+
+              <div class="field" >
+                <label for="status">Estado de Instalación</label>
+                <p-dropdown [(ngModel)]="trafo.estadoInstalacion" inputId="estadoInstalacion" optionValue="label"  [options]="estaInst" [filter]="true"  [placeholder]="trafo.estadoInstalacion ? trafo.estadoInstalacion : 'Select'">
+                    <ng-template pTemplate="selectedItem">
+                        <span *ngIf="trafo && trafo.estadoInstalacion" >{{trafo.estadoInstalacion}}</span>
+                    </ng-template>
+                    <ng-template let-option pTemplate="item">
+                        <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                    </ng-template>
+                </p-dropdown>
+            </div>
 
               <div class="field">
                   <label class="mb-3">Tipo de Transformador</label>
@@ -166,6 +192,31 @@
                       <label for="quantity">Quantity</label>
                       <p-inputNumber id="quantity" [(ngModel)]="product.quantity"></p-inputNumber>
                   </div> -->
+              </div>
+              <div class="formgrid grid">
+                <div class="field col">
+                    <label for="status">Marca</label>
+                    <p-dropdown [(ngModel)]="trafo.marca" inputId="marca" optionValue="label" [options]="marca" [filter]="true" [placeholder]="trafo.marca ? trafo.marca : 'Select'">
+                        <ng-template pTemplate="selectedItem">
+                            <span *ngIf="trafo && trafo.marca" >{{trafo.marca}}</span>
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+  
+                <div class="field col" >
+                  <label for="status" >Industria</label>
+                  <p-dropdown [(ngModel)]="trafo.industria" inputId="industria" optionValue="label" [options]="industria" [filter]="true" [placeholder]="trafo.industria ? trafo.industria : 'Select'">
+                      <ng-template pTemplate="selectedItem">
+                          <span *ngIf="trafo && trafo.industria" >{{trafo.industria}}</span>
+                      </ng-template>
+                      <ng-template let-option pTemplate="item">
+                          <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                      </ng-template>
+                  </p-dropdown>
+              </div>
               </div>
           </ng-template>
 

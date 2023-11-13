@@ -14,6 +14,8 @@ export interface Trafo {
   ubicacionActual?:  string;
   ott?:              string;
   responsable?:      string;
+  estadoInstalacion?: string;
+  industria?:        string;
 }
 
 
