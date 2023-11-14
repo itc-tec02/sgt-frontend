@@ -13,7 +13,7 @@ import { NotfoundComponent } from './demo/components/notfound/notfound.component
 @NgModule({
   declarations: [
     AppComponent,
-    NotfoundComponent
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,

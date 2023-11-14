@@ -2,10 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { TrafosRoutingModule } from './trafos-routing.module';
-import { ListTrafoComponent } from './pages/list-trafo/list-trafo.component';
-import { EditTrafoComponent } from './pages/edit-trafo/edit-trafo.component';
-
+import { GruposComponent } from './pages/grupos/grupos.component';
 
 import { TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
@@ -20,30 +17,29 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
+import { CascadeSelectModule } from 'primeng/cascadeselect';
 
 @NgModule({
-  declarations: [
-    ListTrafoComponent,
-    EditTrafoComponent,
-  ],
-  imports: [
-    ButtonModule,
-    CommonModule,
-    DialogModule,
-    DropdownModule,
-    FileUploadModule,
-    FormsModule,
-    InputNumberModule,
-    InputTextareaModule,
-    InputTextModule,
-    RadioButtonModule,
-    RatingModule,
-    RippleModule,
-    TableModule,
-    ToastModule,
-    ToolbarModule,
-    TrafosRoutingModule,
-
-  ]
-})
-export class TrafosModule { }
+    declarations: [
+        GruposComponent,
+    ],
+    imports: [
+        ButtonModule,
+        CommonModule,
+        DialogModule,
+        DropdownModule,
+        FileUploadModule,
+        FormsModule,
+        InputNumberModule,
+        InputTextareaModule,
+        InputTextModule,
+        RadioButtonModule,
+        RatingModule,
+        RippleModule,
+        TableModule,
+        ToastModule,
+        ToolbarModule,
+        CascadeSelectModule,
+    ]
+  })
+  export class GrupoModule { }

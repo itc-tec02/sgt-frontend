@@ -2,10 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { TrafosRoutingModule } from './trafos-routing.module';
-import { ListTrafoComponent } from './pages/list-trafo/list-trafo.component';
-import { EditTrafoComponent } from './pages/edit-trafo/edit-trafo.component';
-
+import { PotenciasComponent } from './pages/potencias/potencias.component';
 
 import { TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
@@ -22,28 +19,25 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
-  declarations: [
-    ListTrafoComponent,
-    EditTrafoComponent,
-  ],
-  imports: [
-    ButtonModule,
-    CommonModule,
-    DialogModule,
-    DropdownModule,
-    FileUploadModule,
-    FormsModule,
-    InputNumberModule,
-    InputTextareaModule,
-    InputTextModule,
-    RadioButtonModule,
-    RatingModule,
-    RippleModule,
-    TableModule,
-    ToastModule,
-    ToolbarModule,
-    TrafosRoutingModule,
-
-  ]
-})
-export class TrafosModule { }
+    declarations: [
+        PotenciasComponent,
+    ],
+    imports: [
+        ButtonModule,
+        CommonModule,
+        DialogModule,
+        DropdownModule,
+        FileUploadModule,
+        FormsModule,
+        InputNumberModule,
+        InputTextareaModule,
+        InputTextModule,
+        RadioButtonModule,
+        RatingModule,
+        RippleModule,
+        TableModule,
+        ToastModule,
+        ToolbarModule,
+    ]
+  })
+  export class PotenciasModule { }

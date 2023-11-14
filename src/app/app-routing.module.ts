@@ -7,6 +7,10 @@ import { isNotAuthenticatedGuard, isAuthenticatedGuard } from './auth/guards';
 import { ListOrdenComponent } from './otts/pages/list-orden/list-orden.component';
 import { ListTrafoComponent } from './trafos/pages/list-trafo/list-trafo.component';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
+import { ListPuestoComponent } from './puestos/pages/list-puesto/list-puesto.component';
+import { PotenciasComponent } from './potencias/pages/potencias/potencias.component';
+import { CrsComponent } from './crs/pages/crs/crs.component';
+import { GruposComponent } from './grupos/pages/grupos/grupos.component';
 
 
 
@@ -23,11 +27,12 @@ const routes: Routes = [
     children:[
       { path: '', loadChildren: () => import('./layout/home/home.module').then( m => m.HomeModule) },
       { path:'trafo', component: ListTrafoComponent},
-      { path:'puesto', component: NotfoundComponent},
+      { path:'puesto', component: ListPuestoComponent},
       { path:'ott', component: ListOrdenComponent},
-      { path:'grupos', component: NotfoundComponent},
-      { path:'cr', component: NotfoundComponent},
-      { path:'potn', component: NotfoundComponent},
+      { path:'grupos', component: GruposComponent},
+      { path:'cr', component: CrsComponent},
+      { path:'cr/admsist', component: CrsComponent},
+      { path:'potn', component: PotenciasComponent},
       { path:'sor', component: NotfoundComponent},
       { path:'users', component: NotfoundComponent},
       { path:'prfl', component: NotfoundComponent},

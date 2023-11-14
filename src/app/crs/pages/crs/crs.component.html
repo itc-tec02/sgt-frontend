@@ -1,0 +1,65 @@
+<div class="card px-6 py-6">
+    <p-toast></p-toast>
+    <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="right">
+            <div class="my-2">
+                <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                <!-- <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button> -->
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="left">
+            <!-- <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload> -->
+            <!-- <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button> -->
+        </ng-template>
+    </p-toolbar>
+
+    <!-- <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id"> -->
+      <p-table #dt [value]="filterApplied ? filteredCrs : crs" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros" [(selection)]="selectedCr" selectionMode="multiple" [rowHover]="true" dataKey="codigo">
+        <ng-template pTemplate="caption">
+            <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                <h5 class="m-0">Centro de Responsabilidad</h5>
+                <span>
+                    <p-cascadeSelect [(ngModel)]="selectedOptionCr" [options]="groups" optionLabel="label" optionGroupLabel="label" [optionGroupChildren]="['states', 'cities']" [style]="{ minWidth: '14rem' }" placeholder="Grupo" (onChange)="onCascadeSelectChange($event)"></p-cascadeSelect>
+                </span>
+                <span class="block mt-2 md:mt-0 p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="onGlobalFilter(dt,$event)" placeholder="Search..."  class="w-full sm:w-auto"/>
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="codigo">Código <p-sortIcon field="codigo"></p-sortIcon></th>
+                <th pSortableColumn="abreviatura">Abreviatura <p-sortIcon field="abreviatura"></p-sortIcon></th>
+                <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-cr>
+            <tr>
+                <td>
+                  <p-tableCheckbox [value]="cr"></p-tableCheckbox>
+                </td>
+                <td style="width:14%; min-width:10rem;"><span class="p-column-title">Código</span>
+                    {{ cr.codigo }}
+                </td>
+                <td style="width:14%; min-width:10rem;"><span class="p-column-title">Abreviatura</span>
+                    {{cr.abreviatura}}
+                </td>
+                <td style="width:14%; min-width:8rem;"><span class="p-column-title">Nombre</span>
+                    {{cr.nombre}}
+                </td>
+                <td>
+                    <div class="flex">
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(cr)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(cr)"></button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -1,0 +1,102 @@
+<div class="card px-6 py-6">
+    <p-toast></p-toast>
+    <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="right">
+            <div class="my-2">
+                <button pButton pRipple label="Corrientes" icon="pi pi-bolt" class="p-button-success mr-2"></button>
+                <button pButton pRipple label="Detalle" icon="pi pi-info" class="p-button-success mr-2"></button>
+                <button pButton pRipple label="Carga Masiva" icon="pi pi-upload" class="p-button-success mr-2"></button>
+                <button pButton pRipple label="Rep. Interrupciones" icon="pi pi-quick-reference" class="p-button-success mr-2"></button>
+                <!-- <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button> -->
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="left">
+            <!-- <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload> -->
+            <!-- <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button> -->
+        </ng-template>
+    </p-toolbar>
+
+    <!-- <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id"> -->
+      <p-table #dt [value]="filterApplied ? filteredPuestos : puestos" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros" [(selection)]="selectedPuestos" selectionMode="multiple" [rowHover]="true" dataKey="CodPuesto">
+        <ng-template pTemplate="caption">
+            <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                <h5 class="m-0">Lista de Puestos</h5>
+                <span class="block mt-2 md:mt-0 p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="CodPuesto">Código <p-sortIcon field="CodPuesto"></p-sortIcon></th>
+                <th pSortableColumn="EstInstal">Estado Instalación <p-sortIcon field="EstInstal"></p-sortIcon></th>
+                <!-- <th>Image</th> -->
+                <th pSortableColumn="Fase">Fase <p-sortIcon field="fase"></p-sortIcon></th>
+                <th pSortableColumn="FecPueServ">Fecha Puesta Servicio <p-sortIcon field="FecPueServ"></p-sortIcon></th>
+                <th pSortableColumn="FecRetiro">Fecha Retiro <p-sortIcon field="FecRetiro"></p-sortIcon></th>
+                <th pSortableColumn="Montaje">Montaje <p-sortIcon field="Montaje"></p-sortIcon></th>
+                <th pSortableColumn="NroFases">Num. Fases <p-sortIcon field="NroFases"></p-sortIcon></th>
+                <th pSortableColumn="NroEstructura">Num. Estructura <p-sortIcon field="NroEstructura"></p-sortIcon></th>
+                <th pSortableColumn="Propiedad">Propiedad <p-sortIcon field="Propiedad"></p-sortIcon></th>
+                <th pSortableColumn="TipoConex">Tipo Conexión <p-sortIcon field="TipoConex"></p-sortIcon></th>
+                <th pSortableColumn="TIpoServ">Tipo Servicio <p-sortIcon field="TIpoServ"></p-sortIcon></th>
+                <th pSortableColumn="ZonaMunicipal">Zona Municipal <p-sortIcon field="ZonaMunicipal"></p-sortIcon></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-puesto>
+            <tr>
+                <td>
+                  <p-tableCheckbox [value]="puesto"></p-tableCheckbox>
+                </td>
+                <td style="width:14%; min-width:10rem;"><span class="p-column-title">Código</span>
+                    {{ puesto.CodPuesto }}
+                </td>
+                <td style="width:14%; min-width:10rem;"><span class="p-column-title">Estado Instalación</span>
+                    {{puesto.EstInstal}}
+                </td>
+                <td style="width:14%; min-width:8rem;"><span class="p-column-title">Fase</span>
+                    {{puesto.Fase}}
+                </td>
+                <td style="width:14%; min-width:10rem;"><span class="p-column-title">Fecha Puesta Servicio</span>
+                    {{puesto.FecPueServ}}
+                </td>
+                <td style="width:14%; min-width:10rem;"><span class="p-column-title">Fecha Retiro</span>
+                    {{puesto.FecRetiro }}
+                </td>
+                <td style="width:14%; min-width:10rem;"><span class="p-column-title">Montaje</span>
+                    {{puesto.Montaje}}
+                </td>
+                <td style="width:14%; min-width:10rem;"><span class="p-column-title">Num. Fases</span>
+                    {{puesto.NroFases}}
+                </td>
+                <td style="width:14%; min-width:10rem;"><span class="p-column-title">Num. Estructura</span>
+                    {{puesto.NroEstructura}}
+                </td>
+                <td style="width:14%; min-width:10rem;"><span class="p-column-title">Propiedad</span>
+                    {{puesto.Propiedad}}
+                </td>
+                <td style="width:14%; min-width:10rem;"><span class="p-column-title">Tipo Conexión</span>
+                    {{puesto.TipoConex}}
+                </td>
+                <td style="width:14%; min-width:10rem;"><span class="p-column-title">Tipo Servicio</span>
+                    {{puesto.TIpoServ}}
+                </td>
+                <td style="width:14%; min-width:10rem;"><span class="p-column-title">Zona Municipal</span>
+                    {{puesto.ZonaMunicipal}}
+                </td>
+                <td>
+                    <div class="flex">
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(puesto)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(puesto)"></button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

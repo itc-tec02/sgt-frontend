@@ -20,9 +20,15 @@ import { AppLayoutComponent } from "./app.layout.component";
 import { MenuModule } from 'primeng/menu';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { HomeModule } from './home/home.module';
+import { CascadeSelectModule } from 'primeng/cascadeselect';
+import { TreeSelectModule } from 'primeng/treeselect';
 
 import { TrafosModule } from '../trafos/trafos.module'
 import { OttsModule } from '../otts/otts.module';
+import { PuestosModule } from '../puestos/puestos.module';
+import { PotenciasModule } from '../potencias/potencias.module';
+import { CrModule } from '../crs/crs.module';
+import { GrupoModule } from '../grupos/grupos.module';
 
 @NgModule({
     declarations: [
@@ -48,12 +54,17 @@ import { OttsModule } from '../otts/otts.module';
         AppConfigModule,
         MenuModule,
         TieredMenuModule,
+        CascadeSelectModule,
+        TreeSelectModule,
 
         //*Modulos Personalizados
         HomeModule,
         TrafosModule,
         OttsModule,
-
+        PuestosModule,
+        PotenciasModule,
+        CrModule,
+        GrupoModule,
     ],
     exports: [AppLayoutComponent]
 })
