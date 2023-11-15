@@ -16,7 +16,7 @@ export class PotenciaService {
   constructor(private  http: HttpClient) {}
 
   getPotencias(): Observable<Potencia[]> {
-    return this.http.get<Potencia[]>(`${this.baseUrl}/potencias`)
+    return this.http.get<Potencia[]>(`${this.baseUrl}/mantto/pn`)
   }
 
   get potencias() {

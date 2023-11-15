@@ -1,5 +1,5 @@
 export interface Potencia {
-    codigo?: string;
-    descripcion?: string;
-    valor?: string;
+    Codigo?: string;
+    Descripcion?: string;
+    Valor?: string;
 }

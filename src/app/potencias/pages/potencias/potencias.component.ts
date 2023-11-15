@@ -67,7 +67,7 @@ confirmDeleteSelected() {
 
 confirmDelete() {
     //this.deleteProductDialog = false;
-    this.potencias = this.potencias.filter(val => val.codigo !== this.potencia.codigo);
+    this.potencias = this.potencias.filter(val => val.Codigo !== this.potencia.Codigo);
     this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador inactivado con Éxito.', life: 3000 });
     this.potencia = {};
 }
@@ -134,9 +134,9 @@ onGlobalFilter(table: Table, event: Event) {
     //const filteredTrafos = this.trafos.filter((trafo) => trafo.cia?.toLowerCase().includes(filterValue));
 
       return (
-        (potencia.codigo?.toLowerCase().includes(filterValue)) ||
-        (potencia.descripcion?.toLowerCase().includes(filterValue)) ||
-        (potencia.descripcion?.toLowerCase().includes(filterValue))
+        (potencia.Codigo?.toString().toLowerCase().includes(filterValue)) ||
+        (potencia.Descripcion?.toLowerCase().includes(filterValue)) ||
+        (potencia.Valor?.toString().toLowerCase().includes(filterValue))
       );
     });
 

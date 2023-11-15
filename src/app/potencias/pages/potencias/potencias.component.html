@@ -15,7 +15,7 @@
     </p-toolbar>
 
     <!-- <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id"> -->
-      <p-table #dt [value]="filterApplied ? filteredPotencias : potencias" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros" [(selection)]="selectedPotencia" selectionMode="multiple" [rowHover]="true" dataKey="codigo">
+      <p-table #dt [value]="filterApplied ? filteredPotencias : potencias" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros" [(selection)]="selectedPotencia" selectionMode="multiple" [rowHover]="true" dataKey="Codigo">
         <ng-template pTemplate="caption">
             <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                 <h5 class="m-0">Lista de Potencias Nominales</h5>
@@ -27,12 +27,12 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th style="width: 3rem">
+                <th style="width: 5rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th pSortableColumn="codigo">Código <p-sortIcon field="codigo"></p-sortIcon></th>
-                <th pSortableColumn="descripcion">Descripción <p-sortIcon field="descripcion"></p-sortIcon></th>
-                <th pSortableColumn="valor">Valor <p-sortIcon field="valor"></p-sortIcon></th>
+                <th pSortableColumn="Codigo">Código <p-sortIcon field="codigo"></p-sortIcon></th>
+                <th pSortableColumn="Descripcion">Descripción <p-sortIcon field="descripcion"></p-sortIcon></th>
+                <th pSortableColumn="Valor">Valor <p-sortIcon field="valor"></p-sortIcon></th>
                 <th></th>
             </tr>
         </ng-template>
@@ -42,13 +42,13 @@
                   <p-tableCheckbox [value]="potencia"></p-tableCheckbox>
                 </td>
                 <td style="width:14%; min-width:10rem;"><span class="p-column-title">Código</span>
-                    {{ potencia.codigo }}
+                    {{ potencia.Codigo }}
                 </td>
                 <td style="width:14%; min-width:10rem;"><span class="p-column-title">Descripción</span>
-                    {{potencia.descripcion}}
+                    {{potencia.Descripcion}}
                 </td>
                 <td style="width:14%; min-width:8rem;"><span class="p-column-title">Valor</span>
-                    {{potencia.valor}}
+                    {{potencia.Valor}}
                 </td>
                 <td>
                     <div class="flex">
@@ -59,4 +59,30 @@
             </tr>
         </ng-template>
     </p-table>
+
+    <p-dialog [(visible)]="trafoDialog" [style]="{width: '450px'}" [header]="( editFlag ?  'Editar':'Nuevo' ) + ' Transformador'" [modal]="true" class="p-fluid">
+        <ng-template pTemplate="content">
+            <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
+            <div class="formgrid grid">
+              <div class="field col">
+                <label for="cia">N° CIA</label>
+                <input type="text" [disabled] = "editFlag ? true:false" pInputText id="name" [(ngModel)]="potencia.Codigo" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !potencia.Codigo}"/>
+                <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !potencia.Codigo">Name is required.</small>
+              </div>
+              <div class="field col">
+                <label for="serie">N° Serie</label>
+                <input type="text" [disabled] = "editFlag ? true:false" pInputText id="serie" [(ngModel)]="potencia.Valor" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !potencia.Valor}"/>
+                <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !potencia.Valor">Name is required.</small>
+              </div>
+            </div>
+            <div class="field">
+                <label for="description">Description</label>
+                <textarea id="description" pInputTextarea [(ngModel)]="potencia.Descripcion" required rows="3" cols="20"></textarea>
+            </div>                       
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+            <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+        </ng-template>
+    </p-dialog>
 </div>
