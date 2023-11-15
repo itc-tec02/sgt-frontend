@@ -18,7 +18,7 @@
       <p-table #dt [value]="filterApplied ? filteredGrupos : grupos" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros" [(selection)]="selectedGrupo" selectionMode="multiple" [rowHover]="true" dataKey="Codigo">
         <ng-template pTemplate="caption">
             <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                <h5 class="m-0">Centro de Responsabilidad</h5>
+                <h5 class="m-0">Grupos</h5>
                 <span>
                     <p-cascadeSelect [(ngModel)]="selectedOptionCrGroups" [options]="gruposs" optionLabel="cname" optionGroupLabel="name" [optionGroupChildren]="['states', 'cities']" [style]="{ minWidth: '14rem' }" placeholder="Rutas de Trabajo del Sistema" (onChange)="onCascadeSelectChange()" ></p-cascadeSelect>
                 </span>
