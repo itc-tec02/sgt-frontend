@@ -15,12 +15,12 @@
     </p-toolbar>
 
     <!-- <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id"> -->
-      <p-table #dt [value]="filterApplied ? filteredGrupos : grupos" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros" [(selection)]="selectedGrupo" selectionMode="multiple" [rowHover]="true" dataKey="codigo">
+      <p-table #dt [value]="filterApplied ? filteredGrupos : grupos" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros" [(selection)]="selectedGrupo" selectionMode="multiple" [rowHover]="true" dataKey="Codigo">
         <ng-template pTemplate="caption">
             <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                 <h5 class="m-0">Centro de Responsabilidad</h5>
                 <span>
-                    <p-cascadeSelect [(ngModel)]="selectedOptionGR" [options]="gruposs" optionLabel="cname" optionGroupLabel="name" [optionGroupChildren]="['states', 'cities']" [style]="{ minWidth: '14rem' }" placeholder="Grupo" ></p-cascadeSelect>
+                    <p-cascadeSelect [(ngModel)]="selectedOptionCrGroups" [options]="gruposs" optionLabel="cname" optionGroupLabel="name" [optionGroupChildren]="['states', 'cities']" [style]="{ minWidth: '14rem' }" placeholder="Rutas de Trabajo del Sistema" (onChange)="onCascadeSelectChange()" ></p-cascadeSelect>
                 </span>
                 <span class="block mt-2 md:mt-0 p-input-icon-left">
                     <i class="pi pi-search"></i>
@@ -33,9 +33,9 @@
                 <th style="width: 3rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th pSortableColumn="codigo">Código <p-sortIcon field="codigo"></p-sortIcon></th>
-                <th pSortableColumn="descripcion">Descripcion <p-sortIcon field="descripcion"></p-sortIcon></th>
-                <th pSortableColumn="estado">Estado <p-sortIcon field="estado"></p-sortIcon></th>
+                <th pSortableColumn="Codigo">Código <p-sortIcon field="codigo"></p-sortIcon></th>
+                <th pSortableColumn="Descripcion">Descripcion <p-sortIcon field="descripcion"></p-sortIcon></th>
+                <th pSortableColumn="Estado">Estado <p-sortIcon field="estado"></p-sortIcon></th>
                 <th></th>
             </tr>
         </ng-template>
@@ -45,13 +45,13 @@
                   <p-tableCheckbox [value]="grupo"></p-tableCheckbox>
                 </td>
                 <td style="width:14%; min-width:10rem;"><span class="p-column-title">Código</span>
-                    {{ grupo.codigo }}
+                    {{ grupo.Codigo }}
                 </td>
                 <td style="width:14%; min-width:10rem;"><span class="p-column-title">Descripción</span>
-                    {{grupo.descripcion}}
+                    {{grupo.Descripcion}}
                 </td>
                 <td style="width:14%; min-width:8rem;"><span class="p-column-title">Estado</span>
-                    {{grupo.estado}}
+                    {{grupo.Estado}}
                 </td>
                 <td>
                     <div class="flex">
@@ -62,4 +62,30 @@
             </tr>
         </ng-template>
     </p-table>
+
+    <p-dialog [(visible)]="trafoDialog" [style]="{width: '450px'}" [header]="( editFlag ?  'Editar':'Nuevo' ) " [modal]="true" class="p-fluid">
+        <ng-template pTemplate="content">
+            <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
+            <div class="formgrid grid">
+              <div class="field col">
+                <label for="cia">Código</label>
+                <input type="text" [disabled] = "editFlag ? true:false" pInputText id="name" [(ngModel)]="grupo.Codigo" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !grupo.Codigo}"/>
+                <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !grupo.Codigo">Name is required.</small>
+              </div>
+              <div class="field col">
+                <label for="serie">Estado</label>
+                <input type="text"  pInputText id="serie" [(ngModel)]="grupo.Estado" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !grupo.Estado}"/>
+                <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !grupo.Estado">Name is required.</small>
+              </div>
+            </div>
+            <div class="field">
+                <label for="description">Descripción</label>
+                <textarea id="description" pInputTextarea [(ngModel)]="grupo.Descripcion" required rows="3" cols="20"></textarea>
+            </div>                       
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+            <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+        </ng-template>
+    </p-dialog>
 </div>

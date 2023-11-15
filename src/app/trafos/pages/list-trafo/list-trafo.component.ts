@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, computed, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, computed, inject } from '@angular/core';
 
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
@@ -17,6 +17,8 @@ import { SelectItem } from 'primeng/api';
   providers: [MessageService]
 })
 export class ListTrafoComponent implements OnInit {
+
+  @ViewChild('dt') dt: Table;
 
   trafoDialog: boolean = false;
   public trafos: Trafo[]= []
@@ -57,7 +59,9 @@ export class ListTrafoComponent implements OnInit {
   public tipoTrafo: any[] = []
 
 
-  constructor(private productService: ProductService, private messageService: MessageService, private trafoService: TrafoService) { }
+  constructor(private cdRef: ChangeDetectorRef, private productService: ProductService, private messageService: MessageService, private trafoService: TrafoService) {
+    this.dt = {} as Table
+   }
 
   ngOnInit() {
       // this.productService.getProducts().then(data => this.products = data);
@@ -296,4 +300,22 @@ export class ListTrafoComponent implements OnInit {
     const stringValue = value.toString();
     return /\d/.test(stringValue);
   }
+
+  onRowClick(trafo: any) {
+    const isSelected = this.isSelected(trafo);
+    
+    if (isSelected) {
+        // Si está seleccionado, quitarlo de la lista de selección
+        this.selectedTrafos = this.selectedTrafos.filter(item => item !== trafo);
+    } else {
+        // Si no está seleccionado, agregarlo a la lista de selección
+        this.selectedTrafos = [...this.selectedTrafos, trafo];
+    }
+
+    console.log("check");
+}
+
+isSelected(trafo: any): boolean {
+    return this.selectedTrafos.includes(trafo);
+}
 }

@@ -16,7 +16,27 @@ export class CrsService {
   constructor(private  http: HttpClient) {}
 
   getCrs(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/crs`)
+    return this.http.get<Cr[]>(`${this.baseUrl}/cr`)
+  }
+
+  getAdm(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/adm`)
+  }
+
+  getAlm(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/alm`)
+  }
+
+  getCoi(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/coi`)
+  }
+
+  getCpt(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/cpt`)
+  }
+
+  getOmr(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/omr`)
   }
 
   get puestos() {

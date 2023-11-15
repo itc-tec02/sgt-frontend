@@ -11,6 +11,7 @@ import { ListPuestoComponent } from './puestos/pages/list-puesto/list-puesto.com
 import { PotenciasComponent } from './potencias/pages/potencias/potencias.component';
 import { CrsComponent } from './crs/pages/crs/crs.component';
 import { GruposComponent } from './grupos/pages/grupos/grupos.component';
+import { ListUsuariosComponent } from './usuarios/pages/list-usuarios/list-usuarios.component';
 
 
 
@@ -34,7 +35,7 @@ const routes: Routes = [
       { path:'cr/admsist', component: CrsComponent},
       { path:'potn', component: PotenciasComponent},
       { path:'sor', component: NotfoundComponent},
-      { path:'users', component: NotfoundComponent},
+      { path:'users', component: ListUsuariosComponent},
       { path:'prfl', component: NotfoundComponent},
       { path:'user/pass', component: NotfoundComponent},
       { path:'notfound', component: NotfoundComponent},

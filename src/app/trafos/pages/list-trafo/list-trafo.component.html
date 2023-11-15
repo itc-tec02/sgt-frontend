@@ -63,9 +63,9 @@
                   </tr>
               </ng-template>
               <ng-template pTemplate="body" let-trafo>
-                  <tr>
+                  <tr (click)="onRowClick(trafo)">
                       <td>
-                        <p-tableCheckbox [value]="trafo"></p-tableCheckbox>
+                        <p-tableCheckbox [value]="trafo" ></p-tableCheckbox>
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Cia</span>
                           {{ trafo.cia }}
@@ -84,6 +84,9 @@
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Fabricante</span>
                           {{trafo.fabricante}}
+                      </td>
+                      <td style="width:14%; min-width:10rem;"><span class="p-column-title">Fabricante</span>
+                        {{trafo.propietario}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Tipo Fase</span>
                           {{trafo.tipoFase}}
@@ -125,10 +128,6 @@
                   <input type="text" [disabled] = "editFlag ? true:false" pInputText id="serie" [(ngModel)]="trafo.serie" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !trafo.serie}"/>
                   <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !trafo.serie">Name is required.</small>
                 </div>
-              </div>
-              <div class="field">
-                  <label for="description">Description</label>
-                  <textarea id="description" pInputTextarea [(ngModel)]="trafo.serie" required rows="3" cols="20"></textarea>
               </div>
               <div class="formgrid grid">
               <div class="field col">
@@ -185,7 +184,7 @@
 
               <div class="formgrid grid">
                   <div class="field col">
-                      <label for="kvc">Kvc</label>
+                      <label for="kvc">Kva</label>
                       <p-inputNumber id="kvc" [(ngModel)]="trafo.kvc" ></p-inputNumber>
                   </div>
                   <!-- <div class="field col">

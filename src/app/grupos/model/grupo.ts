@@ -1,5 +1,6 @@
 export interface Grupo {
-    codigo?: string;
-    estado?: string;
-    descripcion?: string;
+    Codigo?: string;
+    Estado?: string;
+    Descripcion?: string;
+    codgenTablaTipo?: string;
 }

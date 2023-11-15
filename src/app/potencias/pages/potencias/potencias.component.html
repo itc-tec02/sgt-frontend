@@ -65,18 +65,18 @@
             <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
             <div class="formgrid grid">
               <div class="field col">
-                <label for="cia">N° CIA</label>
+                <label for="cia">Código</label>
                 <input type="text" [disabled] = "editFlag ? true:false" pInputText id="name" [(ngModel)]="potencia.Codigo" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !potencia.Codigo}"/>
                 <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !potencia.Codigo">Name is required.</small>
               </div>
               <div class="field col">
-                <label for="serie">N° Serie</label>
-                <input type="text" [disabled] = "editFlag ? true:false" pInputText id="serie" [(ngModel)]="potencia.Valor" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !potencia.Valor}"/>
+                <label for="serie">Valor</label>
+                <input type="text"  pInputText id="serie" [(ngModel)]="potencia.Valor" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !potencia.Valor}"/>
                 <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !potencia.Valor">Name is required.</small>
               </div>
             </div>
             <div class="field">
-                <label for="description">Description</label>
+                <label for="description">Descripción</label>
                 <textarea id="description" pInputTextarea [(ngModel)]="potencia.Descripcion" required rows="3" cols="20"></textarea>
             </div>                       
         </ng-template>

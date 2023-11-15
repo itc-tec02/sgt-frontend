@@ -1,55 +1,43 @@
 import { Component } from '@angular/core';
 import { Table } from 'primeng/table';
-import { Cr } from '../../model/cr';
+import { Usuario } from '../../model/usuario';
 import { Product } from 'src/app/demo/api/product';
-import { CrsService } from '../../services/crs.service';
+import { UsuariosService } from '../../services/usuarios.service';
 import { MessageService } from 'primeng/api';
 import { ProductService } from 'src/app/demo/service/product.service';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-crs',
-  templateUrl: './crs.component.html',
-  styleUrls: ['./crs.component.scss'],
+  selector: 'app-list-usuarios',
+  templateUrl: './list-usuarios.component.html',
+  styleUrls: ['./list-usuarios.component.scss'],
   providers: [MessageService]
 })
-export class CrsComponent {
-  public crs: Cr[]= [];
-  cr : Cr = {};
+export class ListUsuariosComponent {
+  public usuarios: Usuario[]= [];
+  usuario : Usuario = {};
   deleteProductDialog: boolean = false;
   filterApplied: boolean = false;
-  filteredCrs: Cr[] = [];
+  filteredUsuarios: Usuario[] = [];
   cols: any[] = [];
 
   deleteProductsDialog: boolean = false;
   submitted: boolean = false;
   trafoDialog: boolean = false;
   products: Product[] = [];
-  selectedCr: Cr[] = [];
-  selectedOptionCr: Cr[] = [];
-  selectedOptionCrGroups: any;
-  groups: any[] = [];
+  selectedUsuario: Usuario[] = [];
 
   public editFlag: boolean = false;
 
-  constructor(private crService: CrsService, private messageService: MessageService, private productService: ProductService, private router: Router) { }
+  constructor(private usuarioService: UsuariosService, private messageService: MessageService, private productService: ProductService) { }
 
   ngOnInit() {
     // this.productService.getProducts().then(data => this.products = data);
     // console.log(this.products);
-    this.crService.getAlm().subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
-
-    this.groups = [
-      { label: 'Almacén', value: 'ALM' },
-      { label: 'Administrador del Sistema', value: 'ADM' },      
-      { label: 'Centro de Operación e Información', value: 'COI' },
-      { label: 'Contratista Pruebas Técnicas', value: 'CPT' },
-      { label: 'Operador Mantenimiento Redes', value: 'OMR' }
-    ];
+    this.usuarioService.getUsuarios().subscribe( (usuario) => {this.usuarios = usuario; console.log(this.usuarios)  })
   }
 
   openNew() {
-    this.cr = {};
+    this.usuario = {};
     this.submitted = false;
     this.trafoDialog = true;
     this.editFlag = false;
@@ -59,29 +47,29 @@ deleteSelectedProducts() {
     this.deleteProductsDialog = true;
 }
 
-editProduct(cr: Cr) {
-    this.cr = { ...cr };
+editProduct(usuario: Usuario) {
+    this.usuario = { ...usuario };
     this.trafoDialog = true;
     this.editFlag = true;
 }
 
-deleteProduct(potencia: Cr) {
+deleteProduct(usuario: Usuario) {
     this.deleteProductDialog = true;
-    this.cr = { ...potencia };
+    this.usuario = { ...usuario };
 }
 
 confirmDeleteSelected() {
     //this.deleteProductsDialog = false;
-    this.crs = this.crs.filter(val => !this.selectedCr.includes(val));
+    this.usuarios = this.usuarios.filter(val => !this.selectedUsuario.includes(val));
     this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformadores inactivados con Éxito.', life: 3000 });
-    this.selectedCr = [];
+    this.selectedUsuario = [];
 }
 
 confirmDelete() {
     //this.deleteProductDialog = false;
-    this.crs = this.crs.filter(val => val.CodCR !== this.cr.CodCR);
+    this.usuarios = this.usuarios.filter(val => val.CodUsuario !== this.usuario.CodUsuario);
     this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador inactivado con Éxito.', life: 3000 });
-    this.cr = {};
+    this.usuario = {};
 }
 
 hideDialog() {
@@ -119,8 +107,8 @@ saveProduct() {
 
 findIndexById(id: string): number {
     let index = -1;
-    for (let i = 0; i < this.crs.length; i++) {
-        if (this.crs[i].CodCR === id) {
+    for (let i = 0; i < this.usuarios.length; i++) {
+        if (this.products[i].id === id) {
             index = i;
             break;
         }
@@ -141,48 +129,28 @@ createId(): string {
 onGlobalFilter(table: Table, event: Event) {
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
 
-    const filteredCrs = this.crs.filter((cr) => {
+    const filteredPotencias = this.usuarios.filter((usuario) => {
 
     //const filteredTrafos = this.trafos.filter((trafo) => trafo.cia?.toLowerCase().includes(filterValue));
 
       return (
-        (cr.CodCR?.toLowerCase().includes(filterValue)) ||
-        (cr.abreviatura?.toLowerCase().includes(filterValue)) ||
-        (cr.NombreCR?.toLowerCase().includes(filterValue))
+        (usuario.CodUsuario?.toString().toLowerCase().includes(filterValue)) ||
+        (usuario.Nombres?.toLowerCase().includes(filterValue)) ||
+        (usuario.Apellidos?.toString().toLowerCase().includes(filterValue)) ||
+        (usuario.Estado?.toString().toLowerCase().includes(filterValue)) ||
+        (usuario.CodUsuarioSOR?.toString().toLowerCase().includes(filterValue)) ||
+        (usuario.NombreCR?.toString().toLowerCase().includes(filterValue)) ||
+        (usuario.NombreCRPadre?.toString().toLowerCase().includes(filterValue))
       );
     });
 
       if (filterValue) {
         this.filterApplied = true;
       }else {
-        this.filteredCrs = [...this.crs];
+        this.filteredUsuarios = [...this.usuarios];
         this.filterApplied = false;
       }
 
-    this.filteredCrs = filteredCrs;
+    this.filteredUsuarios = filteredPotencias;
   }
-
-  onCascadeSelectChange(){
-    console.log('Opción seleccionada:', this.selectedOptionCrGroups);
-    switch (this.selectedOptionCrGroups?.value) {
-      case 'ALM':
-        this.crService.getAlm().subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
-        break;
-      case 'ADM':
-        this.crService.getAdm().subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
-        break;
-      case 'COI':
-        this.crService.getCoi().subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
-        break;
-      case 'CPT':
-        this.crService.getCpt().subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
-        break;
-      case 'OMR':
-        this.crService.getOmr().subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
-        break;
-      default:
-        this.crService.getCrs().subscribe(cr => this.crs = cr);
-        break;
-    }
-  }  
 }

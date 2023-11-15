@@ -15,12 +15,12 @@
     </p-toolbar>
 
     <!-- <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id"> -->
-      <p-table #dt [value]="filterApplied ? filteredCrs : crs" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros" [(selection)]="selectedCr" selectionMode="multiple" [rowHover]="true" dataKey="codigo">
+      <p-table #dt [value]="filterApplied ? filteredCrs : crs" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros" [(selection)]="selectedCr" selectionMode="multiple" [rowHover]="true" dataKey="CodCR">
         <ng-template pTemplate="caption">
             <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                 <h5 class="m-0">Centro de Responsabilidad</h5>
                 <span>
-                    <p-cascadeSelect [(ngModel)]="selectedOptionCr" [options]="groups" optionLabel="label" optionGroupLabel="label" [optionGroupChildren]="['states', 'cities']" [style]="{ minWidth: '14rem' }" placeholder="Grupo" (onChange)="onCascadeSelectChange($event)"></p-cascadeSelect>
+                    <p-cascadeSelect [(ngModel)]="selectedOptionCrGroups" [options]="groups" optionLabel="label" optionGroupLabel="label" [optionGroupChildren]="['states', 'cities']" [style]="{ minWidth: '14rem' }" placeholder="Almacén" (onChange)="onCascadeSelectChange()"></p-cascadeSelect>
                 </span>
                 <span class="block mt-2 md:mt-0 p-input-icon-left">
                     <i class="pi pi-search"></i>
@@ -45,13 +45,13 @@
                   <p-tableCheckbox [value]="cr"></p-tableCheckbox>
                 </td>
                 <td style="width:14%; min-width:10rem;"><span class="p-column-title">Código</span>
-                    {{ cr.codigo }}
+                    {{ cr.CodCR }}
                 </td>
                 <td style="width:14%; min-width:10rem;"><span class="p-column-title">Abreviatura</span>
                     {{cr.abreviatura}}
                 </td>
                 <td style="width:14%; min-width:8rem;"><span class="p-column-title">Nombre</span>
-                    {{cr.nombre}}
+                    {{cr.NombreCR}}
                 </td>
                 <td>
                     <div class="flex">
@@ -62,4 +62,30 @@
             </tr>
         </ng-template>
     </p-table>
+
+    <p-dialog [(visible)]="trafoDialog" [style]="{width: '450px'}" [header]="( editFlag ?  'Editar':'Nuevo' ) " [modal]="true" class="p-fluid">
+        <ng-template pTemplate="content">
+            <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
+            <div class="formgrid grid">
+              <div class="field col">
+                <label for="cia">Código</label>
+                <input type="text" [disabled] = "editFlag ? true:false" pInputText id="name" [(ngModel)]="cr.CodCR" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cr.CodCR}"/>
+                <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !cr.CodCR">Name is required.</small>
+              </div>
+              <div class="field col">
+                <label for="serie">Abreviatura</label>
+                <input type="text"  pInputText id="serie" [(ngModel)]="cr.abreviatura" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !cr.abreviatura}"/>
+                <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !cr.abreviatura">Name is required.</small>
+              </div>
+            </div>
+            <div class="field">
+                <label for="description">Nombre</label>
+                <textarea id="description" pInputTextarea [(ngModel)]="cr.NombreCR" required rows="3" cols="20"></textarea>
+            </div>                       
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+            <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+        </ng-template>
+    </p-dialog>
 </div>

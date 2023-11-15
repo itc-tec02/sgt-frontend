@@ -40,9 +40,9 @@ export class AppMenuComponent implements OnInit {
       {
         label: 'Seguridad',
         items: [
-          { label: 'Usuarios', icon: 'pi pi-fw pi-list', routerLink: ['/auth'] },
-          { label: 'Perfiles', icon: 'pi pi-fw pi-users', routerLink: ['/prfl'] },
-          { label: 'Cambiar Clave', icon: 'pi pi-fw pi-user-edit', routerLink: ['/user/pass'] },
+          { label: 'Usuarios', icon: 'pi pi-fw pi-list', routerLink: ['/users'] }
+          //{ label: 'Perfiles', icon: 'pi pi-fw pi-users', routerLink: ['/prfl'] },
+          //{ label: 'Cambiar Clave', icon: 'pi pi-fw pi-user-edit', routerLink: ['/user/pass'] },
         ]
       },
     ];

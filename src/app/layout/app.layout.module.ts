@@ -29,6 +29,7 @@ import { PuestosModule } from '../puestos/puestos.module';
 import { PotenciasModule } from '../potencias/potencias.module';
 import { CrModule } from '../crs/crs.module';
 import { GrupoModule } from '../grupos/grupos.module';
+import { UsuariosModule } from '../usuarios/usuarios.module';
 
 @NgModule({
     declarations: [
@@ -65,6 +66,7 @@ import { GrupoModule } from '../grupos/grupos.module';
         PotenciasModule,
         CrModule,
         GrupoModule,
+        UsuariosModule,
     ],
     exports: [AppLayoutComponent]
 })

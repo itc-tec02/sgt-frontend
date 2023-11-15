@@ -1,5 +1,6 @@
 export interface Cr {
-    codigo?: string;
+    CodCR?: string;
     abreviatura?: string;
-    nombre?: string;
+    NombreCR?: string;
+    CodCRPadre?: string;
 }
