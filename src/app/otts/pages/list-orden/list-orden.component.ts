@@ -278,4 +278,22 @@ export class ListOrdenComponent implements OnInit {
       this.filteredOrders = filteredOrders;
     }
 
+    onRowClick(trafo: any) {
+      const isSelected = this.isSelected(trafo);
+      
+      if (isSelected) {
+          // Si está seleccionado, quitarlo de la lista de selección
+          this.selectedOrders = this.selectedOrders.filter(item => item !== trafo);
+      } else {
+          // Si no está seleccionado, agregarlo a la lista de selección
+          this.selectedOrders = [...this.selectedOrders, trafo];
+      }
+  
+      console.log("check");
+  }
+  
+  isSelected(trafo: any): boolean {
+      return this.selectedOrders.includes(trafo);
+  }
+
 }

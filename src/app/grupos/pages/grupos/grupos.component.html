@@ -40,7 +40,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-grupo>
-            <tr>
+            <tr (click)="onRowClick(grupo)">
                 <td>
                   <p-tableCheckbox [value]="grupo"></p-tableCheckbox>
                 </td>

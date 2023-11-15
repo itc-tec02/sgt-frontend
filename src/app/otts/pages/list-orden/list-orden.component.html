@@ -46,7 +46,7 @@
                   </tr>
               </ng-template>
               <ng-template pTemplate="body" let-order>
-                  <tr>
+                  <tr (click)="onRowClick(order)">
                       <td>
                           <p-tableCheckbox [value]="order"></p-tableCheckbox>
                       </td>

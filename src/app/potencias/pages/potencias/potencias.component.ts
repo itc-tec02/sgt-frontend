@@ -150,4 +150,22 @@ onGlobalFilter(table: Table, event: Event) {
     this.filteredPotencias = filteredPotencias;
   }
 
+  onRowClick(trafo: any) {
+    const isSelected = this.isSelected(trafo);
+    
+    if (isSelected) {
+        // Si está seleccionado, quitarlo de la lista de selección
+        this.selectedPotencia = this.selectedPotencia.filter(item => item !== trafo);
+    } else {
+        // Si no está seleccionado, agregarlo a la lista de selección
+        this.selectedPotencia = [...this.selectedPotencia, trafo];
+    }
+
+    console.log("check");
+}
+
+isSelected(trafo: any): boolean {
+    return this.selectedPotencia.includes(trafo);
+}
+
 }

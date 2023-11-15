@@ -262,11 +262,12 @@ export class ListTrafoComponent implements OnInit {
 
   onGlobalFilter(table: Table, event: Event) {
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+    console.log(filterValue)
 
     const filteredTrafos = this.trafos.filter((trafo) => {
       const cleanFilterValue = filterValue.replace(/\s/g, '');  
       const cleanKvaValue = trafo.kvc?.toString().replace(/\s/g, '');
-
+      
     //const filteredTrafos = this.trafos.filter((trafo) => trafo.cia?.toLowerCase().includes(filterValue));
 
       return (
