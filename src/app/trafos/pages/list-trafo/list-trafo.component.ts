@@ -6,9 +6,8 @@ import { ProductService } from 'src/app/demo/service/product.service';
 import { Product } from 'src/app/demo/api/product';
 import { TrafoService } from '../../services/trafo-service.service';
 import { Trafo } from '../../interfaces/trafo.inerface';
-import * as _ from "lodash";
-import { ActivatedRoute, Router } from '@angular/router';
-import { SelectItem } from 'primeng/api';
+// import { ActivatedRoute, Router } from '@angular/router';
+// import { SelectItem } from 'primeng/api';
 
 
 @Component({
@@ -235,9 +234,9 @@ export class ListTrafoComponent implements OnInit {
       //     this.productDialog = false;
       //     this.trafo = {};
       // }
-      
+
   }
-  
+
 
   findIndexById(id: string): number {
       let index = -1;
@@ -265,9 +264,9 @@ export class ListTrafoComponent implements OnInit {
     console.log(filterValue)
 
     const filteredTrafos = this.trafos.filter((trafo) => {
-      const cleanFilterValue = filterValue.replace(/\s/g, '');  
+      const cleanFilterValue = filterValue.replace(/\s/g, '');
       const cleanKvaValue = trafo.kvc?.toString().replace(/\s/g, '');
-      
+
     //const filteredTrafos = this.trafos.filter((trafo) => trafo.cia?.toLowerCase().includes(filterValue));
 
       return (
@@ -279,7 +278,7 @@ export class ListTrafoComponent implements OnInit {
         (trafo.kvc?.toLowerCase().includes(filterValue)) ||
         (trafo.modelo?.toLowerCase().includes(filterValue)) ||
         (trafo.ott?.toLowerCase().includes(filterValue)) ||
-        (trafo.propietario?.toLowerCase().includes(filterValue)) || 
+        (trafo.propietario?.toLowerCase().includes(filterValue)) ||
         (trafo.responsable?.toLowerCase().includes(filterValue)) ||
         (trafo.tipoFase?.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(filterValue)) ||
         (trafo.ubicacionActual?.toLowerCase().includes(filterValue)) ||
@@ -296,7 +295,7 @@ export class ListTrafoComponent implements OnInit {
 
     this.filteredTrafos = filteredTrafos;
   }
-  
+
   containsNumber(value: any): boolean {
     const stringValue = value.toString();
     return /\d/.test(stringValue);
@@ -304,7 +303,7 @@ export class ListTrafoComponent implements OnInit {
 
   onRowClick(trafo: any) {
     const isSelected = this.isSelected(trafo);
-    
+
     if (isSelected) {
         // Si está seleccionado, quitarlo de la lista de selección
         this.selectedTrafos = this.selectedTrafos.filter(item => item !== trafo);
