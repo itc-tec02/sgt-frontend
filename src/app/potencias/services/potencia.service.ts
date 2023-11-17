@@ -22,4 +22,13 @@ export class PotenciaService {
   get potencias() {
     return this._potencias;
   }
+
+  agregarPotencia(potencia: Potencia): Observable<Potencia> {
+    return this.http.post<Potencia>(`${this.baseUrl}/mantto/pn`, potencia);
+  }
+
+  actualizarPotencia(potencia: Potencia): Observable<Potencia> {
+    const url = `${this.baseUrl}/${potencia.Codigo}`;
+    return this.http.put<Potencia>(url, potencia);
+  }
 }

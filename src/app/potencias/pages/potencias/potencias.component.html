@@ -30,14 +30,14 @@
                 <th style="width: 5rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th pSortableColumn="Codigo">Código <p-sortIcon field="codigo"></p-sortIcon></th>
-                <th pSortableColumn="Descripcion">Descripción <p-sortIcon field="descripcion"></p-sortIcon></th>
-                <th pSortableColumn="Valor">Valor <p-sortIcon field="valor"></p-sortIcon></th>
+                <th pSortableColumn="Codigo">Código <p-sortIcon field="Codigo"></p-sortIcon></th>
+                <th pSortableColumn="Descripcion">Descripción <p-sortIcon field="Descripcion"></p-sortIcon></th>
+                <th pSortableColumn="Valor">Valor <p-sortIcon field="Valor"></p-sortIcon></th>
                 <th></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-potencia>
-            <tr (click)="onRowClick(potencia)">
+            <tr>
                 <td>
                   <p-tableCheckbox [value]="potencia"></p-tableCheckbox>
                 </td>
@@ -65,19 +65,19 @@
             <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
             <div class="formgrid grid">
               <div class="field col">
-                <label for="cia">Código</label>
-                <input type="text" [disabled] = "editFlag ? true:false" pInputText id="name" [(ngModel)]="potencia.Codigo" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !potencia.Codigo}"/>
+                <label for="codigo">Código</label>
+                <input type="text" [disabled] = "editFlag ? true:false" pInputText id="codigo" [(ngModel)]="potencia.Codigo" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !potencia.Codigo}"/>
                 <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !potencia.Codigo">Name is required.</small>
               </div>
               <div class="field col">
-                <label for="serie">Valor</label>
-                <input type="text"  pInputText id="serie" [(ngModel)]="potencia.Valor" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !potencia.Valor}"/>
+                <label for="valor">Valor</label>
+                <input type="text"  pInputText id="valor" [(ngModel)]="potencia.Valor" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !potencia.Valor}"/>
                 <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !potencia.Valor">Name is required.</small>
               </div>
             </div>
             <div class="field">
-                <label for="description">Descripción</label>
-                <textarea id="description" pInputTextarea [(ngModel)]="potencia.Descripcion" required rows="3" cols="20"></textarea>
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" pInputTextarea [(ngModel)]="potencia.Descripcion" required rows="3" cols="20"></textarea>
             </div>                       
         </ng-template>
         <ng-template pTemplate="footer">

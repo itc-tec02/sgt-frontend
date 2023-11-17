@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environments';
 import { Trafo } from '../interfaces/trafo.inerface';
 
@@ -21,5 +21,13 @@ export class TrafoService {
 
   get trafos() {
     return this._trafos;
+  }
+
+  agregarTrafo(trafo: Trafo): Observable<Trafo> {
+    return this.http.post<Trafo>(`${this.baseUrl}/trafos`,trafo).pipe(
+      tap((nuevoTrafo: Trafo) => {
+        this._trafos.push(nuevoTrafo);
+      })
+    );
   }
 }

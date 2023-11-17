@@ -78,32 +78,28 @@ hideDialog() {
 }
 
 saveProduct() {
-    this.submitted = true;
+  this.submitted = true;
 
+  // Verificar que todos los campos requeridos tengan valores
+  if (this.potencia.Codigo && this.potencia.Valor) {
+    if (this.editFlag) {
+      this.potenciaService.actualizarPotencia(this.potencia).subscribe(tarea =>{
+        console.log("potencia editada", tarea);
+      })
+    } else {
+      // Agregar nueva potencia
+      this.potenciaService.agregarPotencia(this.potencia).subscribe(tarea =>{
+        console.log("potencia agregada", tarea);
+      })
+    }
 
-    // if (this.trafo.NroCIA?.trim()) {
-    //     if (this.trafo.id) {
-    //         // @ts-ignore
-    //         this.trafo.inventoryStatus = this.trafo.inventoryStatus.value ? this.trafo.inventoryStatus.value : this.trafo.inventoryStatus;
-    //         this.products[this.findIndexById(this.trafo.id)] = this.trafo;
-    //         this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador actualizado con Éxito.', life: 3000 });
-    //     } else {
-    //         this.trafo.id = this.createId();
-    //         this.trafo.code = this.createId();
-    //         this.trafo.image = 'product-placeholder.svg';
-    //         // @ts-ignore
-    //         this.trafo.inventoryStatus = this.trafo.inventoryStatus ? this.trafo.inventoryStatus.value : 'INSTOCK';
-    //         this.products.push(this.trafo);
-    //         this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador creado con Éxito.', life: 3000 });
-    //     }
-
-    //     this.products = [...this.products];
-    //     this.productDialog = false;
-    //     this.trafo = {};
-    // }
-    
+    this.trafoDialog = false;
+    this.potencia = {};
+  } else {
+    // Mostrar mensaje de error o realizar alguna acción si los campos no están completos
+    console.error('Todos los campos son obligatorios.');
+  }
 }
-
 
 findIndexById(id: string): number {
     let index = -1;

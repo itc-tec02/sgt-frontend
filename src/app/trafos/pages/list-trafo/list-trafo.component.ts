@@ -214,27 +214,36 @@ export class ListTrafoComponent implements OnInit {
   saveProduct() {
       this.submitted = true;
 
+      if (this.trafo.idxfoTransformador?.trim()) {
+        if (this.editFlag) {
+          // Actualizar el transformador existente
+          this.trafoService.agregarTrafo(this.trafo).subscribe(
+              () => {
+                  this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Transformador actualizado con éxito.', life: 3000 });
+                  // Puedes realizar otras acciones después de actualizar el transformador, si es necesario
+              },
+              (error) => {
+                  console.error('Error al actualizar el transformador:', error);
+              }
+          );
+      } else {
+          // Crear un nuevo transformador
+          this.trafoService.agregarTrafo(this.trafo).subscribe(
+              () => {
+                  this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Transformador creado con éxito.', life: 3000 });
+                  // Puedes realizar otras acciones después de agregar el transformador, si es necesario
+              },
+              (error) => {
+                  console.error('Error al agregar el transformador:', error);
+              }
+          );
+      }
 
-      // if (this.trafo.NroCIA?.trim()) {
-      //     if (this.trafo.id) {
-      //         // @ts-ignore
-      //         this.trafo.inventoryStatus = this.trafo.inventoryStatus.value ? this.trafo.inventoryStatus.value : this.trafo.inventoryStatus;
-      //         this.products[this.findIndexById(this.trafo.id)] = this.trafo;
-      //         this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador actualizado con Éxito.', life: 3000 });
-      //     } else {
-      //         this.trafo.id = this.createId();
-      //         this.trafo.code = this.createId();
-      //         this.trafo.image = 'product-placeholder.svg';
-      //         // @ts-ignore
-      //         this.trafo.inventoryStatus = this.trafo.inventoryStatus ? this.trafo.inventoryStatus.value : 'INSTOCK';
-      //         this.products.push(this.trafo);
-      //         this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador creado con Éxito.', life: 3000 });
-      //     }
-
-      //     this.products = [...this.products];
-      //     this.productDialog = false;
-      //     this.trafo = {};
-      // }
+        // Restablecer variables y cerrar el diálogo
+        this.trafoDialog = false;
+        this.submitted = false;
+        this.trafo = {};
+    }
       
   }
   
@@ -242,7 +251,7 @@ export class ListTrafoComponent implements OnInit {
   findIndexById(id: string): number {
       let index = -1;
       for (let i = 0; i < this.products.length; i++) {
-          if (this.products[i].id === id) {
+          if (this.trafos[i].idxfoTransformador === id) {
               index = i;
               break;
           }
@@ -319,4 +328,5 @@ export class ListTrafoComponent implements OnInit {
 isSelected(trafo: any): boolean {
     return this.selectedTrafos.includes(trafo);
 }
+
 }
