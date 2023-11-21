@@ -17,10 +17,13 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
+import { AddeditpuestoComponent } from './pages/addeditpuesto/addeditpuesto.component';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
     declarations: [
         ListPuestoComponent,
+        AddeditpuestoComponent,
     ],
     imports: [
         ButtonModule,
@@ -38,6 +41,7 @@ import { DialogModule } from 'primeng/dialog';
         TableModule,
         ToastModule,
         ToolbarModule,
+        CardModule,
     ]
   })
   export class PuestosModule { }

@@ -33,17 +33,17 @@ export class AddOrEditPotenciasComponent implements OnInit{
     this.potenciaData = {} as Potencia
     this.potenciaId= this.route.snapshot.paramMap.get('id');
     this.editFlag = !!this.potenciaId;
-    console.log(this.editFlag)
+    //console.log(this.editFlag)
   }
 
   ngOnInit(): void {
-    console.log('ngoniniiit')
-    console.log('ngoniniiit', this.editFlag)
+    //console.log('ngoniniiit')
+    //console.log('ngoniniiit', this.editFlag)
     if (this.editFlag) {
-      console.log('validacion',this.editFlag)
+      //console.log('validacion',this.editFlag)
       this.potenciaService.getById(this.potenciaId).subscribe((response: any) => {
         this.potencia = response
-        console.log('ngoninit addedit',this.editFlag)
+        //console.log('ngoninit addedit',this.editFlag)
       })
     }
   }
@@ -97,10 +97,10 @@ export class AddOrEditPotenciasComponent implements OnInit{
     this.submitted = true;
   
     if (this.editFlag) {
-      console.log('edit',this.editFlag)
+      //console.log('edit',this.editFlag)
       this.potenciaService.actualizarPotencia(this.potenciaId, this.potencia).subscribe((reponse)=>console.log(this.potencia))
     } else {
-      console.log('new',this.editFlag)
+      //console.log('new',this.editFlag)
       this.potenciaService.agregarPotencia(this.potencia).subscribe((reponse)=>console.log(this.potencia))
     }
     this.router.navigateByUrl('/potn')

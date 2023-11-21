@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api';
 import { Product } from 'src/app/demo/api/product';
 import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class ListPuestoComponent implements OnInit{
 
   public editFlag: boolean = false;
 
-  constructor(private puestoService: PuestoService, private messageService: MessageService, private productService: ProductService) { }
+  constructor(private puestoService: PuestoService, private messageService: MessageService, private productService: ProductService, private router: Router) { }
 
   ngOnInit() {
     // this.productService.getProducts().then(data => this.products = data);
@@ -38,10 +39,8 @@ export class ListPuestoComponent implements OnInit{
   }
 
   openNew() {
-    this.puesto = {};
-    this.submitted = false;
-    this.trafoDialog = true;
     this.editFlag = false;
+    this.router.navigate(['puesto/add']);
 }
 
 deleteSelectedProducts() {
@@ -49,9 +48,11 @@ deleteSelectedProducts() {
 }
 
 editProduct(puesto: Puesto) {
-    this.puesto = { ...puesto };
-    this.trafoDialog = true;
-    this.editFlag = true;
+  this.editFlag = true;
+  this.puesto = { ...puesto };
+  const puestoId = this.puesto.idxfoPuesto;
+
+  this.router.navigate([`puesto/edit/${puestoId}`]);
 }
 
 deleteProduct(puesto: Puesto) {

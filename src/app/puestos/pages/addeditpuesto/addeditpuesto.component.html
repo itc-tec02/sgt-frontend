@@ -1,0 +1,43 @@
+<div>
+    <p-card  [style]="{width: '450px'}" [header]="( editFlag ?  'Editar' : 'Nuevo' ) + ' Puesto'" >
+        <ng-template pTemplate="content">
+            <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
+            <div class="formgrid grid">
+              <div class="field col">
+                <label for="Codigo">ID Puesto</label>
+                <input type="text" [disabled] = "editFlag ? true:false" pInputText id="idxfoPuesto" [(ngModel)]="this.puesto.idxfoPuesto" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.idxfoPuesto}"/>
+                <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !puesto.idxfoPuesto">Name is required.</small>
+              </div>
+              <div class="field col">
+                <label for="valor">Código Puesto</label>
+                <input type="text"  pInputText id="CodPuesto" [(ngModel)]="puesto.CodPuesto" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.CodPuesto}"/>
+                <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !puesto.CodPuesto">Name is required.</small>
+              </div>
+            </div>
+            <div class="field col">
+              <label for="valor">Dirección</label>
+              <input type="text"  pInputText id="Direccion" [(ngModel)]="puesto.Direccion" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.Direccion}"/>
+              <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !puesto.Direccion">Name is required.</small>
+            </div> 
+            <div class="field col">
+              <label for="valor">Zona Municipal</label>
+              <input type="text"  pInputText id="ZonaMunicipal" [(ngModel)]="puesto.ZonaMunicipal" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.ZonaMunicipal}"/>
+              <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !puesto.ZonaMunicipal">Name is required.</small>
+            </div> 
+            <div class="field col">
+              <label for="valor">Fecha Puesta Servicio</label>
+              <input type="text"  pInputText id="FecPueServ" [(ngModel)]="puesto.FecPueServ" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.FecPueServ}"/>
+              <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !puesto.FecPueServ">Name is required.</small>
+            </div> 
+            <div class="field col">
+              <label for="valor">Fecha Retiro</label>
+              <input type="text"  pInputText id="FecRetiro" [(ngModel)]="puesto.FecRetiro" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.FecRetiro}"/>
+              <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !puesto.FecRetiro">Name is required.</small>
+            </div>                 
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog1()"></button>
+            <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+        </ng-template>
+    </p-card>
+</div>

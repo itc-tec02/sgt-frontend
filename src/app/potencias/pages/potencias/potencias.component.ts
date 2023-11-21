@@ -31,6 +31,7 @@ export class PotenciasComponent {
   products: Product[] = [];
   selectedPotencia: Potencia[] = [];
   potenciaId: any;
+  globalFilter: string = '';
 
   public editFlag: Boolean;
 
@@ -39,7 +40,7 @@ export class PotenciasComponent {
    }
 
   ngOnInit() {
-    this.potenciaService.getPotencias().subscribe( (potencia) => {this.potencias = potencia; console.log(this.potencias), console.log(this.editFlag)  })
+    this.potenciaService.getPotencias().subscribe( (potencia) => {this.potencias = potencia; console.log(this.potencias)}) //console.log(this.editFlag)  })
   }
 
   openNew() {
@@ -47,9 +48,9 @@ export class PotenciasComponent {
     // this.potencia = {};
     // this.submitted = false;
     // this.trafoDialog = true;    
-    console.log('into openew')
+    //console.log('into openew')
     this.router.navigate(['potn/add']);
-    console.log('opennew',this.editFlag)
+    //console.log('opennew',this.editFlag)
   }
 
   deleteSelectedProducts() {
@@ -67,13 +68,19 @@ export class PotenciasComponent {
     //this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformadores inactivados con Éxito.', life: 3000 });
     this.selectedPotencia = [];
     this.deleteProductsDialog = false;
+    this.globalFilter = '';
+    //this.potenciaService.getPotencias().subscribe( (potencia) => {this.potencias = potencia; console.log(this.potencias)}) //console.log(this.editFlag)  })
   }
 
   confirmDelete() {
-    this.potencias = this.potencias.filter(val => val.Codigo !== this.potencia.Codigo);
+    if(this.filterApplied){
+      this.potencias = this.filteredPotencias.filter(val => val.Codigo !== this.potencia.Codigo);
+    }else{
+    this.potencias = this.potencias.filter(val => val.Codigo !== this.potencia.Codigo);}
     this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador inactivado con Éxito.', life: 3000 });
     const potenciaId = this.potencia.Codigo;
     this.potenciaService.delete(potenciaId).subscribe((reponse)=>(console.log('eliminado',this.potencia)));
+    //this.potencia = {};
     this.deleteProductDialog = false;
     this.deleteProductsDialog = true;
   }

@@ -32,6 +32,7 @@ import { GrupoModule } from '../grupos/grupos.module';
 import { UsuariosModule } from '../usuarios/usuarios.module';
 import { AddOrEditPotenciasComponent } from '../potencias/pages/add-or-edit-potencias/add-or-edit-potencias.component';
 
+
 @NgModule({
     declarations: [
         AppMenuitemComponent,

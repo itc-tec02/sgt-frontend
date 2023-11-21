@@ -13,6 +13,7 @@ import { CrsComponent } from './crs/pages/crs/crs.component';
 import { GruposComponent } from './grupos/pages/grupos/grupos.component';
 import { ListUsuariosComponent } from './usuarios/pages/list-usuarios/list-usuarios.component';
 import { AddOrEditPotenciasComponent } from './potencias/pages/add-or-edit-potencias/add-or-edit-potencias.component';
+import { AddeditpuestoComponent } from './puestos/pages/addeditpuesto/addeditpuesto.component';
 
 
 
@@ -30,6 +31,8 @@ const routes: Routes = [
       { path: '', loadChildren: () => import('./layout/home/home.module').then( m => m.HomeModule) },
       { path:'trafo', component: ListTrafoComponent},
       { path:'puesto', component: ListPuestoComponent},
+      { path:'puesto/edit/:id', component: AddeditpuestoComponent},
+      { path:'puesto/add', component: AddeditpuestoComponent},
       { path:'ott', component: ListOrdenComponent},
       { path:'grupos', component: GruposComponent},
       { path:'cr', component: CrsComponent},

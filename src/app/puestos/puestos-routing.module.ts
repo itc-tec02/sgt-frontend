@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListPuestoComponent } from './pages/list-puesto/list-puesto.component';
+import { AddeditpuestoComponent } from './pages/addeditpuesto/addeditpuesto.component';
 
 const routes: Routes = [
   {
@@ -9,7 +10,11 @@ const routes: Routes = [
   },
   {
     path: 'edit/:id',
-    component: ListPuestoComponent,
+    component: AddeditpuestoComponent,
+  },
+  {
+    path: 'add',
+    component: AddeditpuestoComponent,
   },
   {
     path:'**',

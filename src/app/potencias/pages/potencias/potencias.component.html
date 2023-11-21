@@ -21,7 +21,7 @@
                 <h5 class="m-0">Lista de Potencias Nominales</h5>
                 <span class="block mt-2 md:mt-0 p-input-icon-left">
                     <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="onGlobalFilter(dt,$event)" placeholder="Search..."  class="w-full sm:w-auto"/>
+                    <input pInputText type="text" [(ngModel)]="globalFilter" (input)="onGlobalFilter(dt,$event)" placeholder="Search..."  class="w-full sm:w-auto"/>
                 </span>
             </div>
         </ng-template>
@@ -74,7 +74,6 @@
 
     <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
         <div class="flex align-items-center justify-content-center">
-            <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
             <!-- <span>Are you sure you want to delete selected products?</span> -->
             <span>Potencia Eliminada</span>
         </div>
