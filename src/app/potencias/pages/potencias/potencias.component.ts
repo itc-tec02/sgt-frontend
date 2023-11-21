@@ -1,18 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, NgZone, EventEmitter, Output } from '@angular/core';
 import { Potencia } from '../../model/potencia';
 import { Product } from 'src/app/demo/api/product';
 import { PotenciaService } from '../../services/potencia.service';
 import { MessageService } from 'primeng/api';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { Table } from 'primeng/table';
+import { ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-potencias',
+  //templateUrl: './potencias.component.html',
   templateUrl: './potencias.component.html',
   styleUrls: ['./potencias.component.scss'],
   providers: [MessageService]
 })
 export class PotenciasComponent {
+  @Output() showDialogEvent = new EventEmitter<Potencia>();
   public potencias: Potencia[]= [];
   potencia : Potencia = {};
   deleteProductDialog: boolean = false;
@@ -25,83 +30,73 @@ export class PotenciasComponent {
   trafoDialog: boolean = false;
   products: Product[] = [];
   selectedPotencia: Potencia[] = [];
+  potenciaId: any;
 
-  public editFlag: boolean = false;
+  public editFlag: Boolean;
 
-  constructor(private potenciaService: PotenciaService, private messageService: MessageService, private productService: ProductService) { }
+  constructor(private potenciaService: PotenciaService, private messageService: MessageService, private productService: ProductService, private cdRef: ChangeDetectorRef, private router: Router, private ngZone: NgZone) {
+    this.editFlag = false
+   }
 
   ngOnInit() {
-    // this.productService.getProducts().then(data => this.products = data);
-    // console.log(this.products);
-    this.potenciaService.getPotencias().subscribe( (potencia) => {this.potencias = potencia; console.log(this.potencias)  })
+    this.potenciaService.getPotencias().subscribe( (potencia) => {this.potencias = potencia; console.log(this.potencias), console.log(this.editFlag)  })
   }
 
   openNew() {
-    this.potencia = {};
-    this.submitted = false;
-    this.trafoDialog = true;
     this.editFlag = false;
-}
+    // this.potencia = {};
+    // this.submitted = false;
+    // this.trafoDialog = true;    
+    console.log('into openew')
+    this.router.navigate(['potn/add']);
+    console.log('opennew',this.editFlag)
+  }
 
-deleteSelectedProducts() {
+  deleteSelectedProducts() {
     this.deleteProductsDialog = true;
-}
+  }
 
-editProduct(potencia: Potencia) {
-    this.potencia = { ...potencia };
-    this.trafoDialog = true;
-    this.editFlag = true;
-}
-
-deleteProduct(potencia: Potencia) {
+  deleteProduct(potencia: Potencia) {
     this.deleteProductDialog = true;
     this.potencia = { ...potencia };
-}
+    
+  }
 
-confirmDeleteSelected() {
-    //this.deleteProductsDialog = false;
-    this.potencias = this.potencias.filter(val => !this.selectedPotencia.includes(val));
-    this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformadores inactivados con Éxito.', life: 3000 });
+  confirmDeleteSelected() {
+    //this.potencias = this.potencias.filter(val => !this.selectedPotencia.includes(val));
+    //this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformadores inactivados con Éxito.', life: 3000 });
     this.selectedPotencia = [];
-}
+    this.deleteProductsDialog = false;
+  }
 
-confirmDelete() {
-    //this.deleteProductDialog = false;
+  confirmDelete() {
     this.potencias = this.potencias.filter(val => val.Codigo !== this.potencia.Codigo);
     this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador inactivado con Éxito.', life: 3000 });
-    this.potencia = {};
-}
-
-hideDialog() {
-    //this.trafoDialog = false;
-    this.submitted = false;
-}
-
-saveProduct() {
-  this.submitted = true;
-
-  // Verificar que todos los campos requeridos tengan valores
-  if (this.potencia.Codigo && this.potencia.Valor) {
-    if (this.editFlag) {
-      this.potenciaService.actualizarPotencia(this.potencia).subscribe(tarea =>{
-        console.log("potencia editada", tarea);
-      })
-    } else {
-      // Agregar nueva potencia
-      this.potenciaService.agregarPotencia(this.potencia).subscribe(tarea =>{
-        console.log("potencia agregada", tarea);
-      })
-    }
-
-    this.trafoDialog = false;
-    this.potencia = {};
-  } else {
-    // Mostrar mensaje de error o realizar alguna acción si los campos no están completos
-    console.error('Todos los campos son obligatorios.');
+    const potenciaId = this.potencia.Codigo;
+    this.potenciaService.delete(potenciaId).subscribe((reponse)=>(console.log('eliminado',this.potencia)));
+    this.deleteProductDialog = false;
+    this.deleteProductsDialog = true;
   }
-}
 
-findIndexById(id: string): number {
+  hideDialog() {
+    this.trafoDialog = false;
+    this.submitted = false;
+  }
+
+  editProduct(potencia: Potencia) {
+    this.editFlag = true;
+     this.potencia = { ...potencia };
+     const potenciaId = this.potencia.Codigo;
+
+       this.router.navigate([`potn/edit/${potenciaId}`]);
+
+  }
+
+  reloadPage() {
+    window.location.reload();
+  }
+
+  findIndexById(id: string): number {
     let index = -1;
     for (let i = 0; i < this.potencias.length; i++) {
         if (this.products[i].id === id) {
@@ -111,24 +106,21 @@ findIndexById(id: string): number {
     }
 
     return index;
-}
+  }
 
-createId(): string {
+  createId(): string {
     let id = '';
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     for (let i = 0; i < 5; i++) {
         id += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return id;
-}
+  }
 
-onGlobalFilter(table: Table, event: Event) {
+  onGlobalFilter(table: Table, event: Event) {
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
 
     const filteredPotencias = this.potencias.filter((potencia) => {
-
-    //const filteredTrafos = this.trafos.filter((trafo) => trafo.cia?.toLowerCase().includes(filterValue));
-
       return (
         (potencia.Codigo?.toString().toLowerCase().includes(filterValue)) ||
         (potencia.Descripcion?.toLowerCase().includes(filterValue)) ||
@@ -136,32 +128,27 @@ onGlobalFilter(table: Table, event: Event) {
       );
     });
 
-      if (filterValue) {
-        this.filterApplied = true;
-      }else {
-        this.filteredPotencias = [...this.potencias];
-        this.filterApplied = false;
-      }
+    if (filterValue) {
+      this.filterApplied = true;
+    } else {
+      this.filteredPotencias = [...this.potencias];
+      this.filterApplied = false;
+    }
 
     this.filteredPotencias = filteredPotencias;
   }
 
   onRowClick(trafo: any) {
     const isSelected = this.isSelected(trafo);
-    
+
     if (isSelected) {
-        // Si está seleccionado, quitarlo de la lista de selección
-        this.selectedPotencia = this.selectedPotencia.filter(item => item !== trafo);
+      this.selectedPotencia = this.selectedPotencia.filter(item => item !== trafo);
     } else {
-        // Si no está seleccionado, agregarlo a la lista de selección
-        this.selectedPotencia = [...this.selectedPotencia, trafo];
+      this.selectedPotencia = [...this.selectedPotencia, trafo];
     }
+  }
 
-    console.log("check");
-}
-
-isSelected(trafo: any): boolean {
+  isSelected(trafo: any): boolean {
     return this.selectedPotencia.includes(trafo);
-}
-
+  }
 }

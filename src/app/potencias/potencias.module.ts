@@ -17,10 +17,13 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
+import { AddOrEditPotenciasComponent } from './pages/add-or-edit-potencias/add-or-edit-potencias.component';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
     declarations: [
         PotenciasComponent,
+        AddOrEditPotenciasComponent,
     ],
     imports: [
         ButtonModule,
@@ -38,6 +41,7 @@ import { DialogModule } from 'primeng/dialog';
         TableModule,
         ToastModule,
         ToolbarModule,
+        CardModule
     ]
   })
   export class PotenciasModule { }

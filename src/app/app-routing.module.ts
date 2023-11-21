@@ -12,6 +12,7 @@ import { PotenciasComponent } from './potencias/pages/potencias/potencias.compon
 import { CrsComponent } from './crs/pages/crs/crs.component';
 import { GruposComponent } from './grupos/pages/grupos/grupos.component';
 import { ListUsuariosComponent } from './usuarios/pages/list-usuarios/list-usuarios.component';
+import { AddOrEditPotenciasComponent } from './potencias/pages/add-or-edit-potencias/add-or-edit-potencias.component';
 
 
 
@@ -34,11 +35,13 @@ const routes: Routes = [
       { path:'cr', component: CrsComponent},
       { path:'cr/admsist', component: CrsComponent},
       { path:'potn', component: PotenciasComponent},
+      { path:'potn/edit/:id', component: AddOrEditPotenciasComponent},
+      { path:'potn/add', component: AddOrEditPotenciasComponent},
       { path:'sor', component: NotfoundComponent},
       { path:'users', component: ListUsuariosComponent},
       { path:'prfl', component: NotfoundComponent},
       { path:'user/pass', component: NotfoundComponent},
-      { path:'notfound', component: NotfoundComponent},
+      //{ path:'notfound', component: NotfoundComponent},
       { path:'**', redirectTo: 'notfound'},
     ]
   }

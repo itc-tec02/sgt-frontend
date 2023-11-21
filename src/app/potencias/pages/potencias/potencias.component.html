@@ -52,7 +52,7 @@
                 </td>
                 <td>
                     <div class="flex">
-                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(potencia)"></button>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(potencia) "></button>
                         <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(potencia)"></button>
                     </div>
                 </td>
@@ -60,29 +60,26 @@
         </ng-template>
     </p-table>
 
-    <p-dialog [(visible)]="trafoDialog" [style]="{width: '450px'}" [header]="( editFlag ?  'Editar':'Nuevo' ) + ' Transformador'" [modal]="true" class="p-fluid">
-        <ng-template pTemplate="content">
-            <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
-            <div class="formgrid grid">
-              <div class="field col">
-                <label for="codigo">Código</label>
-                <input type="text" [disabled] = "editFlag ? true:false" pInputText id="codigo" [(ngModel)]="potencia.Codigo" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !potencia.Codigo}"/>
-                <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !potencia.Codigo">Name is required.</small>
-              </div>
-              <div class="field col">
-                <label for="valor">Valor</label>
-                <input type="text"  pInputText id="valor" [(ngModel)]="potencia.Valor" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !potencia.Valor}"/>
-                <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !potencia.Valor">Name is required.</small>
-              </div>
-            </div>
-            <div class="field">
-                <label for="descripcion">Descripción</label>
-                <textarea id="descripcion" pInputTextarea [(ngModel)]="potencia.Descripcion" required rows="3" cols="20"></textarea>
-            </div>                       
-        </ng-template>
+    <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+        <div class="flex align-items-center justify-content-center">
+            <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+            <!-- <span *ngIf="product">Are you sure you want to delete <b>{{product.name}}</b>?</span> -->
+            <span *ngIf="potencia">¿Está seguro que desea inactivar el transformador <b>{{potencia.Codigo}}</b>?</span>
+        </div>
         <ng-template pTemplate="footer">
-            <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-            <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+            <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductDialog = false"></button>
+            <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Si" (click)="confirmDelete()"></button>
+        </ng-template>
+    </p-dialog>
+
+    <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+        <div class="flex align-items-center justify-content-center">
+            <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+            <!-- <span>Are you sure you want to delete selected products?</span> -->
+            <span>Potencia Eliminada</span>
+        </div>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple class="p-button-text" label="Aceptar" (click)="confirmDeleteSelected()"></button>
         </ng-template>
     </p-dialog>
 </div>

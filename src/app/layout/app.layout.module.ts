@@ -30,6 +30,7 @@ import { PotenciasModule } from '../potencias/potencias.module';
 import { CrModule } from '../crs/crs.module';
 import { GrupoModule } from '../grupos/grupos.module';
 import { UsuariosModule } from '../usuarios/usuarios.module';
+import { AddOrEditPotenciasComponent } from '../potencias/pages/add-or-edit-potencias/add-or-edit-potencias.component';
 
 @NgModule({
     declarations: [

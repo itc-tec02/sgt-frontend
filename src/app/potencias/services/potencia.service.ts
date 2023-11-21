@@ -27,8 +27,17 @@ export class PotenciaService {
     return this.http.post<Potencia>(`${this.baseUrl}/mantto/pn`, potencia);
   }
 
-  actualizarPotencia(potencia: Potencia): Observable<Potencia> {
-    const url = `${this.baseUrl}/${potencia.Codigo}`;
+  actualizarPotencia(id: string, potencia: Potencia): Observable<Potencia> {
+    const url = `${this.baseUrl}/mantto/pn/${id}`;
     return this.http.put<Potencia>(url, potencia);
+  }
+
+  getById(id: string): Observable<Potencia> {
+    const url = `${this.baseUrl}/mantto/pn/${id}`;
+    return this.http.get<Potencia>(url)
+  }
+
+  delete(id: any): Observable<Potencia> {
+    return this.http.delete<Potencia>(`${this.baseUrl}/mantto/pn/${id}`);
   }
 }
