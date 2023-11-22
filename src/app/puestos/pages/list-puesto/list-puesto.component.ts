@@ -149,16 +149,16 @@ onGlobalFilter(table: Table, event: Event) {
     return (
       (puestos.CodPuesto?.toLowerCase().includes(filterValue)) ||
       (puestos.Direccion?.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(filterValue)) ||
-      (puestos.EstInstal?.toLowerCase().includes(filterValue)) ||
+      (puestos.EstadoInstalacion?.toLowerCase().includes(filterValue)) ||
       (puestos.Fase?.toLowerCase().includes(filterValue)) ||
-      (puestos.FecPueServ?.toLowerCase().includes(filterValue)) ||
-      (puestos.FecRetiro?.toLowerCase().includes(filterValue)) ||
+      (puestos.FecPueServ?.toString().toLowerCase().includes(filterValue)) ||
+      (puestos.FecRetiro?.toString().toLowerCase().includes(filterValue)) ||
       (puestos.NroEstructura?.toLowerCase().includes(filterValue)) ||
       (puestos.Montaje?.toLowerCase().includes(filterValue)) ||
       (puestos.NroFases?.toString().includes(filterValue)) ||
       (puestos.Propiedad?.toLowerCase().includes(filterValue)) ||
-      (puestos.TipoConex?.toLowerCase().includes(filterValue)) ||
-      (puestos.TIpoServ?.toLowerCase().includes(filterValue)) ||
+      (puestos.TipoConexion?.toLowerCase().includes(filterValue)) ||
+      (puestos.TipoServicio?.toLowerCase().includes(filterValue)) ||
       (puestos.ZonaMunicipal?.toLowerCase().includes(filterValue)) ||
       (puestos.NroFases && nroFasesCondition && isFaseWord)
       );

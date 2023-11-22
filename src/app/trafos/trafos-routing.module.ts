@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListTrafoComponent } from './pages/list-trafo/list-trafo.component';
-import { EditTrafoComponent } from './pages/edit-trafo/edit-trafo.component';
+import { AddedittrafoComponent } from './pages/addedittrafo/addedittrafo.component';
 
 const routes: Routes = [
   {
@@ -10,7 +10,11 @@ const routes: Routes = [
   },
   {
     path: 'edit/:id',
-    component: EditTrafoComponent,
+    component: AddedittrafoComponent,
+  },
+  {
+    path: 'add',
+    component: AddedittrafoComponent,
   },
   {
     path:'**',

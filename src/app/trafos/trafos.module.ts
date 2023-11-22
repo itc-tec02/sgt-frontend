@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import { TrafosRoutingModule } from './trafos-routing.module';
 import { ListTrafoComponent } from './pages/list-trafo/list-trafo.component';
-import { EditTrafoComponent } from './pages/edit-trafo/edit-trafo.component';
 
 
 import { TableModule } from 'primeng/table';
@@ -20,11 +19,13 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
+import { AddedittrafoComponent } from './pages/addedittrafo/addedittrafo.component';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
     ListTrafoComponent,
-    EditTrafoComponent,
+    AddedittrafoComponent,
   ],
   imports: [
     ButtonModule,
@@ -43,7 +44,7 @@ import { DialogModule } from 'primeng/dialog';
     ToastModule,
     ToolbarModule,
     TrafosRoutingModule,
-
+    CardModule,
   ]
 })
 export class TrafosModule { }

@@ -68,31 +68,31 @@
                         <p-tableCheckbox [value]="trafo" ></p-tableCheckbox>
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Cia</span>
-                          {{ trafo.cia }}
+                          {{ trafo.NroCia }}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Serie</span>
-                          {{trafo.serie}}
+                          {{trafo.NroSerie}}
                       </td>
                       <td style="width:14%; min-width:8rem;"><span class="p-column-title">Marca</span>
-                          {{trafo.marca}}
+                          {{trafo.Marca}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Modelo</span>
-                          {{trafo.modelo}}
+                          {{trafo.Modelo}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Kvc</span>
-                          {{trafo.kvc | number }}
+                          {{trafo.PotNominal | number }}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Fabricante</span>
-                          {{trafo.fabricante}}
+                          {{trafo.Fabricante}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Fabricante</span>
-                        {{trafo.propietario}}
+                        {{trafo.Propiedad}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Tipo Fase</span>
-                          {{trafo.tipoFase}}
+                          {{trafo.TipoXfo}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Estado Trafo</span>
-                          {{trafo.estadoTrafo}}
+                          {{trafo.EstadoTrafo}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Ubicacion Actual</span>
                           {{trafo.ubicacionActual}}
@@ -117,139 +117,28 @@
           </p-table>
       </div>
 
-      <p-dialog [(visible)]="trafoDialog" [style]="{width: '450px'}" [header]="( editFlag ?  'Editar':'Nuevo' ) + ' Transformador'" [modal]="true" class="p-fluid">
-          <ng-template pTemplate="content">
-              <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
-              <div class="formgrid grid">
-                <div class="field col">
-                  <label for="cia">N° CIA</label>
-                  <input type="text" [disabled] = "editFlag ? true:false" pInputText id="name" [(ngModel)]="trafo.cia" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !trafo.cia}"/>
-                  <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !trafo.cia">Name is required.</small>
-                </div>
-                <div class="field col">
-                  <label for="serie">N° Serie</label>
-                  <input type="text" [disabled] = "editFlag ? true:false" pInputText id="serie" [(ngModel)]="trafo.serie" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !trafo.serie}"/>
-                  <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !trafo.serie">Name is required.</small>
-                </div>
-              </div>
-              <div class="formgrid grid">
-              <div class="field col">
-                  <label for="status">Propietario</label>
-                  <p-dropdown [(ngModel)]="trafo.propietario" inputId="propietario" optionValue="label" [options]="propietario" [filter]="true" [placeholder]="trafo.propietario ? trafo.propietario : 'Select'">
-                      <ng-template pTemplate="selectedItem">
-                          <span *ngIf="trafo && trafo.propietario" >{{trafo.propietario}}</span>
-                      </ng-template>
-                      <ng-template let-option pTemplate="item">
-                          <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
-                      </ng-template>
-                  </p-dropdown>
-              </div>
-
-              <div class="field col" >
-                <label for="status" >Estado de Equipo</label>
-                <p-dropdown [(ngModel)]="trafo.estadoTrafo" inputId="estadoTrafo" optionValue="label" [options]="estadoEquipo" [placeholder]="trafo.estadoTrafo ? trafo.estadoTrafo : 'Select'">
-                    <ng-template pTemplate="selectedItem">
-                        <span *ngIf="trafo && trafo.estadoTrafo" >{{trafo.estadoTrafo}}</span>
-                    </ng-template>
-                    <ng-template let-option pTemplate="item">
-                        <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
-                    </ng-template>
-                </p-dropdown>
-            </div>
-            </div>
-
-              <div class="field" >
-                <label for="status">Estado de Instalación</label>
-                <p-dropdown [(ngModel)]="trafo.estadoInstalacion" inputId="estadoInstalacion" optionValue="label"  [options]="estaInst" [filter]="true"  [placeholder]="trafo.estadoInstalacion ? trafo.estadoInstalacion : 'Select'">
-                    <ng-template pTemplate="selectedItem">
-                        <span *ngIf="trafo && trafo.estadoInstalacion" >{{trafo.estadoInstalacion}}</span>
-                    </ng-template>
-                    <ng-template let-option pTemplate="item">
-                        <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
-                    </ng-template>
-                </p-dropdown>
-            </div>
-
-              <div class="field">
-                  <label class="mb-3">Tipo de Transformador</label>
-                  <div class="formgrid grid">
-                      <div class="field-radiobutton col-6">
-                          <p-radioButton id="category1" name="category" value="Monofásico" [(ngModel)]="trafo.tipoFase"></p-radioButton>
-                          <label for="category1">Monofásico</label>
-                      </div>
-                      <div class="field-radiobutton col-6">
-                          <p-radioButton id="category2" name="category" value="Trifásico" [(ngModel)]="trafo.tipoFase"></p-radioButton>
-                          <label for="category2">Trifásico</label>
-                      </div>
-
-                  </div>
-              </div>
-
-              <div class="formgrid grid">
-                  <div class="field col">
-                      <label for="kvc">Kva</label>
-                      <p-inputNumber id="kvc" [(ngModel)]="trafo.kvc" ></p-inputNumber>
-                  </div>
-                  <!-- <div class="field col">
-                      <label for="quantity">Quantity</label>
-                      <p-inputNumber id="quantity" [(ngModel)]="product.quantity"></p-inputNumber>
-                  </div> -->
-              </div>
-              <div class="formgrid grid">
-                <div class="field col">
-                    <label for="status">Marca</label>
-                    <p-dropdown [(ngModel)]="trafo.marca" inputId="marca" [appendTo]="'body'" optionValue="label" [options]="marca" [filter]="true" [placeholder]="trafo.marca ? trafo.marca : 'Select'">
-                        <ng-template pTemplate="selectedItem">
-                            <span *ngIf="trafo && trafo.marca" >{{trafo.marca}}</span>
-                        </ng-template>
-                        <ng-template let-option pTemplate="item">
-                            <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
-                        </ng-template>
-                    </p-dropdown>
-                </div>
-  
-                <div class="field col" >
-                  <label for="status" >Industria</label>
-                  <p-dropdown [(ngModel)]="trafo.industria" inputId="industria" [appendTo]="'body'" optionValue="label" [options]="industria" [filter]="true" [placeholder]="trafo.industria ? trafo.industria : 'Select'">
-                      <ng-template pTemplate="selectedItem">
-                          <span *ngIf="trafo && trafo.industria" >{{trafo.industria}}</span>
-                      </ng-template>
-                      <ng-template let-option pTemplate="item">
-                          <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
-                      </ng-template>
-                  </p-dropdown>
-              </div>
-              </div>
-          </ng-template>
-
-          <ng-template pTemplate="footer">
-              <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-              <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
-          </ng-template>
-      </p-dialog>
-
       <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-          <div class="flex align-items-center justify-content-center">
-              <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-              <!-- <span *ngIf="product">Are you sure you want to delete <b>{{product.name}}</b>?</span> -->
-              <span *ngIf="trafo">¿Está seguro que desea inactivar el transformador <b>{{trafo.cia}}</b>?</span>
-          </div>
-          <ng-template pTemplate="footer">
-              <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductDialog = false"></button>
-              <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Si" (click)="confirmDelete()"></button>
-          </ng-template>
-      </p-dialog>
-
-      <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-          <div class="flex align-items-center justify-content-center">
-              <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-              <!-- <span>Are you sure you want to delete selected products?</span> -->
-              <span>¿Está seguro que desea inactivar los transformadores seleccionados?</span>
-          </div>
-          <ng-template pTemplate="footer">
-              <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductsDialog = false"></button>
-              <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Si" (click)="confirmDeleteSelected()"></button>
-          </ng-template>
-      </p-dialog>
+        <div class="flex align-items-center justify-content-center">
+            <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+            <!-- <span *ngIf="product">Are you sure you want to delete <b>{{product.name}}</b>?</span> -->
+            <span *ngIf="trafo">¿Está seguro que desea inactivar el transformador <b>{{trafo.NroCIA}}</b>?</span>
+        </div>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductDialog = false"></button>
+            <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Si" (click)="confirmDelete()"></button>
+        </ng-template>
+    </p-dialog>
+    
+    <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+        <div class="flex align-items-center justify-content-center">
+            <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+            <!-- <span>Are you sure you want to delete selected products?</span> -->
+            <span>¿Está seguro que desea inactivar los transformadores seleccionados?</span>
+        </div>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductsDialog = false"></button>
+            <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Si" (click)="confirmDeleteSelected()"></button>
+        </ng-template>
+    </p-dialog>
   </div>
 </div>

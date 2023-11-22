@@ -1,0 +1,36 @@
+.formgrid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.field {
+  margin-right: 5px; 
+}
+
+label {
+  display: block;
+  margin-bottom: 5px; 
+}
+
+input, textarea {
+  width: 100%; 
+}
+
+.field.col {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.field.col label {
+  margin-bottom: 5px;
+}
+
+.field.col p-dropdown {
+  width: 100%;
+  min-width: 200px;
+}
+
+.form-check-label{
+  margin: 7px;
+}

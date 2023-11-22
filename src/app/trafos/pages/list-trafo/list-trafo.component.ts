@@ -6,6 +6,7 @@ import { ProductService } from 'src/app/demo/service/product.service';
 import { Product } from 'src/app/demo/api/product';
 import { TrafoService } from '../../services/trafo-service.service';
 import { Trafo } from '../../interfaces/trafo.inerface';
+import { Router } from '@angular/router';
 // import { ActivatedRoute, Router } from '@angular/router';
 // import { SelectItem } from 'primeng/api';
 
@@ -58,7 +59,7 @@ export class ListTrafoComponent implements OnInit {
   public tipoTrafo: any[] = []
 
 
-  constructor(private cdRef: ChangeDetectorRef, private productService: ProductService, private messageService: MessageService, private trafoService: TrafoService) {
+  constructor(private cdRef: ChangeDetectorRef, private productService: ProductService, private messageService: MessageService, private trafoService: TrafoService, private router: Router) {
     this.dt = {} as Table
    }
 
@@ -170,10 +171,11 @@ export class ListTrafoComponent implements OnInit {
   }
 
   openNew() {
-      this.trafo = {};
-      this.submitted = false;
-      this.trafoDialog = true;
+      // this.trafo = {};
+      // this.submitted = false;
+      // this.trafoDialog = true;
       this.editFlag = false;
+      this.router.navigate(['trafo/add']);
   }
 
   deleteSelectedProducts() {
@@ -181,9 +183,12 @@ export class ListTrafoComponent implements OnInit {
   }
 
   editProduct(trafo: Trafo) {
-      this.trafo = { ...trafo };
-      this.trafoDialog = true;
-      this.editFlag = true;
+    this.editFlag = true;
+     this.trafo = { ...trafo };
+     const trafoId = this.trafo.idxfoTransformador;
+
+       this.router.navigate([`trafo/edit/${trafoId}`]);
+
   }
 
   deleteProduct(trafo: Trafo) {
@@ -200,7 +205,7 @@ export class ListTrafoComponent implements OnInit {
 
   confirmDelete() {
       this.deleteProductDialog = false;
-      this.trafos = this.trafos.filter(val => val.cia !== this.trafo.cia);
+      this.trafos = this.trafos.filter(val => val.idxfoTransformador !== this.trafo.idxfoTransformador);
       this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador inactivado con Éxito.', life: 3000 });
       this.trafo = {};
   }
@@ -213,10 +218,10 @@ export class ListTrafoComponent implements OnInit {
   saveProduct() {
       this.submitted = true;
 
-      if (this.trafo.idxfoTransformador?.trim()) {
+      if (this.trafo.idxfoTransformador?.toString().trim()) {
         if (this.editFlag) {
           // Actualizar el transformador existente
-          this.trafoService.agregarTrafo(this.trafo).subscribe(
+          this.trafoService.create(this.trafo).subscribe(
               () => {
                   this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Transformador actualizado con éxito.', life: 3000 });
                   // Puedes realizar otras acciones después de actualizar el transformador, si es necesario
@@ -227,7 +232,7 @@ export class ListTrafoComponent implements OnInit {
           );
       } else {
           // Crear un nuevo transformador
-          this.trafoService.agregarTrafo(this.trafo).subscribe(
+          this.trafoService.create(this.trafo).subscribe(
               () => {
                   this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Transformador creado con éxito.', life: 3000 });
                   // Puedes realizar otras acciones después de agregar el transformador, si es necesario
@@ -250,7 +255,7 @@ export class ListTrafoComponent implements OnInit {
   findIndexById(id: string): number {
       let index = -1;
       for (let i = 0; i < this.products.length; i++) {
-          if (this.trafos[i].idxfoTransformador === id) {
+          if (this.trafos[i].idxfoTransformador?.toString() === id) {
               index = i;
               break;
           }
@@ -274,23 +279,23 @@ export class ListTrafoComponent implements OnInit {
 
     const filteredTrafos = this.trafos.filter((trafo) => {
       const cleanFilterValue = filterValue.replace(/\s/g, '');
-      const cleanKvaValue = trafo.kvc?.toString().replace(/\s/g, '');
+      const cleanKvaValue = trafo.PotNominal?.toString().replace(/\s/g, '');
 
     //const filteredTrafos = this.trafos.filter((trafo) => trafo.cia?.toLowerCase().includes(filterValue));
 
       return (
-        (trafo.cia?.toLowerCase().includes(filterValue)) ||
-        (trafo.serie?.toLowerCase().includes(filterValue)) ||
-        (trafo.marca?.toLowerCase().includes(filterValue)) ||
-        (trafo.estadoTrafo?.toLowerCase().includes(filterValue)) ||
-        (trafo.fabricante?.toString().includes(filterValue)) ||
-        (trafo.kvc?.toLowerCase().includes(filterValue)) ||
-        (trafo.modelo?.toLowerCase().includes(filterValue)) ||
-        (trafo.ott?.toLowerCase().includes(filterValue)) ||
-        (trafo.propietario?.toLowerCase().includes(filterValue)) ||
+        (trafo.NroCIA?.toLowerCase().includes(filterValue)) ||
+        (trafo.NroSerie?.toLowerCase().includes(filterValue)) ||
+        (trafo.Marca?.toLowerCase().includes(filterValue)) ||
+        (trafo.EstadoTrafo?.toLowerCase().includes(filterValue)) ||
+        (trafo.Fabricante?.toString().includes(filterValue)) ||
+        (trafo.PotNominal?.toLowerCase().includes(filterValue)) ||
+        (trafo.Modelo?.toLowerCase().includes(filterValue)) ||
+        //(trafo.ott?.toLowerCase().includes(filterValue)) ||
+        (trafo.Propiedad?.toLowerCase().includes(filterValue)) ||
         (trafo.responsable?.toLowerCase().includes(filterValue)) ||
-        (trafo.tipoFase?.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(filterValue)) ||
-        (trafo.ubicacionActual?.toLowerCase().includes(filterValue)) ||
+        (trafo.TipoXfo?.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(filterValue)) ||
+        //(trafo.ubicacionActual?.toLowerCase().includes(filterValue)) ||
         (filterValue.endsWith("kva") && cleanKvaValue?.includes(cleanFilterValue.slice(0, -3)))
       );
     });

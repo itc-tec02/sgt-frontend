@@ -65,10 +65,10 @@
                     {{puesto.Fase}}
                 </td>
                 <td style="width:14%; min-width:10rem;"><span class="p-column-title">Fecha Puesta Servicio</span>
-                    {{puesto.FecPueServ}}
+                    {{puesto.FecPueServ | date: 'dd/MM/yyyy'}}
                 </td>
                 <td style="width:14%; min-width:10rem;"><span class="p-column-title">Fecha Retiro</span>
-                    {{puesto.FecRetiro }}
+                    {{puesto.FecRetiro | date: 'dd/MM/yyyy'}}
                 </td>
                 <td style="width:14%; min-width:10rem;"><span class="p-column-title">Montaje</span>
                     {{puesto.Montaje}}

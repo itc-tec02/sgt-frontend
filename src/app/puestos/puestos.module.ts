@@ -19,6 +19,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import { AddeditpuestoComponent } from './pages/addeditpuesto/addeditpuesto.component';
 import { CardModule } from 'primeng/card';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import { CardModule } from 'primeng/card';
         ToastModule,
         ToolbarModule,
         CardModule,
+        CalendarModule,
     ]
   })
   export class PuestosModule { }

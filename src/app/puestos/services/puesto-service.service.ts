@@ -23,21 +23,21 @@ export class PuestoService {
     return this._puestos;
   }
 
-  create(potencia: Puesto): Observable<Puesto> {
-    return this.http.post<Puesto>(`${this.baseUrl}/mantto/pn`, potencia);
+  create(puesto: Puesto): Observable<Puesto> {
+    return this.http.post<Puesto>(`${this.baseUrl}/puestos`, puesto);
   }
 
-  update(id: string, potencia: Puesto): Observable<Puesto> {
-    const url = `${this.baseUrl}/mantto/pn/${id}`;
-    return this.http.put<Puesto>(url, potencia);
+  update(id: string, puesto: Puesto): Observable<Puesto> {
+    const url = `${this.baseUrl}/puestos/${id}`;
+    return this.http.put<Puesto>(url, puesto);
   }
 
   getById(id: string): Observable<Puesto> {
-    const url = `${this.baseUrl}/mantto/pn/${id}`;
+    const url = `${this.baseUrl}/puestos/${id}`;
     return this.http.get<Puesto>(url)
   }
 
   delete(id: any): Observable<Puesto> {
-    return this.http.delete<Puesto>(`${this.baseUrl}/mantto/pn/${id}`);
+    return this.http.delete<Puesto>(`${this.baseUrl}/puestos/${id}`);
   }
 }

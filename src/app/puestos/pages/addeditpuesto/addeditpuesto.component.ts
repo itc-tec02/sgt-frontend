@@ -40,6 +40,7 @@ export class AddeditpuestoComponent {
       //console.log('validacion',this.editFlag)
       this.potenciaService.getById(this.puestoId).subscribe((response: any) => {
         this.puesto = response
+        console.log(this.puesto)
         //console.log('ngoninit addedit',this.editFlag)
       })
     }
@@ -56,9 +57,9 @@ export class AddeditpuestoComponent {
     this.deleteProductsDialog = true;
   }
 
-  deleteProduct(potencia: Puesto) {
+  deleteProduct(puesto: Puesto) {
     this.deleteProductDialog = true;
-    this.puesto = { ...potencia };
+    this.puesto = { ...puesto };
   }
 
   confirmDeleteSelected() {
@@ -85,8 +86,8 @@ export class AddeditpuestoComponent {
 
   hideDialog1() {
     this.trafoDialog = false;
-  this.submitted = false;
-  this.router.navigateByUrl('/potn')
+    this.submitted = false;
+    this.router.navigateByUrl('/puesto')
   }
 
 

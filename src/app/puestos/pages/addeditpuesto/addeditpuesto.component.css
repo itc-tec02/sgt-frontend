@@ -1,0 +1,18 @@
+.formgrid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .field {
+    margin-right: 5px; 
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px; 
+  }
+  
+  input, textarea {
+    width: 100%; 
+  }
+  

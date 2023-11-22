@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Potencia } from '../../model/potencia';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PotenciaService } from '../../services/potencia.service';
 import { MessageService } from 'primeng/api';
 import { PotenciasComponent } from '../potencias/potencias.component';
 import { TmplAstHoverDeferredTrigger } from '@angular/compiler';
+import { Potencia } from '../../model/potencia';
 
 @Component({
   selector: 'app-add-or-edit-potencias',

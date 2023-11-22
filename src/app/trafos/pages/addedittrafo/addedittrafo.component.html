@@ -1,0 +1,155 @@
+<div>
+    <p-card  [style]="{width: '1000px'}" [header]="( editFlag ?  'Editar':'Nuevo' ) + ' Transformador'" >
+        <ng-template pTemplate="content">
+            <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
+            <div class="formgrid grid">
+                <div class="field col">
+                    <label for="cia">N° CIA</label>
+                    <input type="text" [disabled] = "editFlag ? true:false" pInputText id="name" [(ngModel)]="trafo.NroCIA" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !trafo.NroCIA}"/>
+                    <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !trafo.NroCIA">Name is required.</small>
+                </div>
+                <div class="field col">
+                    <label for="serie">N° Serie</label>
+                    <input type="text" [disabled] = "editFlag ? true:false" pInputText id="serie" [(ngModel)]="trafo.NroSerie" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !trafo.NroSerie}"/>
+                    <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !trafo.NroSerie">Name is required.</small>
+                </div>
+            </div>
+            <div class="formgrid grid">
+                <div class="field col" >
+                    <label for="status" >Fabricante</label>
+                    <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="trafo.Fabricante" inputId="Fabricante" optionValue="label" [options]="estadoEquipo" [placeholder]="trafo.Fabricante ? trafo.Fabricante : 'Select'">
+                        <ng-template pTemplate="selectedItem">
+                            <span *ngIf="trafo && trafo.Fabricante" >{{trafo.Fabricante}}</span>
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="field col">
+                    <label for="status">Propietario</label>
+                    <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="trafo.Propiedad" inputId="propietario" optionValue="label" [options]="propietario" [filter]="true" [placeholder]="trafo.Propiedad ? trafo.Propiedad : 'Select'">
+                        <ng-template pTemplate="selectedItem">
+                            <span *ngIf="trafo && trafo.Propiedad" >{{trafo.Propiedad}}</span>
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="formgrid grid">
+                <div class="field col" >
+                    <label for="status" >Industria</label>
+                    <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="trafo.responsable" inputId="industria" [appendTo]="'body'" optionValue="label" [options]="industria" [filter]="true" [placeholder]="trafo.responsable ? trafo.responsable : 'Select'">
+                        <ng-template pTemplate="selectedItem">
+                            <span *ngIf="trafo && trafo.responsable" >{{trafo.responsable}}</span>
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="field col" >
+                    <label for="status">Estado de Instalación</label>
+                    <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="trafo.responsable" inputId="estadoInstalacion" optionValue="label"  [options]="estaInst" [filter]="true"  [placeholder]="trafo.responsable ? trafo.responsable : 'Select'">
+                        <ng-template pTemplate="selectedItem">
+                            <span *ngIf="trafo && trafo.responsable" >{{trafo.responsable}}</span>
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="formgrid grid">
+                <div class="field col">
+                    <label for="status">Marca</label>
+                    <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="trafo.Marca" inputId="marca" [appendTo]="'body'" optionValue="label" [options]="marca" [filter]="true" [placeholder]="trafo.Marca ? trafo.Marca : 'Select'">
+                        <ng-template pTemplate="selectedItem">
+                            <span *ngIf="trafo && trafo.Marca" >{{trafo.Marca}}</span>
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="field col" >
+                    <label for="status" >Estado de Equipo</label>
+                    <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="trafo.EstadoTrafo" inputId="estadoTrafo" optionValue="label" [options]="estadoEquipo" [placeholder]="trafo.EstadoTrafo ? trafo.EstadoTrafo : 'Select'">
+                        <ng-template pTemplate="selectedItem">
+                            <span *ngIf="trafo && trafo.EstadoTrafo" >{{trafo.EstadoTrafo}}</span>
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+        <div class="formgrid grid">
+            <div class="field col">
+                <label for="status">Modelo</label>
+                <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="trafo.Modelo" inputId="marca" [appendTo]="'body'" optionValue="label" [options]="modelo" [filter]="true" [placeholder]="trafo.Modelo ? trafo.Modelo : 'Select'">
+                    <ng-template pTemplate="selectedItem">
+                        <span *ngIf="trafo && trafo.Modelo" >{{trafo.Modelo}}</span>
+                    </ng-template>
+                    <ng-template let-option pTemplate="item">
+                        <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="field col">
+                <label for="status">Año de Fabricación</label>
+                <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="trafo.AnnioFab" inputId="AnnioFab" [appendTo]="'body'" optionValue="label" [filter]="true" [placeholder]="trafo.AnnioFab ? trafo.AnnioFab : 'Select'">
+                    <ng-template pTemplate="selectedItem">
+                        <span *ngIf="trafo && trafo.AnnioFab" >{{trafo.AnnioFab}}</span>
+                    </ng-template>
+                    <ng-template let-option pTemplate="item">
+                        <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+        </div>
+        <div class="formgrid grid">
+            <div class="field col">
+                <label for="kvc">Potencia Nominal</label>
+                <p-inputNumber [style]="{'width': '100%'}" id="kvc" [(ngModel)]="trafo.PotNominal" ></p-inputNumber>
+            </div>
+            <div class="field col">
+                <label class="mb-3">Tipo de Transformador</label>
+                    <div class="flex align-items-center">                          
+                        <p-radioButton id="category1" name="category" value="M" [(ngModel)]="trafo.TipoXfo"></p-radioButton>
+                        <label for="category1" class="form-check-label">Monofásico</label>
+
+                        <p-radioButton id="category2" name="category" value="T" [(ngModel)]="trafo.TipoXfo"></p-radioButton>
+                        <label for="category2" class="form-check-label">Trifásico</label>
+                    </div>
+            </div>
+        </div>
+        <div class="formgrid grid">
+            <div class="field col">
+                <label for="kvc">Peso</label>
+                <input type="text" pInputText [style]="{'width': '100%'}" id="kvc" [(ngModel)]="trafo.peso" />
+            </div>
+            <div class="field col">
+                <label for="kvc">Ancho</label>
+                <input type="text" pInputText [style]="{'width': '100%'}" id="kvc" [(ngModel)]="trafo.Ancho" />
+            </div>
+        </div>
+        <div class="formgrid grid">
+            <div class="field col">
+                <label for="kvc">Longitud</label>
+                <input type="text" pInputText [style]="{'width': '100%'}" id="kvc" [(ngModel)]="trafo.Longitud"/>
+            </div>
+            <div class="field col">
+                <label for="kvc">Alto</label>
+                <input type="text" pInputText [style]="{'width': '100%'}" id="kvc" [(ngModel)]="trafo.Alto" />
+            </div>
+        </div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog1()"></button>
+                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+        </ng-template>
+    </p-card>
+</div>

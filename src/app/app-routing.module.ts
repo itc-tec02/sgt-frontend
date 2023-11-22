@@ -14,6 +14,7 @@ import { GruposComponent } from './grupos/pages/grupos/grupos.component';
 import { ListUsuariosComponent } from './usuarios/pages/list-usuarios/list-usuarios.component';
 import { AddOrEditPotenciasComponent } from './potencias/pages/add-or-edit-potencias/add-or-edit-potencias.component';
 import { AddeditpuestoComponent } from './puestos/pages/addeditpuesto/addeditpuesto.component';
+import { AddedittrafoComponent } from './trafos/pages/addedittrafo/addedittrafo.component';
 
 
 
@@ -30,6 +31,8 @@ const routes: Routes = [
     children:[
       { path: '', loadChildren: () => import('./layout/home/home.module').then( m => m.HomeModule) },
       { path:'trafo', component: ListTrafoComponent},
+      { path:'trafo/edit/:id', component: AddedittrafoComponent},
+      { path:'trafo/add', component: AddedittrafoComponent},
       { path:'puesto', component: ListPuestoComponent},
       { path:'puesto/edit/:id', component: AddeditpuestoComponent},
       { path:'puesto/add', component: AddeditpuestoComponent},
