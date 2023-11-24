@@ -3,8 +3,8 @@ export interface Puesto {
     CodPuesto?:         string;
     EstadoInstalacion?: string;
     Fase?:              string;
-    FecPueServ?:        Date;
-    FecRetiro?:         Date;
+    FecPueServ?:        string;
+    FecRetiro?:         string;
     Montaje?:           string;
     NroFases?:          number;
     NroEstructura?:     string;

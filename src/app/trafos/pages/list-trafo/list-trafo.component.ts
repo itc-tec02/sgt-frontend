@@ -329,10 +329,8 @@ export class ListTrafoComponent implements OnInit {
     const isSelected = this.isSelected(trafo);
 
     if (isSelected) {
-        // Si está seleccionado, quitarlo de la lista de selección
         this.selectedTrafos = this.selectedTrafos.filter(item => item !== trafo);
     } else {
-        // Si no está seleccionado, agregarlo a la lista de selección
         this.selectedTrafos = [...this.selectedTrafos, trafo];
     }
 

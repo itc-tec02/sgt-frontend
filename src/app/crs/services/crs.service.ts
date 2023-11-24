@@ -15,31 +15,84 @@ export class CrsService {
 
   constructor(private  http: HttpClient) {}
 
-  getCrs(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/cr`)
+  //get
+  getCrs(value:string): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/${value}`)
   }
 
-  getAdm(): Observable<Cr[]> {
+  //getById
+  getCrsById(id: string): Observable<Cr>  {
+    const url = `${this.baseUrl}/mantto/pn/${id}`;
+    return this.http.get<Cr>(url);
+  }
+
+  getAdmById(): Observable<Cr[]> {
     return this.http.get<Cr[]>(`${this.baseUrl}/mantto/adm`)
   }
 
-  getAlm(): Observable<Cr[]> {
+  getAlmById(): Observable<Cr[]> {
     return this.http.get<Cr[]>(`${this.baseUrl}/mantto/alm`)
   }
 
-  getCoi(): Observable<Cr[]> {
+  getCoiById(): Observable<Cr[]> {
     return this.http.get<Cr[]>(`${this.baseUrl}/mantto/coi`)
   }
 
-  getCpt(): Observable<Cr[]> {
+  getCptById(): Observable<Cr[]> {
     return this.http.get<Cr[]>(`${this.baseUrl}/mantto/cpt`)
   }
 
-  getOmr(): Observable<Cr[]> {
+  getOmrById(): Observable<Cr[]> {
     return this.http.get<Cr[]>(`${this.baseUrl}/mantto/omr`)
   }
 
-  get puestos() {
-    return this._crs;
+  //create
+  createCr(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/cr`)
+  }
+
+  createAdm(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/adm`)
+  }
+
+  createAlm(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/alm`)
+  }
+
+  createCoi(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/coi`)
+  }
+
+  createCpt(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/cpt`)
+  }
+
+  createOmr(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/omr`)
+  }
+
+  //update
+  updateCr(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/cr`)
+  }
+
+  updateAdm(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/adm`)
+  }
+
+  updateAlm(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/alm`)
+  }
+
+  updateCoi(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/coi`)
+  }
+
+  updateCpt(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/cpt`)
+  }
+
+  updateOmr(): Observable<Cr[]> {
+    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/omr`)
   }
 }

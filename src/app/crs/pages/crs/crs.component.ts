@@ -29,15 +29,18 @@ export class CrsComponent {
   selectedOptionCr: Cr[] = [];
   selectedOptionCrGroups: any;
   groups: any[] = [];
+  option : any;
 
   public editFlag: boolean = false;
 
-  constructor(private crService: CrsService, private messageService: MessageService, private productService: ProductService, private router: Router) { }
+  constructor(private crService: CrsService, private messageService: MessageService, private productService: ProductService, private router: Router) {
+    this.option = 'alm';
+   }
 
   ngOnInit() {
     // this.productService.getProducts().then(data => this.products = data);
     // console.log(this.products);
-    this.crService.getAlm().subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
+    this.crService.getCrs(this.option).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
 
     this.groups = [
       { label: 'Almacén', value: 'ALM' },
@@ -164,24 +167,25 @@ onGlobalFilter(table: Table, event: Event) {
 
   onCascadeSelectChange(){
     console.log('Opción seleccionada:', this.selectedOptionCrGroups);
-    switch (this.selectedOptionCrGroups?.value) {
+    this.option = this.selectedOptionCrGroups.value
+    switch (this.option) {
       case 'ALM':
-        this.crService.getAlm().subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
+        this.crService.getCrs(this.option.toString().toLowerCase()).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
         break;
       case 'ADM':
-        this.crService.getAdm().subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
+        this.crService.getCrs(this.option.toString().toLowerCase()).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
         break;
       case 'COI':
-        this.crService.getCoi().subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
+        this.crService.getCrs(this.option.toString().toLowerCase()).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
         break;
       case 'CPT':
-        this.crService.getCpt().subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
+        this.crService.getCrs(this.option.toString().toLowerCase()).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
         break;
       case 'OMR':
-        this.crService.getOmr().subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
+        this.crService.getCrs(this.option.toString().toLowerCase()).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
         break;
       default:
-        this.crService.getCrs().subscribe(cr => this.crs = cr);
+        this.crService.getCrs('').subscribe(cr => this.crs = cr);
         break;
     }
   }  

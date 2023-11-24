@@ -23,7 +23,7 @@ export class AddeditpuestoComponent {
   trafoDialog: boolean = false;
 
   constructor(
-    private potenciaService: PuestoService,
+    private puestoService: PuestoService,
     private messageService: MessageService,
     private router: Router,
     private route: ActivatedRoute
@@ -38,7 +38,7 @@ export class AddeditpuestoComponent {
     //console.log('ngoniniiit', this.editFlag)
     if (this.editFlag) {
       //console.log('validacion',this.editFlag)
-      this.potenciaService.getById(this.puestoId).subscribe((response: any) => {
+      this.puestoService.getById(this.puestoId).subscribe((response: any) => {
         this.puesto = response
         console.log(this.puesto)
         //console.log('ngoninit addedit',this.editFlag)
@@ -96,10 +96,10 @@ export class AddeditpuestoComponent {
   
     if (this.editFlag) {
       //console.log('edit',this.editFlag)
-      this.potenciaService.update(this.puestoId, this.puesto).subscribe((reponse)=>console.log(this.puesto))
+      this.puestoService.update(this.puestoId, this.puesto).subscribe((reponse)=>console.log(this.puesto))
     } else {
       //console.log('new',this.editFlag)
-      this.potenciaService.create(this.puesto).subscribe((reponse)=>console.log(this.puesto))
+      this.puestoService.create(this.puesto).subscribe((reponse)=>console.log(this.puesto))
     }
     this.router.navigateByUrl('/puestos')
   }

@@ -42,7 +42,7 @@
         <ng-template pTemplate="body" let-grupo>
             <tr (click)="onRowClick(grupo)">
                 <td>
-                  <p-tableCheckbox [value]="grupo"></p-tableCheckbox>
+                  <p-tableCheckbox [value]="grupo" (click)="onRowClick(grupo)"></p-tableCheckbox>
                 </td>
                 <td style="width:14%; min-width:10rem;"><span class="p-column-title">Código</span>
                     {{ grupo.Codigo }}

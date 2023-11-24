@@ -4,14 +4,15 @@
             <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
             <div class="formgrid grid">
               <div class="field col">
-                <label for="idxfoPuesto">ID Puesto</label>
-                <input type="text" [disabled] = "editFlag ? true:false" pInputText id="idxfoPuesto" [(ngModel)]="puesto.idxfoPuesto" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.idxfoPuesto}"/>
+                <label for="puesto">ID Puesto</label>
+                <input type="text" [disabled] = "editFlag ? true:false" pInputText id="idxfoPuesto" [(ngModel)]="this.puesto.idxfoPuesto" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.idxfoPuesto}"/>
                 <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !puesto.idxfoPuesto">Name is required.</small>
               </div>
               <div class="field col">
                 <label for="valor">Código Puesto</label>
-                <input type="text"  pInputText id="CodPuesto" [(ngModel)]="puesto.CodPuesto" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.CodPuesto}"/>
+                <input type="text"  pInputText id="codPuesto" [(ngModel)]="puesto.CodPuesto" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.CodPuesto}"/>
                 <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !puesto.CodPuesto">Name is required.</small>
+                {{ puesto.CodPuesto | json }} 
               </div>
             </div>
             <div class="field">
@@ -27,7 +28,7 @@
             <div class="formgrid grid">
             <div class="field col">
               <label for="valor">Fecha Puesta Servicio</label>
-              <input  type="text" pInputText id="FecPueServ" [(ngModel)]="puesto.FecPueServ"  requide [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.FecPueServ}"/>
+              <input  type="text" pInputText id="FecPueServ" [(ngModel)]="puesto.FecPueServ"  required [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.FecPueServ}"/>
               <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !puesto.FecPueServ">Name is required.</small>
             </div> 
             <div class="field col">

@@ -18,10 +18,12 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
+import { AddeditCrComponent } from './pages/addedit-cr/addedit-cr.component';
 
 @NgModule({
     declarations: [
         CrsComponent,
+        AddeditCrComponent,
     ],
     imports: [
         ButtonModule,
