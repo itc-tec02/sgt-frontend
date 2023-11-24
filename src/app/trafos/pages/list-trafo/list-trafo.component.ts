@@ -193,27 +193,36 @@ export class ListTrafoComponent implements OnInit {
   }
 
   deleteProduct(trafo: Trafo) {
-      this.deleteProductDialog = true;
-      this.trafo = { ...trafo };
+    this.deleteProductDialog = true;
+    this.trafo = { ...trafo };
+    
   }
 
   confirmDeleteSelected() {
-      this.deleteProductsDialog = false;
-      this.trafos = this.trafos.filter(val => !this.selectedTrafos.includes(val));
-      this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformadores inactivados con Éxito.', life: 3000 });
-      this.selectedTrafos = [];
+    //this.potencias = this.potencias.filter(val => !this.selectedPotencia.includes(val));
+    //this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformadores inactivados con Éxito.', life: 3000 });
+    this.selectedTrafos = [];
+    this.deleteProductsDialog = false;
+    //this.globalFilter = '';
+    //this.potenciaService.getPotencias().subscribe( (potencia) => {this.potencias = potencia; console.log(this.potencias)}) //console.log(this.editFlag)  })
   }
 
   confirmDelete() {
-      this.deleteProductDialog = false;
-      this.trafos = this.trafos.filter(val => val.idxfoTransformador !== this.trafo.idxfoTransformador);
-      this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador inactivado con Éxito.', life: 3000 });
-      this.trafo = {};
+    if(this.filterApplied){
+      this.trafos = this.filteredTrafos.filter(val => val.idxfoTransformador !== this.trafo.idxfoTransformador);
+    }else{
+    this.trafos = this.trafos.filter(val => val.idxfoTransformador !== this.trafo.idxfoTransformador);}
+    this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformador inactivado con Éxito.', life: 3000 });
+    const potenciaId = this.trafo.idxfoTransformador;
+    this.trafoService.delete(potenciaId).subscribe((reponse)=>(console.log('eliminado',this.trafo)));
+    //this.potencia = {};
+    this.deleteProductDialog = false;
+    this.deleteProductsDialog = true;
   }
 
   hideDialog() {
-      this.trafoDialog = false;
-      this.submitted = false;
+    this.trafoDialog = false;
+    this.submitted = false;
   }
 
   saveProduct() {

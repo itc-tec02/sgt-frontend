@@ -17,7 +17,7 @@ export class AddedittrafoComponent {
   deleteProductsDialog = false;
   submitted = false;
   selectedPuesto: Trafo[] = [];
-  puestoId: any;
+  trafoId: any;
   //potenciaData: Puesto;
   editFlag: boolean;
   trafoDialog: boolean = false;
@@ -41,8 +41,8 @@ export class AddedittrafoComponent {
     private route: ActivatedRoute
   ) {
     //this.potenciaData = {} as Puesto
-    this.puestoId= this.route.snapshot.paramMap.get('id');
-    this.editFlag = !!this.puestoId;
+    this.trafoId= this.route.snapshot.paramMap.get('id');
+    this.editFlag = !!this.trafoId;
     //console.log(this.editFlag)
   }
   ngOnInit(): void {
@@ -50,7 +50,7 @@ export class AddedittrafoComponent {
     //console.log('ngoniniiit', this.editFlag)
     if (this.editFlag) {
       //console.log('validacion',this.editFlag)
-      this.trafoService.getById(this.puestoId).subscribe((response: any) => {
+      this.trafoService.getById(this.trafoId).subscribe((response: any) => {
         this.trafo = response
         //console.log('ngoninit addedit',this.editFlag)
       })
@@ -77,28 +77,30 @@ export class AddedittrafoComponent {
     { label:'Desconocido', value: 'desconocido' },
     { label:'Dlp', value: 'dlp' },
     { label:'Emprelpaz', value: 'emprelpaz' },
-    { label:'Epz', value: 'epz' },
+    { label:'Epz', value: 'EPZ' },
     { label:'Ham', value: 'ham' },
     { label:'Otro', value: 'otro' },
-    { label:'Particular', value: 'particular' },
+    { label:'Particular', value: 'PAR' },
     { label:'Prefectura', value: 'prefectura' },
     { label:'Sin Datos', value: 'sin datos' },
   ];
   this.industria = [
 
-    { label:'ALEMANA', value: 'alemana' },
-    { label:'AMERICANA', value: 'americana' },
-    { label:'ARGENTINA', value: 'argentina' },
-    { label:'BOLIVIANA', value: 'boliviana' },
-    { label:'BRASILERA', value: 'brasilera' },
-    { label:'CANADIENSE', value: 'canadiense' },
-    { label:'CHILENA', value: 'chilena' },
-    { label:'COLOMBIANA', value: 'colombiana' },
-    { label:'ESPAÑOLA', value: 'española' },
-    { label:'JAPONESA', value: 'japonesa' },
-    { label:'OTROS', value: 'otros' },
-    { label:'PERUANA', value: 'peruana' },
-    { label:'VENEZOLANA', value: 'venezolana' },
+    { label:'ALEMANA', value: 'GER' },
+    { label:'AMERICANA', value: 'USA' },
+    { label:'ARGENTINA', value: 'ARG' },
+    { label:'BOLIVIANA', value: 'BOL' },
+    { label:'BRASILERA', value: 'BRA' },
+    { label:'CANADIENSE', value: 'CAN' },
+    { label:'CHILENA', value: 'CHI' },
+    { label:'COLOMBIANA', value: 'COL' },
+    { label:'ESPAÑOLA', value: 'ESP' },
+    { label:'JAPONESA', value: 'JAP' },
+    { label:'OTROS', value: 'OTR' },
+    { label:'PERUANA', value: 'PER' },
+    { label:'VENEZOLANA', value: 'VEN' },
+    { label:'ECUATORIANA', value: 'ECU' },
+    { label:'ITALIANO', value: 'ITA' }
   ];
   //! Es provisional despues se tomaran todos los dropdown de la base de datos
   this.marca = [
@@ -118,13 +120,13 @@ export class AddedittrafoComponent {
     { label:'TAMURA', value: 'tamura' },
   ];
   this.estadoEquipo = [
-    { label:'CHATARRA', value:'chatarra' },
-    { label:'MALOGRADO', value:'malogrado' },
-    { label:'NUEVO', value:'nuevo' },
-    { label:'USADO', value:'usado' },
+    { label:'CHATARRA', value:'C' },
+    { label:'MALOGRADO', value:'M' },
+    { label:'NUEVO', value:'N' },
+    { label:'USADO', value:'U' },
   ];
   this.modelo = [
-    { label:'MODELO 1', value:'modelo 1' },
+    { label:'MODELO 1', value:'MOD1' },
   ];
   this.potNominal = [
     { label: 900, value: 900 },
@@ -195,7 +197,7 @@ export class AddedittrafoComponent {
   hideDialog1() {
     this.trafoDialog = false;
     this.submitted = false;
-    this.router.navigateByUrl('/trafos')
+    this.router.navigateByUrl('/trafo')
   }
 
 
@@ -204,11 +206,11 @@ export class AddedittrafoComponent {
   
     if (this.editFlag) {
       //console.log('edit',this.editFlag)
-      this.trafoService.update(this.puestoId, this.trafo).subscribe((reponse)=>console.log(this.trafo))
+      this.trafoService.update(this.trafoId, this.trafo).subscribe((reponse)=>console.log(this.trafo))
     } else {
       //console.log('new',this.editFlag)
       this.trafoService.create(this.trafo).subscribe((reponse)=>console.log(this.trafo))
     }
-    this.router.navigateByUrl('/trafos')
+    this.router.navigateByUrl('/trafo')
   }
 }
