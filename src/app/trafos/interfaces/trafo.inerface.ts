@@ -49,6 +49,8 @@ export interface Trafo {
   PtosEnPrimario?:         string;
   PtosEnSecundario?:       string;
   responsable?:            string;
+  codxfoOrdenTrabajo?:     string;
+  CodPuesto?:              string;
 }
 
 

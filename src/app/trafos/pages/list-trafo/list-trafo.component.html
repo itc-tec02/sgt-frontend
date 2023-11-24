@@ -1,21 +1,7 @@
-<!-- <h1>Bienvenido {{getUser?.username}} {{getUser?.lastname}} </h1>
-<hr> -->
-
-<!-- <h3>User</h3>
-<pre>{{ getUser!  | json }}</pre>
-
-
-<br> -->
-<!-- <span routerLink="/auth/login">Ir a login</span> -->
-<!--
-<button (click)="onLogout()">
-  Cerrar Sesión
-</button> -->
-
 <div class="grid">
   <div class="col-12">
       <div class="card px-6 py-6">
-          <p-toast></p-toast>
+          <!-- <p-toast></p-toast> -->
           <p-toolbar styleClass="mb-4">
               <ng-template pTemplate="right">
                   <div class="my-2">
@@ -31,13 +17,13 @@
           </p-toolbar>
 
           <!-- <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id"> -->
-            <p-table #dt [value]="filterApplied ? filteredTrafos : trafos" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros" [(selection)]="selectedTrafos" selectionMode="multiple" [rowHover]="true" dataKey="cia">
+            <p-table #dt [value]="filterApplied ? filteredTrafos : trafos" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros" [(selection)]="selectedTrafos" selectionMode="multiple" [rowHover]="true" dataKey="NroCIA">
               <ng-template pTemplate="caption">
                   <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                       <h5 class="m-0">Lista de Transformadores</h5>
                       <span class="block mt-2 md:mt-0 p-input-icon-left">
                           <i class="pi pi-search"></i>
-                          <input pInputText type="text" (input)="onGlobalFilter(dt,$event)" placeholder="Search..."  class="w-full sm:w-auto"/>
+                          <input pInputText type="text" (input)="onGlobalFilter(dt,$event)" placeholder="Busca..."  class="w-full sm:w-auto"/>
                       </span>
                   </div>
               </ng-template>
@@ -65,10 +51,10 @@
               <ng-template pTemplate="body" let-trafo>
                   <tr (click)="onRowClick(trafo)">
                       <td>
-                        <p-tableCheckbox [value]="trafo" ></p-tableCheckbox>
+                        <p-tableCheckbox [value]="trafo" (click)="onRowClick(trafo)"></p-tableCheckbox>
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Cia</span>
-                          {{ trafo.NroCia }}
+                          {{trafo.NroCIA }}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Serie</span>
                           {{trafo.NroSerie}}
@@ -95,17 +81,14 @@
                           {{trafo.EstadoTrafo}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Ubicacion Actual</span>
-                          {{trafo.ubicacionActual}}
+                          {{trafo.CodPuesto}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">OTT</span>
-                          {{trafo.ott}}
+                          {{trafo.codxfoOrdenTrabajo}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Responsable</span>
                           {{trafo.responsable}}
                       </td>
-                      <td style="width:14%; min-width:10rem;"><span class="p-column-title">Industria</span>
-                        {{trafo.industria}}
-                    </td>
                       <td>
                           <div class="flex">
                               <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(trafo)"></button>
@@ -128,7 +111,7 @@
             <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Si" (click)="confirmDelete()"></button>
         </ng-template>
     </p-dialog>
-    
+
     <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
         <div class="flex align-items-center justify-content-center">
             <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>

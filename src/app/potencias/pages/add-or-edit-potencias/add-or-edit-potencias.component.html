@@ -6,18 +6,21 @@
               <div class="field col">
                 <label for="Codigo">Código</label>
                 <input type="text" [disabled] = "editFlag ? true:false" pInputText id="Codigo" [(ngModel)]="this.potencia.Codigo" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !potencia.Codigo}"/>
-                <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !potencia.Codigo">Name is required.</small>
+                <br>
+                <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !this.potencia.Codigo">El código es obligatorio.</small>
               </div>
               <div class="field col">
                 <label for="valor">Valor</label>
-                <input type="text"  pInputText id="Valor" [(ngModel)]="potencia.Valor" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !potencia.Valor}"/>
-                <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !potencia.Valor">Name is required.</small>
+                <input type="text"  pInputText id="Valor" [(ngModel)]="potencia.Valor" required />
+                <!-- <input type="text"  pInputText id="Valor" [(ngModel)]="potencia.Valor" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !potencia.Valor}"/> -->
+                <!-- <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !potencia.Valor">Name is required.</small> -->
               </div>
             </div>
-            <div class="field">
+            <div class="field col">
                 <label for="descripcion">Descripción</label>
-                <textarea id="Descripcion" pInputTextarea [(ngModel)]="potencia.Descripcion" required rows="3" cols="20"></textarea>
-            </div>                       
+                <br>
+                <textarea id="Descripcion" pInputTextarea [(ngModel)]="potencia.Descripcion" required rows="3" cols="55"></textarea>
+            </div>
         </ng-template>
         <ng-template pTemplate="footer">
             <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog1()"></button>

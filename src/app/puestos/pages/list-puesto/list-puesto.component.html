@@ -53,7 +53,7 @@
         <ng-template pTemplate="body" let-puesto>
             <tr (click)="onRowClick(puesto)">
                 <td>
-                  <p-tableCheckbox [value]="puesto"></p-tableCheckbox>
+                  <p-tableCheckbox [value]="puesto" (click)="onRowClick(puesto)"></p-tableCheckbox>
                 </td>
                 <td style="width:14%; min-width:10rem;"><span class="p-column-title">Código</span>
                     {{ puesto.CodPuesto }}

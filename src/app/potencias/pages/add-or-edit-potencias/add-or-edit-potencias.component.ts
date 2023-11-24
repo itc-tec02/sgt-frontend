@@ -95,7 +95,8 @@ export class AddOrEditPotenciasComponent implements OnInit{
 
   saveProduct() {
     this.submitted = true;
-  
+    if(!this.potencia.Codigo) return;
+
     if (this.editFlag) {
       //console.log('edit',this.editFlag)
       this.potenciaService.actualizarPotencia(this.potenciaId, this.potencia).subscribe((reponse)=>console.log(this.potencia))

@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 })
 export class ListTrafoComponent implements OnInit {
 
-  @ViewChild('dt') dt: Table;
+  // @ViewChild('dt') dt: Table;
 
   trafoDialog: boolean = false;
   public trafos: Trafo[]= []
@@ -59,9 +59,10 @@ export class ListTrafoComponent implements OnInit {
   public tipoTrafo: any[] = []
 
 
-  constructor(private cdRef: ChangeDetectorRef, private productService: ProductService, private messageService: MessageService, private trafoService: TrafoService, private router: Router) {
-    this.dt = {} as Table
-   }
+  constructor(
+    private messageService: MessageService,
+    private trafoService: TrafoService,
+    private router: Router) { }
 
   ngOnInit() {
       // this.productService.getProducts().then(data => this.products = data);
@@ -248,7 +249,7 @@ export class ListTrafoComponent implements OnInit {
         this.submitted = false;
         this.trafo = {};
     }
-      
+
   }
 
 

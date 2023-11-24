@@ -50,7 +50,6 @@ export class ListOrdenComponent implements OnInit {
 
 
   constructor(
-    private productService: ProductService,
     private messageService: MessageService,
     private ottService: OttService,
     private authService: AuthService) { }
@@ -185,7 +184,7 @@ export class ListOrdenComponent implements OnInit {
   confirmDeleteSelected() {
       this.deleteProductsDialog = false;
       this.orders = this.orders.filter(val => !this.selectedOrders.includes(val));
-      this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Transformadores inactivados con Éxito.', life: 3000 });
+      this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Ordenes inactivados con Éxito.', life: 3000 });
       this.selectedOrders = [];
   }
 
@@ -230,7 +229,7 @@ export class ListOrdenComponent implements OnInit {
   findIndexById(id: string): number {
       let index = -1;
       for (let i = 0; i < this.products.length; i++) {
-          if (this.products[i].id === id) {
+          if (this.orders[i].ott === id) {
               index = i;
               break;
           }
@@ -249,7 +248,7 @@ export class ListOrdenComponent implements OnInit {
   }
 
   onGlobalFilter(table: Table, event: Event) {
-      
+
       const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
 
       //const filteredOrders = this.orders.filter((orders) => orders.ott?.toLowerCase().includes(filterValue));
@@ -266,7 +265,7 @@ export class ListOrdenComponent implements OnInit {
           (orders.usrCreador?.toLowerCase().includes(filterValue))
           );
         });
-  
+
       if (filterValue) {
         this.filterApplied = true;
         console.log("true")
@@ -274,26 +273,26 @@ export class ListOrdenComponent implements OnInit {
         this.filteredOrders = [...this.orders];
         this.filterApplied = false;
       }
-  
+
       this.filteredOrders = filteredOrders;
     }
 
-    onRowClick(trafo: any) {
-      const isSelected = this.isSelected(trafo);
-      
+    onRowClick(order: any) {
+      const isSelected = this.isSelected(order);
+
       if (isSelected) {
           // Si está seleccionado, quitarlo de la lista de selección
-          this.selectedOrders = this.selectedOrders.filter(item => item !== trafo);
+          this.selectedOrders = this.selectedOrders.filter(item => item !== order);
       } else {
           // Si no está seleccionado, agregarlo a la lista de selección
-          this.selectedOrders = [...this.selectedOrders, trafo];
+          this.selectedOrders = [...this.selectedOrders, order];
       }
-  
+
       console.log("check");
   }
-  
-  isSelected(trafo: any): boolean {
-      return this.selectedOrders.includes(trafo);
+
+  isSelected(order: any): boolean {
+      return this.selectedOrders.includes(order);
   }
 
 }

@@ -38,8 +38,6 @@ export class AuthService {
 
     const url  = `${ this.baseUrl }/auth/login`;
     const body = { id, password };
-    console.log(body);
-    
 
     return this.http.post<LoginResponse>( url, body )
       .pipe(
@@ -58,8 +56,10 @@ export class AuthService {
       return of(false);
     }
 
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${ token }`);
+    // const headers = new HttpHeaders().set('authorization', `Bearer ${ token }`);
+    const headers = new HttpHeaders().set('authorization', token);
+
+    console.log(headers);
 
     return this.http.get<CheckTokenResponse>(url, { headers })
       .pipe(
