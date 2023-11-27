@@ -24,4 +24,18 @@ export class OttService {
     return this._orden;
   }
 
+  getById(id: string): Observable<Orden> {
+    const url = `${this.baseUrl}/orders/${id}`;
+    return this.http.get<Orden>(url)
+  }
+
+  create(ott: Orden): Observable<Orden> {
+    return this.http.post<Orden>(`${this.baseUrl}/ott`, ott);
+  }
+
+  update(id: string, ott: Orden): Observable<Orden> {
+    const url = `${this.baseUrl}/ott/${id}`;
+    return this.http.put<Orden>(url, ott);
+  }
+
 }

@@ -30,6 +30,8 @@ export class CrsComponent {
   selectedOptionCrGroups: any;
   groups: any[] = [];
   option : any;
+  valuee: any;
+  crId: any;
 
   public editFlag: boolean = false;
 
@@ -43,19 +45,27 @@ export class CrsComponent {
     this.crService.getCrs(this.option).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
 
     this.groups = [
-      { label: 'Almacén', value: 'ALM' },
-      { label: 'Administrador del Sistema', value: 'ADM' },      
-      { label: 'Centro de Operación e Información', value: 'COI' },
-      { label: 'Contratista Pruebas Técnicas', value: 'CPT' },
-      { label: 'Operador Mantenimiento Redes', value: 'OMR' }
+      { label: 'Almacén', value: 'alm' },
+      { label: 'Administrador del Sistema', value: 'adm' },      
+      { label: 'Centro de Operación e Información', value: 'coi' },
+      { label: 'Contratista Pruebas Técnicas', value: 'cpt' },
+      { label: 'Operador Mantenimiento Redes', value: 'omr' }
     ];
   }
 
   openNew() {
     this.cr = {};
     this.submitted = false;
-    this.trafoDialog = true;
+    //this.trafoDialog = true;
     this.editFlag = false;
+
+    if(this.option !== null || this.selectedOptionCrGroups.value === 'cr/alm'){
+      this.router.navigate([`cr/${this.option}/add`, { option: this.option }]);
+    }else{
+      this.router.navigate([`cr/alm/add`, { option: this.option }]);
+    }
+
+    //this.router.navigate([`cr/${this.option}/add`]);
 }
 
 deleteSelectedProducts() {
@@ -64,8 +74,14 @@ deleteSelectedProducts() {
 
 editProduct(cr: Cr) {
     this.cr = { ...cr };
-    this.trafoDialog = true;
+    //this.trafoDialog = true;
     this.editFlag = true;
+    const crId = this.cr.CodCR;
+    if(this.option !== null || this.selectedOptionCrGroups.value === 'cr/alm'){
+      this.router.navigate([`cr/${this.option}/edit/${crId}`, { option: this.option }]);
+    }else{
+      this.router.navigate([`cr/alm/edit/${crId}`,{ option: this.option }]);
+    }
 }
 
 deleteProduct(potencia: Cr) {
@@ -168,26 +184,29 @@ onGlobalFilter(table: Table, event: Event) {
   onCascadeSelectChange(){
     console.log('Opción seleccionada:', this.selectedOptionCrGroups);
     this.option = this.selectedOptionCrGroups.value
+    this.router.navigate([`cr/${this.option}`]);
     switch (this.option) {
-      case 'ALM':
+      case 'alm':
         this.crService.getCrs(this.option.toString().toLowerCase()).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
+        
         break;
-      case 'ADM':
-        this.crService.getCrs(this.option.toString().toLowerCase()).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
+      case 'adm':
+        this.crService.getCrs(this.option.toString()).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
         break;
-      case 'COI':
-        this.crService.getCrs(this.option.toString().toLowerCase()).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
+      case 'coi':
+        this.crService.getCrs(this.option.toString()).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
         break;
-      case 'CPT':
-        this.crService.getCrs(this.option.toString().toLowerCase()).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
+      case 'cpt':
+        this.crService.getCrs(this.option.toString()).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
         break;
-      case 'OMR':
-        this.crService.getCrs(this.option.toString().toLowerCase()).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
+      case 'omr':
+        this.crService.getCrs(this.option.toString()).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
         break;
       default:
         this.crService.getCrs('').subscribe(cr => this.crs = cr);
         break;
     }
+    
   }  
 
   onRowClick(trafo: any) {

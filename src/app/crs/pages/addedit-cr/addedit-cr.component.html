@@ -1,0 +1,30 @@
+<div>
+    <p-card  [style]="{width: '450px'}" [header]="( editFlag ?  'Editar' : 'Nuevo' )" >
+        <ng-template pTemplate="content">
+            <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
+            <div class="formgrid grid">
+              <div class="field col">
+                <label for="CodCR">Código</label>
+                <input type="text" [disabled] = "editFlag ? true:false" pInputText id="CodCR" [(ngModel)]="this.cr.CodCR" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cr.CodCR}"/>
+                <br>
+                <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !this.cr.CodCR">El código es obligatorio.</small>
+              </div>
+              <div class="field col">
+                <label for="abreviatura">Abreviatura</label>
+                <input type="text"  pInputText id="abreviatura" [(ngModel)]="cr.abreviatura" required />
+                <!-- <input type="text"  pInputText id="Valor" [(ngModel)]="potencia.Valor" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !potencia.Valor}"/> -->
+                <!-- <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !potencia.Valor">Name is required.</small> -->
+              </div>
+            </div>
+            <div class="field col">
+                <label for="NombreCR">Nombre</label>
+                <br>
+                <textarea id="NombreCR" pInputTextarea [(ngModel)]="cr.NombreCR" required rows="3" cols="55"></textarea>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog1()"></button>
+            <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+        </ng-template>
+    </p-card>
+</div>

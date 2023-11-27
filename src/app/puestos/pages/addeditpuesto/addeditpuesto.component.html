@@ -12,7 +12,7 @@
                 <label for="valor">Código Puesto</label>
                 <input type="text"  pInputText id="codPuesto" [(ngModel)]="puesto.CodPuesto" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.CodPuesto}"/>
                 <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !puesto.CodPuesto">Name is required.</small>
-                {{ puesto.CodPuesto | json }} 
+                
               </div>
             </div>
             <div class="field">

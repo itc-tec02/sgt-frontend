@@ -32,8 +32,8 @@ export class AppMenuComponent implements OnInit {
       {
         label: 'Mantenimiento',
         items: [
-          { label: 'Grupos', icon: 'pi pi-fw pi-server', routerLink: ['/grupos']},
-          { label: 'Centro de Responsabilidad', icon: 'pi pi-fw pi-sitemap', routerLink: ['/cr']},
+          { label: 'Grupos', icon: 'pi pi-fw pi-server', routerLink: ['/grupos/path']},
+          { label: 'Centro de Responsabilidad', icon: 'pi pi-fw pi-sitemap', routerLink: ['/cr/alm']},
           { label: 'Potencia Nominal ', icon: 'pi pi-fw pi-bolt', routerLink: ['/potn'] },
         ]
       },

@@ -1,1 +1,24 @@
-<p>edit-orden works!</p>
+<div>
+    <p-card  [style]="{width: '1000px'}" [header]="( editFlag ?  'Editar':'Nueva' ) + ' Orden'" >
+        <ng-template pTemplate="content">
+            <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
+            <div class="formgrid grid">
+                <div class="field col">
+                    <label for="cia">ID del Puesto</label>
+                    <input type="text" [disabled] = "editFlag ? true:false" pInputText id="name" [(ngModel)]="this.order.ott" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !order.ott}"/>
+                    <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !order.ott">Name is required.</small>
+                </div>
+                <div class="field col">
+                    <label for="serie">Código del Puesto</label>
+                    <input type="text" [disabled] = "editFlag ? true:false" pInputText id="serie" [(ngModel)]="order.nroOc" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !order.nroOc}"/>
+                    <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !order.nroOc">Name is required.</small>
+                </div>
+            </div>
+
+        </ng-template>
+        <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog1()"></button>
+                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+        </ng-template>
+    </p-card>
+</div>

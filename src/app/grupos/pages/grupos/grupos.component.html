@@ -51,7 +51,7 @@
                     {{grupo.Descripcion}}
                 </td>
                 <td style="width:14%; min-width:8rem;"><span class="p-column-title">Estado</span>
-                    {{grupo.Estado}}
+                    {{grupo.Estado === 'A' ? 'Activo' : 'Inactivo'}}
                 </td>
                 <td>
                     <div class="flex">

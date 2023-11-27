@@ -20,6 +20,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { DialogModule } from 'primeng/dialog';
     TableModule,
     ToastModule,
     ToolbarModule,
+    CardModule,
   ]
 })
 export class OttsModule { }

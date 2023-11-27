@@ -7,6 +7,7 @@ import { Product } from 'src/app/demo/api/product';
 import { Orden } from '../../interfaces/ott.interface';
 import { OttService } from '../../services/ott-service.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   // selector: 'app-list-orden',
@@ -52,7 +53,8 @@ export class ListOrdenComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private ottService: OttService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
       // const currentUser = this.authService.currentUser()
@@ -160,10 +162,11 @@ export class ListOrdenComponent implements OnInit {
   }
 
   openNew() {
-      this.order = {};
-      this.submitted = false;
-      this.orderDialog = true;
+      //this.order = {};
+      //this.submitted = false;
+      //this.orderDialog = true;
       this.editFlag = false;
+      this.router.navigate(['ott/add']);
   }
 
   deleteSelectedProducts() {
@@ -171,9 +174,12 @@ export class ListOrdenComponent implements OnInit {
   }
 
   editProduct(orden: Orden) {
-      this.order = { ...orden };
-      this.orderDialog = true;
       this.editFlag = true
+      this.order = { ...orden };
+      //this.orderDialog = true;      
+      const ottId = this.order.ott;
+      console.log(ottId);
+       this.router.navigate([`ott/edit/${ottId}`]);
   }
 
   deleteProduct(orden: Orden) {

@@ -21,78 +21,19 @@ export class CrsService {
   }
 
   //getById
-  getCrsById(id: string): Observable<Cr>  {
-    const url = `${this.baseUrl}/mantto/pn/${id}`;
+  getCrById(value: string, id: string): Observable<Cr>  {
+    const url = `${this.baseUrl}/mantto/${value}/${id}`;
     return this.http.get<Cr>(url);
   }
 
-  getAdmById(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/adm`)
-  }
-
-  getAlmById(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/alm`)
-  }
-
-  getCoiById(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/coi`)
-  }
-
-  getCptById(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/cpt`)
-  }
-
-  getOmrById(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/omr`)
-  }
-
   //create
-  createCr(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/cr`)
-  }
-
-  createAdm(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/adm`)
-  }
-
-  createAlm(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/alm`)
-  }
-
-  createCoi(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/coi`)
-  }
-
-  createCpt(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/cpt`)
-  }
-
-  createOmr(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/omr`)
+  createCr(value: string, cr:Cr): Observable<Cr> {
+    return this.http.post<Cr>(`${this.baseUrl}/mantto/${value}/add`, cr)
   }
 
   //update
-  updateCr(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/cr`)
-  }
-
-  updateAdm(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/adm`)
-  }
-
-  updateAlm(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/alm`)
-  }
-
-  updateCoi(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/coi`)
-  }
-
-  updateCpt(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/cpt`)
-  }
-
-  updateOmr(): Observable<Cr[]> {
-    return this.http.get<Cr[]>(`${this.baseUrl}/mantto/omr`)
+  updateCr(value: string, id: string, cr: Cr): Observable<Cr> {
+    const url = `${this.baseUrl}/mantto/${value}/edit/${id}`;
+    return this.http.put<Cr>(url, cr);
   }
 }

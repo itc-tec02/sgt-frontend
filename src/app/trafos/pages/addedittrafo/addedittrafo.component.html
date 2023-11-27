@@ -52,7 +52,7 @@
                 </div>
                 <div class="field col" >
                     <label for="status">Estado de Instalación</label>
-                    <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="trafo.EstadoInstalacion" inputId="estadoInstalacion" optionValue="label"  [options]="estaInst" [filter]="true"  [placeholder]="trafo.EstadoInstalacion ? trafo.EstadoInstalacion : 'Select'">
+                    <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="trafo.EstadoInstalacion" inputId="estadoInstalacion" optionValue="value"  [options]="estaInst" [filter]="true"  [placeholder]="trafo.EstadoInstalacion ? trafo.EstadoInstalacion : 'Select'">
                         <ng-template pTemplate="selectedItem">
                             <span *ngIf="trafo && trafo.EstadoInstalacion" >{{trafo.EstadoInstalacion}}</span>
                         </ng-template>
@@ -65,7 +65,7 @@
             <div class="formgrid grid">
                 <div class="field col">
                     <label for="status">Marca</label>
-                    <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="trafo.Marca" inputId="marca" [appendTo]="'body'" optionValue="label" [options]="marca" [filter]="true" [placeholder]="trafo.Marca ? trafo.Marca : 'Select'">
+                    <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="trafo.Marca" inputId="marca" [appendTo]="'body'" optionValue="value" [options]="marca" [filter]="true" [placeholder]="trafo.Marca ? trafo.Marca : 'Select'">
                         <ng-template pTemplate="selectedItem">
                             <span *ngIf="trafo && trafo.Marca" >{{trafo.Marca}}</span>
                         </ng-template>

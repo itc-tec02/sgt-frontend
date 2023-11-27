@@ -3,7 +3,7 @@
 export interface Orden {
     ott?:               string;
     descripcion?:       string;
-    nroOc?:             null;
+    nroOc?:             string;
     estado?:            string  //Estado;
     etapaOtt?:          string; //EtapaOtt;
     areaResponsable?:   string; //AreaResponsable;

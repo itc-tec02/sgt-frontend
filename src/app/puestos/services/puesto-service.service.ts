@@ -32,7 +32,7 @@ export class PuestoService {
     return this.http.put<Puesto>(url, puesto);
   }
 
-  getById(id: string): Observable<Puesto> {
+  getById(id: number): Observable<Puesto> {
     const url = `${this.baseUrl}/puestos/${id}`;
     return this.http.get<Puesto>(url)
   }

@@ -18,10 +18,13 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
+import { AddeditGrupoComponent } from './pages/addedit-grupo/addedit-grupo.component';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
     declarations: [
         GruposComponent,
+        AddeditGrupoComponent,
     ],
     imports: [
         ButtonModule,
@@ -40,6 +43,7 @@ import { CascadeSelectModule } from 'primeng/cascadeselect';
         ToastModule,
         ToolbarModule,
         CascadeSelectModule,
+        CardModule,
     ]
   })
   export class GrupoModule { }

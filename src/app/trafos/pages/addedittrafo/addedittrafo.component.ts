@@ -3,6 +3,7 @@ import { Trafo } from '../../interfaces/trafo.inerface';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TrafoService } from '../../services/trafo-service.service';
+import { Grupo } from 'src/app/grupos/model/grupo';
 
 @Component({
   selector: 'app-addedittrafo',
@@ -13,6 +14,7 @@ import { TrafoService } from '../../services/trafo-service.service';
 export class AddedittrafoComponent {
   trafos: Trafo[] = [];
   trafo : Trafo = {};
+  grupo: Grupo = {};
   deleteProductDialog = false;
   deleteProductsDialog = false;
   submitted = false;
@@ -70,7 +72,7 @@ export class AddedittrafoComponent {
   ];
   //* Provisional despues se tomará del servicio de Trafo
   this.fabricante = [
-    { label: 'ABB', value: 'abb' }
+    { label: 'ABB', value: 'ABB' }
   ];
   this.propietario = [
     { label:'Cobee', value: 'cobee' },
@@ -104,20 +106,20 @@ export class AddedittrafoComponent {
   ];
   //! Es provisional despues se tomaran todos los dropdown de la base de datos
   this.marca = [
-    { label:'ABB', value: 'abb' },
-    { label:'ACEC', value: 'acec' },
-    { label:'AEG', value: 'aeg' },
-    { label:'AICHI', value: 'aichi' },
-    { label:'ALKARGO', value: 'alkargo' },
-    { label:'ARIMET', value: 'arimet' },
-    { label:'ARTRANS SRTL', value: 'artrans srtl' },
-    { label:'BRUCE PEBLES', value: 'bruce pebles' },
-    { label:'GORDON', value: 'gordon' },
-    { label:'HACKBRIDGE', value: 'hackbridge' },
-    { label:'IDENSON', value: 'idenson' },
-    { label:'ITB', value: 'itb' },
-    { label:'MALONEY ELECTRIC', value: 'maloney electric' },
-    { label:'TAMURA', value: 'tamura' },
+    { label:'ABB', value: 'ABB' },
+    { label:'ACEC', value: 'ACEC' },
+    { label:'AEG', value: 'AEG' },
+    { label:'AICHI', value: 'AICHI' },
+    { label:'ALKARGO', value: 'ALKARGO' },
+    { label:'ARIMET', value: 'ARIMET' },
+    { label:'ARTRANS SRTL', value: 'ARTRANS SRT' },
+    { label:'BRUCE PEBLES', value: 'BRUCE PEBLES' },
+    { label:'GORDON', value: 'GORDON' },
+    { label:'HACKBRIDGE', value: 'HACKBRIDGE' },
+    { label:'IDENSON', value: 'IDENSON' },
+    { label:'ITB', value: 'ITB' },
+    { label:'MALONEY ELECTRIC', value: 'MALONEY ELECTRIC' },
+    { label:'TAMURA', value: 'TAMURA' },
   ];
   this.estadoEquipo = [
     { label:'CHATARRA', value:'C' },
@@ -142,17 +144,17 @@ export class AddedittrafoComponent {
   ];
   this.estaInst = [
     { label:'DESCONOCIDO', value:'desconocido' },
-    { label:'EN SERVICIO', value:'en servicio' },
-    { label:'FUERA DE SERVICIO', value:'fuera de servicio' },
+    { label:'EN SERVICIO', value:'SER' },
+    { label:'FUERA DE SERVICIO', value:'FSE' },
     { label:'PROYECTO PARA REEMPLZAR', value:'proyecto para reemplzar' },
     { label:'PROYECTADO PARA RETIRO', value:'proyectado para retiro' },
     { label:'PROYECTADO PARA SERVICIO', value:'proyectado para servicio' },
-    { label:'RETIRADO', value:'retirado' },
+    { label:'RETIRADO', value:'RET' },
     { label:'SIN DATOS', value:'sin datos' },
   ];
   this.tipoTrafo = [
-    { label:'Monofásico', value:'sin datos' },
-    { label:'Trifásico', value:'sin datos' },
+    { label:'Monofásico', value:'M' },
+    { label:'Trifásico', value:'T' },
   ]
   }
 

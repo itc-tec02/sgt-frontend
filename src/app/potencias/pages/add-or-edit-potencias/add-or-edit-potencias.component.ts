@@ -43,6 +43,7 @@ export class AddOrEditPotenciasComponent implements OnInit{
       //console.log('validacion',this.editFlag)
       this.potenciaService.getById(this.potenciaId).subscribe((response: any) => {
         this.potencia = response
+        console.log(this.potencia)
         //console.log('ngoninit addedit',this.editFlag)
       })
     }

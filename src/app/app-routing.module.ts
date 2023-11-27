@@ -15,6 +15,9 @@ import { ListUsuariosComponent } from './usuarios/pages/list-usuarios/list-usuar
 import { AddOrEditPotenciasComponent } from './potencias/pages/add-or-edit-potencias/add-or-edit-potencias.component';
 import { AddeditpuestoComponent } from './puestos/pages/addeditpuesto/addeditpuesto.component';
 import { AddedittrafoComponent } from './trafos/pages/addedittrafo/addedittrafo.component';
+import { AddeditCrComponent } from './crs/pages/addedit-cr/addedit-cr.component';
+import { AddeditGrupoComponent } from './grupos/pages/addedit-grupo/addedit-grupo.component';
+import { EditOrdenComponent } from './otts/pages/edit-orden/edit-orden.component';
 
 
 
@@ -29,7 +32,7 @@ const routes: Routes = [
     canActivate: [ isAuthenticatedGuard ],
     component: AppLayoutComponent,
     children:[
-      { path: '', loadChildren: () => import('./layout/home/home.module').then( m => m.HomeModule) },
+      //{ path: '', loadChildren: () => import('./layout/home/home.module').then( m => m.HomeModule) },
       { path:'trafo', component: ListTrafoComponent},
       { path:'trafo/edit/:id', component: AddedittrafoComponent},
       { path:'trafo/add', component: AddedittrafoComponent},
@@ -37,9 +40,16 @@ const routes: Routes = [
       { path:'puesto/edit/:id', component: AddeditpuestoComponent},
       { path:'puesto/add', component: AddeditpuestoComponent},
       { path:'ott', component: ListOrdenComponent},
-      { path:'grupos', component: GruposComponent},
-      { path:'cr', component: CrsComponent},
-      { path:'cr/admsist', component: CrsComponent},
+      { path:'ott/add', component: EditOrdenComponent},
+      { path:'ott/edit/:id', component: EditOrdenComponent},
+      { path:'grupos/:value', component: GruposComponent},
+      { path:'grupos/:value/add', component: AddeditGrupoComponent},
+      { path:'grupos/:value/edit/:id', component: AddeditGrupoComponent},
+      { path:'cr/:value', component: CrsComponent},
+      { path:'cr/:value/add', component: AddeditCrComponent},
+      { path:'cr/alm/add', component: AddeditCrComponent},
+      { path:'cr/:value/edit/:id', component: AddeditCrComponent},
+      { path:'cr/alm/edit/:id', component: AddeditCrComponent},
       { path:'potn', component: PotenciasComponent},
       { path:'potn/edit/:id', component: AddOrEditPotenciasComponent},
       { path:'potn/add', component: AddOrEditPotenciasComponent},
@@ -48,7 +58,7 @@ const routes: Routes = [
       { path:'prfl', component: NotfoundComponent},
       { path:'user/pass', component: NotfoundComponent},
       //{ path:'notfound', component: NotfoundComponent},
-      { path:'**', redirectTo: 'notfound'},
+      //{ path:'**', redirectTo: 'notfound'},
     ]
   }
 ];

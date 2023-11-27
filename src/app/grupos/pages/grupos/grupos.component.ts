@@ -5,6 +5,7 @@ import { Product } from 'src/app/demo/api/product';
 import { GrupoService } from '../../services/grupo.service';
 import { MessageService } from 'primeng/api';
 import { ProductService } from 'src/app/demo/service/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-grupos',
@@ -30,13 +31,16 @@ export class GruposComponent {
 
   public editFlag: boolean = false;
   gruposs: any[] = [];
+  option: any;
 
-  constructor(private grupoService: GrupoService, private messageService: MessageService, private productService: ProductService) { }
+  constructor(private grupoService: GrupoService, private messageService: MessageService, private productService: ProductService, private router: Router) {
+    this.option = 'path'
+   }
 
   ngOnInit() {
     // this.productService.getProducts().then(data => this.products = data);
     // console.log(this.products);
-    this.grupoService.getRTS().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+    this.grupoService.getGrupos(this.option).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
 
     this.gruposs = [
       {
@@ -45,7 +49,7 @@ export class GruposComponent {
           states: [
               {
                   cname: 'Rutas de Trabajo del Sistema',
-                  code: 'RTS'
+                  code: 'path'
               }
           ]
       },
@@ -55,19 +59,19 @@ export class GruposComponent {
           states: [
             {
                 cname: 'Posición Fase',
-                code: 'PF'
+                code: 'pos_fase'
             },
             {
                 cname: 'Tipo Conexión Transformador',
-                code: 'TCT'
+                code: 'tipcnxxfo'
             },
             {
                 cname: 'Tipo de Montaje',
-                code: 'TM'
+                code: 'tipmontaje'
             },
             {
                 cname: 'Tipo de Servicio',
-                code: 'TS'
+                code: 'tipserv'
             }
           ]
       },
@@ -77,67 +81,67 @@ export class GruposComponent {
           states: [
             {
                 cname: 'Estado Flujo de Actividades OTT',
-                code: 'EFAO'
+                code: 'est_flujo'
             },
             {
                 cname: 'Estado Transformador',
-                code: 'ET'
+                code: 'est_xfo'
             },
             {
                 cname: 'Fases del Transformador',
-                code: 'FaT'
+                code: 'fases'
             },
             {
                 cname: 'Filtro por Ensayos de los Transformadores',
-                code: 'FET'
+                code: 'fil_ensayo'
             },
             {
                 cname: 'Filtros del Transformador',
-                code: 'FiT'
+                code: 'filtro_xfo'
             },
             {
                 cname: 'Marca',
-                code: 'Marca'
+                code: 'marca'
             },
             {
                 cname: 'Material de Bobinado',
-                code: 'MB'
+                code: 'mat_bobi'
             },
             {
                 cname: 'Modelo',
-                code: 'Modelo'
+                code: 'modelo'
             },
             {
                 cname: 'Posición de Conmutación',
-                code: 'PC'
+                code: 'posconmu'
             },
             {
                 cname: 'Solicitud de Apertura - Personal',
-                code: 'SAP'
+                code: 'sa_per'
             },
             {
                 cname: 'Solicitud de Apertura - Recursos Empleados',
-                code: 'SARE'
+                code: 'sa_rec'
             },
             {
                 cname: 'Tensión Nominal Primario',
-                code: 'TNP'
+                code: 'nivten_mt'
             },
             {
                 cname: 'Tensión Nominal Secundario',
-                code: 'TNS'
+                code: 'nivten_bt'
             },
             {
                 cname: 'Tipo de Fabricante',
-                code: 'TF'
+                code: 'tip_fab'
             },
             {
                 cname: 'Tipo de Industria',
-                code: 'TI'
+                code: 'tip_ind'
             },
             {
                 cname: 'Tipo de Medición de Calidad de Producto',
-                code: 'TMCP'
+                code: 'tip_med'
             }
           ]
       }
@@ -147,8 +151,13 @@ export class GruposComponent {
   openNew() {
     this.grupo = {};
     this.submitted = false;
-    this.trafoDialog = true;
+    //this.trafoDialog = true;
     this.editFlag = false;
+    if(this.option !== null || this.selectedOptionCrGroups.value === 'grupos/path'){
+      this.router.navigate([`grupos/${this.option}/add`, { option: this.option }]);
+    }else{
+      this.router.navigate([`grupos/path/add`, { option: this.option }]);
+    }
 }
 
 deleteSelectedProducts() {
@@ -157,8 +166,14 @@ deleteSelectedProducts() {
 
 editProduct(grupo: Grupo) {
     this.grupo = { ...grupo };
-    this.trafoDialog = true;
+    //this.trafoDialog = true;
     this.editFlag = true;
+    const grupoId = this.grupo.Codigo;
+    if(this.option !== null || this.selectedOptionCrGroups.value === 'grupos/path'){
+      this.router.navigate([`grupos/${this.option}/edit/${grupoId}`, { option: this.option }]);
+    }else{
+      this.router.navigate([`grupos/path/edit/${grupoId}`,{ option: this.option }]);
+    }
 }
 
 deleteProduct(grupo: Grupo) {
@@ -260,72 +275,74 @@ onGlobalFilter(table: Table, event: Event) {
 
   onCascadeSelectChange(){
     console.log('Opción seleccionada:', this.selectedOptionCrGroups);
-    switch (this.selectedOptionCrGroups?.code) {
-      case 'RTS':
-        this.grupoService.getRTS().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+    this.option = this.selectedOptionCrGroups?.code;
+    this.router.navigate([`grupos/${this.option}`]);
+    switch (this.option) {
+      case 'path':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'PF':
-        this.grupoService.getPF().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'pos_fase':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'TCT':
-        this.grupoService.getTCT().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'tipcnxxfo':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'TM':
-        this.grupoService.getTM().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'tipmontaje':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'TS':
-        this.grupoService.getTS().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'tipserv':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'EFAO':
-        this.grupoService.getEFAO().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'est_flujo':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'ET':
-        this.grupoService.getET().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'est_xfo':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'FaT':
-        this.grupoService.getFaT().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'fases':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'FET':
-        this.grupoService.getFET().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'fil_ensayo':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'FiT':
-        this.grupoService.getFiT().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'filtro_xfo':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'Marca':
-        this.grupoService.getMarca().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'marca':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'MB':
-        this.grupoService.getMB().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'mat_bobi':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'Modelo':
-        this.grupoService.getModelo().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'modelo':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'PC':
-        this.grupoService.getPC().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'posconmu':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'SAP':
-        this.grupoService.getSAP().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'sa_per':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'SARE':
-        this.grupoService.getSARE().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'sa_rec':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'TNP':
-        this.grupoService.getTNP().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'nivten_mt':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'TNS':
-        this.grupoService.getTNS().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'nivten_bt':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'TF':
-        this.grupoService.getTF().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'tip_fab':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'TI':
-        this.grupoService.getTI().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'tip_ind':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
-      case 'TMCP':
-        this.grupoService.getTMCP().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+      case 'tip_med':
+        this.grupoService.getGrupos(this.option.toString()).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
       default:
-        this.grupoService.getGrupos().subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+        this.grupoService.getGrupos('').subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
         break;
     }
   }  
