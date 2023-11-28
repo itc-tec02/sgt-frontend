@@ -325,17 +325,39 @@ export class ListTrafoComponent implements OnInit {
     return /\d/.test(stringValue);
   }
 
-  onRowClick(trafo: any) {
-    const isSelected = this.isSelected(trafo);
+  onRowClick(order: any) {
+    const isSelected = this.isSelected(order);
 
     if (isSelected) {
-        this.selectedTrafos = this.selectedTrafos.filter(item => item !== trafo);
+        // Si está seleccionado, quitarlo de la lista de selección
+        this.selectedTrafos = this.selectedTrafos.filter(item => item !== order);
     } else {
-        this.selectedTrafos = [...this.selectedTrafos, trafo];
+        // Si no está seleccionado, agregarlo a la lista de selección
+        this.selectedTrafos = [...this.selectedTrafos, order];
     }
 
     console.log("check");
-}
+  }
+  editSelected() {
+    if (this.selectedTrafos.length === 1) {
+      const selectedOrder = this.selectedTrafos[0];
+      this.editProduct(selectedOrder);
+    } else if (this.selectedTrafos.length === 0) {
+      console.log('Ningún elemento seleccionado.');
+    } else {
+      console.log('Selecciona solo un elemento para editar.');
+    }
+  }
+  deleteSelected() {
+    if (this.selectedTrafos.length === 1) {
+      const selectedOrder = this.selectedTrafos[0];
+      this.deleteProduct(selectedOrder);
+    } else if (this.selectedTrafos.length === 0) {
+      console.log('Ningún elemento seleccionado.');
+    } else {
+      console.log('Selecciona solo un elemento para editar.');
+    }
+  }
 
 isSelected(trafo: any): boolean {
     return this.selectedTrafos.includes(trafo);

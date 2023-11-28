@@ -177,7 +177,7 @@ export class ListOrdenComponent implements OnInit {
       this.editFlag = true
       this.order = { ...orden };
       //this.orderDialog = true;      
-      const ottId = this.order.ott;
+      const ottId = this.order.estado;
       console.log(ottId);
        this.router.navigate([`ott/edit/${ottId}`]);
   }
@@ -283,19 +283,31 @@ export class ListOrdenComponent implements OnInit {
       this.filteredOrders = filteredOrders;
     }
 
-    onRowClick(order: any) {
-      const isSelected = this.isSelected(order);
+  onRowClick(order: any) {
+    const isSelected = this.isSelected(order);
 
-      if (isSelected) {
-          // Si está seleccionado, quitarlo de la lista de selección
-          this.selectedOrders = this.selectedOrders.filter(item => item !== order);
-      } else {
-          // Si no está seleccionado, agregarlo a la lista de selección
-          this.selectedOrders = [...this.selectedOrders, order];
-      }
+    if (isSelected) {
+        // Si está seleccionado, quitarlo de la lista de selección
+        this.selectedOrders = this.selectedOrders.filter(item => item !== order);
+    } else {
+        // Si no está seleccionado, agregarlo a la lista de selección
+        this.selectedOrders = [...this.selectedOrders, order];
+    }
 
-      console.log("check");
+    console.log("check");
   }
+  editSelected() {
+    if (this.selectedOrders.length === 1) {
+      const selectedOrder = this.selectedOrders[0];
+      this.editProduct(selectedOrder);
+    } else if (this.selectedOrders.length === 0) {
+      console.log('Ningún elemento seleccionado.');
+    } else {
+      console.log('Selecciona solo un elemento para editar.');
+    }
+  }
+  
+  
 
   isSelected(order: any): boolean {
       return this.selectedOrders.includes(order);
