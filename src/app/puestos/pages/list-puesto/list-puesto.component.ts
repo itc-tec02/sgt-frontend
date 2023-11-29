@@ -180,19 +180,40 @@ onGlobalFilter(table: Table, event: Event) {
     console.log('Filtered Puestos after:', filteredPuestos);
 
   }
-  onRowClick(trafo: any) {
-    const isSelected = this.isSelected(trafo);
-    
+  onRowClick(order: any) {
+    const isSelected = this.isSelected(order);
+
     if (isSelected) {
         // Si está seleccionado, quitarlo de la lista de selección
-        this.selectedPuestos = this.selectedPuestos.filter(item => item !== trafo);
+        this.selectedPuestos = this.selectedPuestos.filter(item => item !== order);
     } else {
         // Si no está seleccionado, agregarlo a la lista de selección
-        this.selectedPuestos = [...this.selectedPuestos, trafo];
+        this.selectedPuestos = [...this.selectedPuestos, order];
     }
 
     console.log("check");
-}
+  }
+
+  editSelected() {
+    if (this.selectedPuestos.length === 1) {
+      const selectedOrder = this.selectedPuestos[0];
+      this.editProduct(selectedOrder);
+    } else if (this.selectedPuestos.length === 0) {
+      console.log('Ningún elemento seleccionado.');
+    } else {
+      console.log('Selecciona solo un elemento para editar.');
+    }
+  }
+  deleteSelected() {
+    if (this.selectedPuestos.length === 1) {
+      const selectedOrder = this.selectedPuestos[0];
+      this.deleteProduct(selectedOrder);
+    } else if (this.selectedPuestos.length === 0) {
+      console.log('Ningún elemento seleccionado.');
+    } else {
+      console.log('Selecciona solo un elemento para editar.');
+    }
+  }
 
 isSelected(trafo: any): boolean {
     return this.selectedPuestos.includes(trafo);

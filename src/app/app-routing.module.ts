@@ -32,7 +32,7 @@ const routes: Routes = [
     canActivate: [ isAuthenticatedGuard ],
     component: AppLayoutComponent,
     children:[
-      //{ path: '', loadChildren: () => import('./layout/home/home.module').then( m => m.HomeModule) },
+      { path: '', loadChildren: () => import('./layout/home/home.module').then( m => m.HomeModule) },
       { path:'trafo', component: ListTrafoComponent},
       { path:'trafo/edit/:id', component: AddedittrafoComponent},
       { path:'trafo/add', component: AddedittrafoComponent},
@@ -57,8 +57,8 @@ const routes: Routes = [
       { path:'users', component: ListUsuariosComponent},
       { path:'prfl', component: NotfoundComponent},
       { path:'user/pass', component: NotfoundComponent},
-      //{ path:'notfound', component: NotfoundComponent},
-      //{ path:'**', redirectTo: 'notfound'},
+      { path:'notfound', component: NotfoundComponent},
+      { path:'**', redirectTo: 'notfound'},
     ]
   }
 ];

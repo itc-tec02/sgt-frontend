@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 @Component({
   // selector: 'app-list-orden',
   templateUrl: './list-orden.component.html',
-  styleUrls: ['./list-orden.component.scss'],
+  styleUrls: ['./list-orden.component.css'],
   providers: [MessageService]
 })
 export class ListOrdenComponent implements OnInit {
@@ -306,11 +306,20 @@ export class ListOrdenComponent implements OnInit {
       console.log('Selecciona solo un elemento para editar.');
     }
   }
+  deleteSelected() {
+    if (this.selectedOrders.length === 1) {
+      const selectedOrder = this.selectedOrders[0];
+      this.deleteProduct(selectedOrder);
+    } else if (this.selectedOrders.length === 0) {
+      console.log('Ningún elemento seleccionado.');
+    } else {
+      console.log('Selecciona solo un elemento para editar.');
+    }
+  }
   
-  
-
   isSelected(order: any): boolean {
-      return this.selectedOrders.includes(order);
+    console.log("check2");
+    return this.selectedOrders.includes(order);  
   }
 
 }

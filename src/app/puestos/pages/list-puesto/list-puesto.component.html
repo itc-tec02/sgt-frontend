@@ -8,6 +8,8 @@
                 <button pButton pRipple label="Detalle" icon="pi pi-info" class="p-button-success mr-2"></button>
                 <button pButton pRipple label="Carga Masiva" icon="pi pi-upload" class="p-button-success mr-2"></button>
                 <button pButton pRipple label="Rep. Interrupciones" icon="pi pi-quick-reference" class="p-button-success mr-2"></button>
+                <button pButton pRipple label="Editar" icon="pi pi-pencil" class="p-button-warning mr-2"  [disabled]="selectedPuestos.length !== 1" (click)="editSelected()"></button>
+                <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger mr-2"  [disabled]="selectedPuestos.length !== 1" (click)="deleteSelected()"></button>
                 <!-- <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button> -->
             </div>
         </ng-template>
@@ -93,8 +95,7 @@
                 </td>
                 <td>
                     <div class="flex">
-                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(puesto)"></button>
-                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(puesto)"></button>
+                        
                     </div>
                 </td>
             </tr>

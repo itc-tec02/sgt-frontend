@@ -27,7 +27,7 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr >
-                <th style="width: 5rem">
+                <th>
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
                 <th pSortableColumn="Codigo">Código <p-sortIcon field="Codigo"></p-sortIcon></th>
@@ -41,13 +41,13 @@
                 <td>
                   <p-tableCheckbox [value]="potencia" (click)="onRowClick(potencia)"></p-tableCheckbox>
                 </td>
-                <td style="width:14%; min-width:10rem;"><span class="p-column-title">Código</span>
+                <td style="width:25%;"><span class="p-column-title">Código</span>
                     {{ potencia.Codigo }}
                 </td>
-                <td style="width:14%; min-width:10rem;"><span class="p-column-title">Descripción</span>
+                <td style="width:25%;"><span class="p-column-title">Descripción</span>
                     {{potencia.Descripcion}}
                 </td>
-                <td style="width:14%; min-width:8rem;"><span class="p-column-title">Valor</span>
+                <td style="width:25%;"><span class="p-column-title">Valor</span>
                     {{potencia.Valor}}
                 </td>
                 <td>

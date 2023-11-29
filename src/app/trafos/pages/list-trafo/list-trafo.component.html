@@ -34,7 +34,7 @@
                       <th pFrozenColumn style="width: 3rem">
                           <p-tableHeaderCheckbox ></p-tableHeaderCheckbox>
                       </th>
-                      <th pSortableColumn="cia">N° CIA <p-sortIcon field="cia"></p-sortIcon></th>
+                      <th pSortableColumn="cia" pFrozenColumn>N° CIA <p-sortIcon field="cia"></p-sortIcon></th>
                       <th pSortableColumn="serie">N° Serie <p-sortIcon field="serie"></p-sortIcon></th>
                       <!-- <th>Image</th> -->
                       <th pSortableColumn="marca">Marca <p-sortIcon field="marca"></p-sortIcon></th>
@@ -55,7 +55,7 @@
                       <td pFrozenColumn>
                         <p-tableCheckbox  [value]="trafo" (click)="onRowClick(trafo)"></p-tableCheckbox>
                       </td>
-                      <td style="width:14%; min-width:10rem;"><span class="p-column-title">Cia</span>
+                      <td style="width:14%; min-width:10rem;" pFrozenColumn><span class="p-column-title">Cia</span>
                           {{ trafo.NroCIA }}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Serie</span>
