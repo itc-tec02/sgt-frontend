@@ -34,19 +34,19 @@
                       <th pFrozenColumn style="width: 3rem">
                           <p-tableHeaderCheckbox ></p-tableHeaderCheckbox>
                       </th>
-                      <th pSortableColumn="cia" pFrozenColumn>N° CIA <p-sortIcon field="cia"></p-sortIcon></th>
-                      <th pSortableColumn="serie">N° Serie <p-sortIcon field="serie"></p-sortIcon></th>
+                      <th pSortableColumn="NroCIA" pFrozenColumn>N° CIA <p-sortIcon field="cia"></p-sortIcon></th>
+                      <th pSortableColumn="NroSerie">N° Serie <p-sortIcon field="serie"></p-sortIcon></th>
                       <!-- <th>Image</th> -->
-                      <th pSortableColumn="marca">Marca <p-sortIcon field="marca"></p-sortIcon></th>
-                      <th pSortableColumn="modelo">Modelo <p-sortIcon field="modelo"></p-sortIcon></th>
-                      <th pSortableColumn="kvc">Kva <p-sortIcon field="kvc"></p-sortIcon></th>
-                      <th pSortableColumn="fabricante">Fabricante <p-sortIcon field="fabricante"></p-sortIcon></th>
-                      <th pSortableColumn="propietario">Propietario <p-sortIcon field="propietario"></p-sortIcon></th>
-                      <th pSortableColumn="tipoFase">Tipo Fase <p-sortIcon field="tipoFase"></p-sortIcon></th>
-                      <th pSortableColumn="estadoTrafo">Estado <p-sortIcon field="estadoTrafo"></p-sortIcon></th>
-                      <th pSortableColumn="ubicacionActual">Ubicacion Actual <p-sortIcon field="ubicacionActual"></p-sortIcon></th>
-                      <th pSortableColumn="ott">N° de OTT <p-sortIcon field="ott"></p-sortIcon></th>
-                      <th pSortableColumn="responsable">Responsable <p-sortIcon field="responsable"></p-sortIcon></th>
+                      <th pSortableColumn="Marca">Marca <p-sortIcon field="marca"></p-sortIcon></th>
+                      <th pSortableColumn="Modelo">Modelo <p-sortIcon field="modelo"></p-sortIcon></th>
+                      <th pSortableColumn="Kva">Kva <p-sortIcon field="kvc"></p-sortIcon></th>
+                      <th pSortableColumn="Fabricante">Fabricante <p-sortIcon field="fabricante"></p-sortIcon></th>
+                      <th pSortableColumn="Propietario">Propietario <p-sortIcon field="propietario"></p-sortIcon></th>
+                      <th pSortableColumn="Tipo Fase">Tipo Fase <p-sortIcon field="tipoFase"></p-sortIcon></th>
+                      <th pSortableColumn="Estado">Estado <p-sortIcon field="estadoTrafo"></p-sortIcon></th>
+                      <th pSortableColumn="Ubicacion Actual">Ubicacion Actual <p-sortIcon field="ubicacionActual"></p-sortIcon></th>
+                      <th pSortableColumn="N° de OTT">N° de OTT <p-sortIcon field="ott"></p-sortIcon></th>
+                      <th pSortableColumn="Responsable">Responsable <p-sortIcon field="responsable"></p-sortIcon></th>
                       <th></th>
                   </tr>
               </ng-template>
@@ -55,10 +55,10 @@
                       <td pFrozenColumn>
                         <p-tableCheckbox  [value]="trafo" (click)="onRowClick(trafo)"></p-tableCheckbox>
                       </td>
-                      <td style="width:14%; min-width:10rem;" pFrozenColumn><span class="p-column-title">Cia</span>
+                      <td style="width:14%; min-width:10rem;" pFrozenColumn><span class="p-column-title">N° CIA</span>
                           {{ trafo.NroCIA }}
                       </td>
-                      <td style="width:14%; min-width:10rem;"><span class="p-column-title">Serie</span>
+                      <td style="width:14%; min-width:10rem;"><span class="p-column-title">N° Serie</span>
                           {{trafo.NroSerie}}
                       </td>
                       <td style="width:14%; min-width:8rem;"><span class="p-column-title">Marca</span>
@@ -67,13 +67,13 @@
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Modelo</span>
                           {{trafo.Modelo}}
                       </td>
-                      <td style="width:14%; min-width:10rem;"><span class="p-column-title">Kvc</span>
+                      <td style="width:14%; min-width:10rem;"><span class="p-column-title">Kva</span>
                           {{trafo.PotNominal | number }}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Fabricante</span>
                           {{trafo.Fabricante}}
                       </td>
-                      <td style="width:14%; min-width:10rem;"><span class="p-column-title">Fabricante</span>
+                      <td style="width:14%; min-width:10rem;"><span class="p-column-title">Propietario</span>
                         {{trafo.Propiedad}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Tipo Fase</span>
@@ -85,7 +85,7 @@
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Ubicacion Actual</span>
                           {{trafo.CodPuesto}}
                       </td>
-                      <td style="width:14%; min-width:10rem;"><span class="p-column-title">OTT</span>
+                      <td style="width:14%; min-width:10rem;"><span class="p-column-title">N° de OTT</span>
                           {{trafo.codxfoOrdenTrabajo}}
                       </td>
                       <td style="width:14%; min-width:10rem;"><span class="p-column-title">Responsable</span>

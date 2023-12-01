@@ -18,20 +18,20 @@ export class GrupoService {
   getGrupos(value:String): Observable<Grupo[]> {
     return this.http.get<Grupo[]>(`${this.baseUrl}/mantto/gpo/${value}`)
   }
-    //getById
-    getGrupoById(value: string, id: string): Observable<Grupo>  {
-      const url = `${this.baseUrl}/mantto/${value}/${id}`;
-      return this.http.get<Grupo>(url);
-    }
-  
-    //create
-    createGrupo(value: string, cr:Grupo): Observable<Grupo> {
-      return this.http.post<Grupo>(`${this.baseUrl}/mantto/${value}/add`, cr)
-    }
-  
-    //update
-    updateGrupo(value: string, id: string, cr: Grupo): Observable<Grupo> {
-      const url = `${this.baseUrl}/mantto/${value}/edit/${id}`;
-      return this.http.put<Grupo>(url, cr);
-    }
+  //getById
+  getGrupoById(value: string, id: string): Observable<Grupo>  {
+    const url = `${this.baseUrl}/mantto/${value}/${id}`;
+    return this.http.get<Grupo>(url);
+  }
+
+  //create
+  createGrupo(value: string, cr:Grupo): Observable<Grupo> {
+    return this.http.post<Grupo>(`${this.baseUrl}/mantto/${value}/add`, cr)
+  }
+
+  //update
+  updateGrupo(value: string, id: string, cr: Grupo): Observable<Grupo> {
+    const url = `${this.baseUrl}/mantto/${value}/edit/${id}`;
+    return this.http.put<Grupo>(url, cr);
+  }
 }

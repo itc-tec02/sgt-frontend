@@ -33,7 +33,13 @@ import { PotenciasModule } from '../potencias/potencias.module';
 import { CrModule } from '../crs/crs.module';
 import { GrupoModule } from '../grupos/grupos.module';
 import { UsuariosModule } from '../usuarios/usuarios.module';
+
+import { AddOrEditPotenciasComponent } from '../potencias/pages/add-or-edit-potencias/add-or-edit-potencias.component';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { SpeedDialModule } from 'primeng/speeddial';
+
 import { ConfirmationService } from 'primeng/api';
+
 
 
 @NgModule({
@@ -62,6 +68,8 @@ import { ConfirmationService } from 'primeng/api';
         TieredMenuModule,
         CascadeSelectModule,
         TreeSelectModule,
+        SplitButtonModule,
+        SpeedDialModule,
         DialogModule,
         ConfirmDialogModule,
         ConfirmPopupModule,
