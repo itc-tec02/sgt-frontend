@@ -38,16 +38,38 @@
             </div>     
           </div>
           <div class="formgrid grid">
-            <div class="field col">
+            <!-- <div class="field col">
               <label for="valor">Fase</label>
               <input type="text"  pInputText id="FecRetiro" [(ngModel)]="puesto.Fase" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.Fase}"/>
               <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !puesto.Fase">Name is required.</small>
-            </div> 
+            </div>  -->
             <div class="field col">
+              <label for="status">Fase</label>
+              <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="puesto.Fase" inputId="fase" [appendTo]="'body'" optionValue="value" [options]="fase" [filter]="true" [placeholder]="puesto.Fase ? puesto.Fase : 'Select'">
+                  <ng-template pTemplate="selectedItem">
+                      <span *ngIf="puesto && puesto.Fase" >{{puesto.Fase}}</span>
+                  </ng-template>
+                  <ng-template let-option pTemplate="item">
+                      <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                  </ng-template>
+              </p-dropdown>
+            </div>
+            <!-- <div class="field col">
               <label for="valor">Montaje</label>
               <input type="text"  pInputText id="FecRetiro" [(ngModel)]="puesto.Montaje" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.Montaje}"/>
               <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !puesto.Montaje">Name is required.</small>
-            </div> 
+            </div>  -->
+            <div class="field col">
+              <label for="status">Montaje</label>
+              <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="puesto.Montaje" inputId="montaje" [appendTo]="'body'" optionValue="value" [options]="montaje" [filter]="true" [placeholder]="puesto.Montaje ? puesto.Montaje : 'Select'">
+                  <ng-template pTemplate="selectedItem">
+                      <span *ngIf="puesto && puesto.Montaje" >{{puesto.Montaje}}</span>
+                  </ng-template>
+                  <ng-template let-option pTemplate="item">
+                      <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                  </ng-template>
+              </p-dropdown>
+            </div>
           </div>
           <div class="formgrid grid">
             <div class="field col">
@@ -73,21 +95,43 @@
               <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !puesto.Propiedad">Name is required.</small>
             </div> 
             </div>
-            <div class="field">
+            <!-- <div class="field">
               <label for="valor">Tipo de Conexión</label>
               <input type="text"  pInputText id="FecRetiro" [(ngModel)]="puesto.TipoConexion" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.TipoConexion}"/>
               <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !puesto.TipoConexion">Name is required.</small>
-            </div> 
+            </div>  -->
+            <div class="field col">
+              <label for="status">Tipo de Conexión</label>
+              <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="puesto.TipoConexion" inputId="conexion" [appendTo]="'body'" optionValue="value" [options]="conexion" [filter]="true" [placeholder]="puesto.TipoConexion ? puesto.TipoConexion : 'Select'">
+                  <ng-template pTemplate="selectedItem">
+                      <span *ngIf="puesto && puesto.TipoConexion" >{{puesto.TipoConexion}}</span>
+                  </ng-template>
+                  <ng-template let-option pTemplate="item">
+                      <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                  </ng-template>
+              </p-dropdown>
+            </div>
             <div class="formgrid grid">
             <div class="field col">
               <label for="valor">Estado de Instalación</label>
               <input type="text"  pInputText id="FecRetiro" [(ngModel)]="puesto.EstadoInstalacion" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.EstadoInstalacion}"/>
               <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !puesto.EstadoInstalacion">Name is required.</small>
             </div>
-            <div class="field col">
+            <!-- <div class="field col">
               <label for="valor">Tipo de Servicio</label>
               <input type="text"  pInputText id="FecRetiro" [(ngModel)]="puesto.TipoServicio" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !puesto.TipoServicio}"/>
               <small class="ng-dirty ng-invalid" style="color:red" *ngIf="submitted && !puesto.TipoServicio">Name is required.</small>
+            </div> -->
+            <div class="field col">
+              <label for="status">Tipo de Servicio</label>
+              <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="puesto.TipoServicio" inputId="servicio" [appendTo]="'body'" optionValue="value" [options]="servicio" [filter]="true" [placeholder]="puesto.TipoServicio ? puesto.TipoServicio : 'Select'">
+                  <ng-template pTemplate="selectedItem">
+                      <span *ngIf="puesto && puesto.TipoServicio" >{{puesto.TipoServicio}}</span>
+                  </ng-template>
+                  <ng-template let-option pTemplate="item">
+                      <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                  </ng-template>
+              </p-dropdown>
             </div>
             </div>
             <div class="field">

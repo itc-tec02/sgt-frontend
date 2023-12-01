@@ -23,6 +23,7 @@ export class AddeditGrupoComponent {
   trafoDialog: boolean = false;
   selectedOptionCrGroups: any;
   option: any;
+  optionExist: boolean = true;
 
   constructor(
     private crService: GrupoService,
@@ -34,6 +35,7 @@ export class AddeditGrupoComponent {
     this.grupoId= this.route.snapshot.paramMap.get('id');
     this.option = this.route.snapshot.paramMap.get('option');
     this.editFlag = !!this.grupoId;
+    this.optionExist = !this.grupoId;
     //console.log(this.editFlag)
   }
 
@@ -45,6 +47,9 @@ export class AddeditGrupoComponent {
       this.crService.getGrupoById(this.option,this.grupoId).subscribe((response: any) => {
         this.grupo = response
         //console.log('ngoninit addedit',this.editFlag)
+        console.log(this.option);
+        console.log(this.optionExist);
+        console.log(this.editFlag);
       })
     }
   }
@@ -89,8 +94,9 @@ export class AddeditGrupoComponent {
 
   hideDialog1() {
     this.trafoDialog = false;
-  this.submitted = false;
-  this.router.navigateByUrl('grupos/path')
+    this.submitted = false;
+    this.optionExist = true;
+    this.router.navigate([`/grupos/${this.option}`, { option: this.option }]);
   }
 
 

@@ -23,6 +23,7 @@ export class AddeditCrComponent {
   trafoDialog: boolean = false;
   selectedOptionCrGroups: any;
   option: any;
+  optionExist: boolean = true;
 
   constructor(
     private crService: CrsService,
@@ -34,6 +35,7 @@ export class AddeditCrComponent {
     this.crId= this.route.snapshot.paramMap.get('id');
     this.option = this.route.snapshot.paramMap.get('option');
     this.editFlag = !!this.crId;
+    this.optionExist = !this.crId
     //console.log(this.editFlag)
   }
 
@@ -45,6 +47,9 @@ export class AddeditCrComponent {
       this.crService.getCrById(this.option,this.crId).subscribe((response: any) => {
         this.cr = response
         console.log(this.cr)
+        console.log(this.editFlag);
+        console.log(this.optionExist);
+        
       })
     }
   }
@@ -91,7 +96,8 @@ export class AddeditCrComponent {
     console.log(this.option)
     this.trafoDialog = false;
     this.submitted = false;
-    this.router.navigate([`/cr/${this.option}`])
+    this.optionExist = true;
+    this.router.navigate([`/cr/${this.option}`, { option: this.option }]);
   }
 
 

@@ -20,7 +20,7 @@
             <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                 <h5 class="m-0">Grupos</h5>
                 <span>
-                    <p-cascadeSelect [(ngModel)]="selectedOptionCrGroups" [options]="gruposs" optionLabel="cname" optionGroupLabel="name" [optionGroupChildren]="['states', 'cities']" [style]="{ minWidth: '14rem' }" placeholder="Rutas de Trabajo del Sistema" (onChange)="onCascadeSelectChange()" ></p-cascadeSelect>
+                    <p-cascadeSelect [(ngModel)]="selectedOptionCrGroups" [options]="gruposs" optionLabel="cname" optionGroupLabel="name" [optionGroupChildren]="['states', 'cities']" [style]="{ minWidth: '14rem' }" [placeholder]="getOptionPlaceholder()" (onChange)="onCascadeSelectChange()" ></p-cascadeSelect>
                 </span>
                 <span class="block mt-2 md:mt-0 p-input-icon-left">
                     <i class="pi pi-search"></i>
@@ -55,8 +55,8 @@
                 </td>
                 <td>
                     <div class="flex">
-                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(grupo)"></button>
-                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(grupo)"></button>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2" (click)="editProduct(grupo)"></button>
+                        <!-- <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteProduct(grupo)"></button> -->
                     </div>
                 </td>
             </tr>

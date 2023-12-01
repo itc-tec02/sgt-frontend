@@ -5,7 +5,7 @@ import { Product } from 'src/app/demo/api/product';
 import { GrupoService } from '../../services/grupo.service';
 import { MessageService } from 'primeng/api';
 import { ProductService } from 'src/app/demo/service/product.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-grupos',
@@ -30,17 +30,28 @@ export class GruposComponent {
   selectedOptionCrGroups: any;
 
   public editFlag: boolean = false;
+  public optionExist: boolean = true;
   gruposs: any[] = [];
   option: any;
+  optionString: any;
 
-  constructor(private grupoService: GrupoService, private messageService: MessageService, private productService: ProductService, private router: Router) {
-    this.option = 'path'
+  constructor(private grupoService: GrupoService, private messageService: MessageService, private productService: ProductService, private router: Router, private route:ActivatedRoute) {
+    this.option = this.route.snapshot.paramMap.get('option');
+    
+    if(this.option == null){
+      this.option = 'path';
+      this.optionExist = true;
+    }
    }
 
   ngOnInit() {
     // this.productService.getProducts().then(data => this.products = data);
     // console.log(this.products);
     this.grupoService.getGrupos(this.option).subscribe( (grupo) => {this.grupos = grupo; console.log(this.grupos)  })
+
+    console.log(this.option);
+    console.log(this.optionExist);
+    console.log(this.editFlag);
 
     this.gruposs = [
       {
@@ -361,9 +372,76 @@ onGlobalFilter(table: Table, event: Event) {
     console.log("check");
 }
 
-isSelected(trafo: any): boolean {
-    return this.selectedGrupo.includes(trafo);
-}
-}
+  isSelected(trafo: any): boolean {
+      return this.selectedGrupo.includes(trafo);
+  }
 
-
+  getOptionPlaceholder(): string {
+    switch(this.option){
+      case 'path':
+        this.optionString = "Rutas de Trabajo del Sistema"
+        break;
+      case 'pos_fase':
+        this.optionString = "Posición Fase"
+        break;
+      case 'tipcnxxfo':
+        this.optionString = "Tipo Conexión Transformador"
+        break;
+      case 'tipmontaje':
+        this.optionString = "Tipo de Montaje"
+        break;
+      case 'tipserv':
+        this.optionString = "Tipo de Servicio"
+        break;
+      case 'est_flujo':
+        this.optionString = "Estado Flujo de Actividades OTT"
+        break;
+      case 'est_xfo':
+        this.optionString = "Estado Transformador"
+        break;
+      case 'fases':
+        this.optionString = "Fases del Transformador"
+        break;
+      case 'fil_ensayo':
+        this.optionString = "Filtro por Ensayos de los Transformadores"
+        break;
+      case 'filtro_xfo':
+        this.optionString = "Filtros del Transformador"
+        break;
+      case 'marca':
+        this.optionString = "Marca"
+        break;
+      case 'mat_bobi':
+        this.optionString = "Material de Bobinado"
+        break;
+      case 'modelo':
+        this.optionString = "Modelo"
+        break;
+      case 'posconmu':
+        this.optionString = "Posición de Conmutación"
+        break;
+      case 'sa_per':
+        this.optionString = "Solicitud de Apertura - Personal"
+        break;
+      case 'sa_rec':
+        this.optionString = "Solicitud de Apertura - Recursos Empleados"
+        break;
+      case 'nivten_mt':
+        this.optionString = "Tensión Nominal Primario"
+        break;
+      case 'nivten_bt':
+        this.optionString = "Tensión Nominal Secundario"
+        break;
+      case 'tip_fab':
+        this.optionString = "Tipo de Fabricante"
+        break;
+      case 'tip_ind':
+        this.optionString = "Tipo de Industria"
+        break;
+      case 'tip_med':
+        this.optionString = "Tipo de Medición de Calidad de Producto"
+        break;
+    }
+    return this.optionExist ? this.optionString : 'Almacen';
+  }
+}

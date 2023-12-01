@@ -5,7 +5,7 @@ import { Product } from 'src/app/demo/api/product';
 import { CrsService } from '../../services/crs.service';
 import { MessageService } from 'primeng/api';
 import { ProductService } from 'src/app/demo/service/product.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-crs',
@@ -32,17 +32,30 @@ export class CrsComponent {
   option : any;
   valuee: any;
   crId: any;
+  optionString: any;
+  public optionExist: boolean = true;
 
   public editFlag: boolean = false;
 
-  constructor(private crService: CrsService, private messageService: MessageService, private productService: ProductService, private router: Router) {
-    this.option = 'alm';
+  constructor(private crService: CrsService, private messageService: MessageService, private productService: ProductService, private router: Router, private route: ActivatedRoute) {
+    
+    this.option = this.route.snapshot.paramMap.get('option');
+
+    if(this.option == null){
+      this.option = 'alm';
+      this.optionExist = true;
+    }
    }
 
   ngOnInit() {
     // this.productService.getProducts().then(data => this.products = data);
     // console.log(this.products);
     this.crService.getCrs(this.option).subscribe( (cr) => {this.crs = cr; console.log(this.crs)  })
+    console.log(this.option);
+    console.log(this.optionExist);
+    console.log(this.editFlag);
+    
+    
 
     this.groups = [
       { label: 'Almacén', value: 'alm' },
@@ -82,6 +95,8 @@ editProduct(cr: Cr) {
     }else{
       this.router.navigate([`cr/alm/edit/${crId}`,{ option: this.option }]);
     }
+    
+
 }
 
 deleteProduct(potencia: Cr) {
@@ -223,7 +238,29 @@ onGlobalFilter(table: Table, event: Event) {
     console.log("check");
 }
 
-isSelected(trafo: any): boolean {
-    return this.selectedCr.includes(trafo);
-}
+  isSelected(trafo: any): boolean {
+      return this.selectedCr.includes(trafo);
+  }
+
+  getOptionPlaceholder(): string {
+    switch(this.option){
+      case 'alm':
+        this.optionString = "Almacén"
+        break;
+      case 'adm':
+        this.optionString = "Administrador del Sistema"   
+        break;
+      case 'coi':
+        this.optionString = "Centro de Operación e Información"   
+        break;
+      case 'cpt':
+        this.optionString = "Contratista Pruebas Técnicas"   
+        break;
+      case 'omr':
+        this.optionString = "Operador Mantenimiento Redes"   
+        break;
+    }
+    return this.optionExist ? this.optionString : 'Almacen';
+  }
+
 }

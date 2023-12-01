@@ -70,105 +70,6 @@ export class ListTrafoComponent implements OnInit {
       this.trafoService.getTrafos().subscribe( (trafo) => {this.trafos = trafo; console.log(this.trafos)  })
 
       //this.filteredTrafos = [...this.trafos];
-
-
-      this.cols = [
-          { field: 'product', header: 'Product' },
-          { field: 'price', header: 'Price' },
-          { field: 'category', header: 'Category' },
-          { field: 'rating', header: 'Reviews' },
-          { field: 'inventoryStatus', header: 'Status' }
-      ];
-      this.statuses = [
-          { label: 'INSTOCK', value: 'instock' },
-          { label: 'LOWSTOCK', value: 'lowstock' },
-          { label: 'OUTOFSTOCK', value: 'outofstock' }
-      ];
-      //* Provisional despues se tomará del servicio de Trafo
-      this.fabricante = [
-        { label: 'ABB', value: 'abb' }
-      ];
-      this.propietario = [
-        { label:'Cobee', value: 'cobee' },
-        { label:'Desconocido', value: 'desconocido' },
-        { label:'Dlp', value: 'dlp' },
-        { label:'Emprelpaz', value: 'emprelpaz' },
-        { label:'Epz', value: 'epz' },
-        { label:'Ham', value: 'ham' },
-        { label:'Otro', value: 'otro' },
-        { label:'Particular', value: 'particular' },
-        { label:'Prefectura', value: 'prefectura' },
-        { label:'Sin Datos', value: 'sin datos' },
-      ];
-      this.industria = [
-
-        { label:'ALEMANA', value: 'alemana' },
-        { label:'AMERICANA', value: 'americana' },
-        { label:'ARGENTINA', value: 'argentina' },
-        { label:'BOLIVIANA', value: 'boliviana' },
-        { label:'BRASILERA', value: 'brasilera' },
-        { label:'CANADIENSE', value: 'canadiense' },
-        { label:'CHILENA', value: 'chilena' },
-        { label:'COLOMBIANA', value: 'colombiana' },
-        { label:'ESPAÑOLA', value: 'española' },
-        { label:'JAPONESA', value: 'japonesa' },
-        { label:'OTROS', value: 'otros' },
-        { label:'PERUANA', value: 'peruana' },
-        { label:'VENEZOLANA', value: 'venezolana' },
-      ];
-      //! Es provisional despues se tomaran todos los dropdown de la base de datos
-      this.marca = [
-        { label:'ABB', value: 'abb' },
-        { label:'ACEC', value: 'acec' },
-        { label:'AEG', value: 'aeg' },
-        { label:'AICHI', value: 'aichi' },
-        { label:'ALKARGO', value: 'alkargo' },
-        { label:'ARIMET', value: 'arimet' },
-        { label:'ARTRANS SRTL', value: 'artrans srtl' },
-        { label:'BRUCE PEBLES', value: 'bruce pebles' },
-        { label:'GORDON', value: 'gordon' },
-        { label:'HACKBRIDGE', value: 'hackbridge' },
-        { label:'IDENSON', value: 'idenson' },
-        { label:'ITB', value: 'itb' },
-        { label:'MALONEY ELECTRIC', value: 'maloney electric' },
-        { label:'TAMURA', value: 'tamura' },
-      ];
-      this.estadoEquipo = [
-        { label:'CHATARRA', value:'chatarra' },
-        { label:'MALOGRADO', value:'malogrado' },
-        { label:'NUEVO', value:'nuevo' },
-        { label:'USADO', value:'usado' },
-      ];
-      this.modelo = [
-        { label:'MODELO 1', value:'modelo 1' },
-      ];
-      this.potNominal = [
-        { label: 900, value: 900 },
-        { label: 1000, value: 1000 },
-        { label: 1200, value: 1200 },
-        { label: 1250, value: 1250 },
-        { label: 1300, value: 1300 },
-        { label: 1500, value: 1500 },
-        { label: 1600, value: 1600 },
-        { label: 2000, value: 2000 },
-        { label: 2300, value: 2300 },
-        { label: 2500, value: 2500 },
-      ];
-      this.estaInst = [
-        { label:'DESCONOCIDO', value:'desconocido' },
-        { label:'EN SERVICIO', value:'en servicio' },
-        { label:'FUERA DE SERVICIO', value:'fuera de servicio' },
-        { label:'PROYECTO PARA REEMPLZAR', value:'proyecto para reemplzar' },
-        { label:'PROYECTADO PARA RETIRO', value:'proyectado para retiro' },
-        { label:'PROYECTADO PARA SERVICIO', value:'proyectado para servicio' },
-        { label:'RETIRADO', value:'retirado' },
-        { label:'SIN DATOS', value:'sin datos' },
-      ];
-      this.tipoTrafo = [
-        { label:'Monofásico', value:'sin datos' },
-        { label:'Trifásico', value:'sin datos' },
-      ]
-      // public tipoTrafo: any[] = []
   }
 
   openNew() {
@@ -218,6 +119,7 @@ export class ListTrafoComponent implements OnInit {
     //this.potencia = {};
     this.deleteProductDialog = false;
     this.deleteProductsDialog = true;
+    this.reloadPage()
   }
 
   hideDialog() {
@@ -361,6 +263,9 @@ export class ListTrafoComponent implements OnInit {
 
 isSelected(trafo: any): boolean {
     return this.selectedTrafos.includes(trafo);
+}
+reloadPage() {
+  window.location.reload();
 }
 
 }

@@ -3,6 +3,8 @@ import { Puesto } from '../../interface/puesto';
 import { MessageService } from 'primeng/api';
 import { PuestoService } from '../../services/puesto-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Grupo } from 'src/app/grupos/model/grupo';
+import { GrupoService } from 'src/app/grupos/services/grupo.service';
 
 @Component({
   selector: 'app-addeditpuesto',
@@ -21,12 +23,17 @@ export class AddeditpuestoComponent {
   //potenciaData: Puesto;
   editFlag: boolean;
   trafoDialog: boolean = false;
+  public fase: any[] = [];
+  public conexion: any[] = [];
+  public montaje: any[] = [];
+  public servicio: any[] = [];
 
   constructor(
     private puestoService: PuestoService,
     private messageService: MessageService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private grupoService: GrupoService
   ) {
     //this.potenciaData = {} as Puesto
     this.puestoId= this.route.snapshot.paramMap.get('id');
@@ -44,6 +51,11 @@ export class AddeditpuestoComponent {
         //console.log('ngoninit addedit',this.editFlag)
       })
     }
+
+    this.opcionesCascade("pos_fase","fase");
+    this.opcionesCascade("tipcnxxfo","conexion");
+    this.opcionesCascade("tipmontaje","montaje");
+    this.opcionesCascade("tipserv","servicio");
   }
 
   openNew() {
@@ -102,5 +114,13 @@ export class AddeditpuestoComponent {
       this.puestoService.create(this.puesto).subscribe((reponse)=>console.log(this.puesto))
     }
     this.router.navigateByUrl('/puestos')
+  }
+
+  opcionesCascade(value1: string, value2: string) {
+    this.grupoService.getGrupos(value1).subscribe((grupos: Grupo[]) => {
+      const gruposActivos = grupos.filter(grupo => grupo.Estado === 'A');
+      
+      this[value2 as keyof AddeditpuestoComponent] = gruposActivos.map(grupo => ({ label: grupo.Descripcion, value: grupo.Codigo }));
+    });
   }
 }
