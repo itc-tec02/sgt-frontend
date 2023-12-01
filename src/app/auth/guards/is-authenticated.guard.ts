@@ -7,9 +7,7 @@ export const isAuthenticatedGuard: CanActivateFn = (route, state) => {
 
   const authService = inject( AuthService );
   const router      = inject( Router );
-
-  console.log("paso por aqui primero (isAuthenticatedGuard)");
-
+  console.log("Entró aqui not auth");
   if ( authService.authStatus() === AuthStatus.authenticated ) {
     return true;
   }
@@ -18,8 +16,9 @@ export const isAuthenticatedGuard: CanActivateFn = (route, state) => {
   //   return false;
   // }
 
-  // const url = state.url;
-  // localStorage.setItem('url', url);
-  router.navigateByUrl('/auth/login');
+  const url = state.url;
+  localStorage.setItem('url', url);
+
+  // router.navigateByUrl('/auth/login');
   return false;
 };
