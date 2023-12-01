@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TrafoService } from '../../services/trafo-service.service';
 import { Grupo } from 'src/app/grupos/model/grupo';
+import { GrupoService } from 'src/app/grupos/services/grupo.service';
 
 @Component({
   selector: 'app-addedittrafo',
@@ -34,13 +35,16 @@ export class AddedittrafoComponent {
   public potNominal: any[] = []
   public estaInst: any[] = []
   public tipoTrafo: any[] = []
+  public opciones: any[] = []
+  public fab: any[]=[]
 
 
   constructor(
     private trafoService: TrafoService,
     private messageService: MessageService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private grupoService: GrupoService
   ) {
     //this.potenciaData = {} as Puesto
     this.trafoId= this.route.snapshot.paramMap.get('id');
@@ -57,19 +61,9 @@ export class AddedittrafoComponent {
         //console.log('ngoninit addedit',this.editFlag)
       })
     }
+    this.opcionesCascade("marca","marca");
+    this.opcionesCascade("tip_fab","fabricante");
     
-    this.cols = [
-      { field: 'product', header: 'Product' },
-      { field: 'price', header: 'Price' },
-      { field: 'category', header: 'Category' },
-      { field: 'rating', header: 'Reviews' },
-      { field: 'inventoryStatus', header: 'Status' }
-  ];
-  this.statuses = [
-      { label: 'INSTOCK', value: 'instock' },
-      { label: 'LOWSTOCK', value: 'lowstock' },
-      { label: 'OUTOFSTOCK', value: 'outofstock' }
-  ];
   //* Provisional despues se tomará del servicio de Trafo
   this.fabricante = [
     { label: 'ABB', value: 'ABB' }
@@ -105,22 +99,6 @@ export class AddedittrafoComponent {
     { label:'ITALIANO', value: 'ITA' }
   ];
   //! Es provisional despues se tomaran todos los dropdown de la base de datos
-  this.marca = [
-    { label:'ABB', value: 'ABB' },
-    { label:'ACEC', value: 'ACEC' },
-    { label:'AEG', value: 'AEG' },
-    { label:'AICHI', value: 'AICHI' },
-    { label:'ALKARGO', value: 'ALKARGO' },
-    { label:'ARIMET', value: 'ARIMET' },
-    { label:'ARTRANS SRTL', value: 'ARTRANS SRT' },
-    { label:'BRUCE PEBLES', value: 'BRUCE PEBLES' },
-    { label:'GORDON', value: 'GORDON' },
-    { label:'HACKBRIDGE', value: 'HACKBRIDGE' },
-    { label:'IDENSON', value: 'IDENSON' },
-    { label:'ITB', value: 'ITB' },
-    { label:'MALONEY ELECTRIC', value: 'MALONEY ELECTRIC' },
-    { label:'TAMURA', value: 'TAMURA' },
-  ];
   this.estadoEquipo = [
     { label:'CHATARRA', value:'C' },
     { label:'MALOGRADO', value:'M' },
@@ -214,5 +192,12 @@ export class AddedittrafoComponent {
       this.trafoService.create(this.trafo).subscribe((reponse)=>console.log(this.trafo))
     }
     this.router.navigateByUrl('/trafo')
+  }
+  opcionesCascade(value1: string, value2: string) {
+    this.grupoService.getGrupos(value1).subscribe((grupos: Grupo[]) => {
+      const gruposActivos = grupos.filter(grupo => grupo.Estado === 'A');
+      
+      this[value2 as keyof AddedittrafoComponent] = gruposActivos.map(grupo => ({ label: grupo.Descripcion, value: grupo.Codigo }));
+    });
   }
 }

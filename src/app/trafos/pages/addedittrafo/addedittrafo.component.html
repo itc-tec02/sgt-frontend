@@ -89,7 +89,7 @@
         <div class="formgrid grid">
             <div class="field col">
                 <label for="status">Modelo</label>
-                <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="trafo.Modelo" inputId="marca" [appendTo]="'body'" optionValue="value" optionLabel="value" [options]="modelo" [filter]="true" [placeholder]="trafo.Modelo ? trafo.Modelo : 'Select'">
+                <p-dropdown [style]="{'width': '100%'}" [(ngModel)]="trafo.Modelo" inputId="modelo" [appendTo]="'body'" optionValue="value" optionLabel="value" [options]="modelo" [filter]="true" [placeholder]="trafo.Modelo ? trafo.Modelo : 'Select'">
                     <ng-template pTemplate="selectedItem">
                         <span *ngIf="trafo && trafo.Modelo" >{{trafo.Modelo}}</span>
                     </ng-template>
