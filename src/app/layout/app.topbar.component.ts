@@ -33,6 +33,7 @@ export class AppTopBarComponent {
       message: '¿Estás seguro de que deseas cerrar sesión?',
       acceptLabel: 'Sí',
       rejectLabel: 'No',
+
       acceptButtonStyleClass: 'p-button-danger', // Cambia el estilo del botón "Sí"
       rejectButtonStyleClass: 'p-button-success', // Cambia el estilo del botón "Sí"
       accept: () => {
