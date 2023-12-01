@@ -28,12 +28,11 @@ export class LoginPageComponent {
 
     this.authService.login(usuario, password)
       .subscribe({
-        next: () => this.router.navigateByUrl('/dashboard'),
+        // next: () => this.router.navigateByUrl('/'),
         error: (message) => {
           console.log({message});
           Swal.fire('Error', message, 'info' )
         }
       })
   }
-
 }

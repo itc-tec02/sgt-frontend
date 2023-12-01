@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   private router = inject( Router );
 
   public finishedAuthCheck = computed<boolean>( () => {
-    console.log(this.authService.authStatus() )
+    // console.log(this.authService.authStatus() )
     if ( this.authService.authStatus() === AuthStatus.checking ) {
       return false;
     }
@@ -37,11 +37,16 @@ export class AppComponent implements OnInit {
         return;
 
       case AuthStatus.authenticated:
-        this.router.navigateByUrl('');
+        const currentUrl = localStorage.getItem('url')
+        if(!currentUrl) {
+          this.router.navigateByUrl('/')
+        }else{
+          this.router.navigateByUrl(currentUrl);
+        }
         return;
 
       case AuthStatus.notAuthenticated:
-        // this.router.navigateByUrl('/auth/login');
+        this.router.navigateByUrl('/auth/login');
         return;
 
     }

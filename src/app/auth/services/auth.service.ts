@@ -56,10 +56,7 @@ export class AuthService {
       return of(false);
     }
 
-    // const headers = new HttpHeaders().set('authorization', `Bearer ${ token }`);
     const headers = new HttpHeaders().set('authorization', token);
-
-    console.log(headers);
 
     return this.http.get<CheckTokenResponse>(url, { headers })
       .pipe(
@@ -73,6 +70,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('url');
     this._currentUser.set(null);
     this._authStatus.set( AuthStatus.notAuthenticated );
 
