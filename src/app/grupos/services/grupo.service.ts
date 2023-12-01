@@ -20,6 +20,7 @@ export class GrupoService {
   }
   //getById
   getGrupoById(value: string, id: string): Observable<Grupo>  {
+    console.log("value: ", value, "id: ", id);
     const url = `${this.baseUrl}/mantto/${value}/${id}`;
     return this.http.get<Grupo>(url);
   }
@@ -30,7 +31,7 @@ export class GrupoService {
   }
 
   //update
-  updateGrupo(value: string, id: string, cr: Grupo): Observable<Grupo> {
+  updateGrupo(value: string, id: string, cr: Grupo): Observable<Grupo> {    
     const url = `${this.baseUrl}/mantto/${value}/edit/${id}`;
     return this.http.put<Grupo>(url, cr);
   }

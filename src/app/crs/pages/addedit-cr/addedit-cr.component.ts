@@ -44,7 +44,7 @@ export class AddeditCrComponent {
       //console.log('validacion',this.editFlag)
       this.crService.getCrById(this.option,this.crId).subscribe((response: any) => {
         this.cr = response
-        //console.log('ngoninit addedit',this.editFlag)
+        console.log(this.cr)
       })
     }
   }
@@ -88,9 +88,10 @@ export class AddeditCrComponent {
   }
 
   hideDialog1() {
+    console.log(this.option)
     this.trafoDialog = false;
-  this.submitted = false;
-  this.router.navigateByUrl('cr/alm')
+    this.submitted = false;
+    this.router.navigate([`/cr/${this.option}`])
   }
 
 
@@ -102,6 +103,6 @@ export class AddeditCrComponent {
     } else {
       this.crService.createCr(this.option, this.cr).subscribe((reponse)=>console.log(this.cr))
     }
-    this.router.navigateByUrl('/cr/alm')
+    this.router.navigateByUrl(`/cr/${this.option}`)
   }
 }

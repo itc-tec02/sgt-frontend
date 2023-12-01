@@ -63,11 +63,12 @@ export class AddedittrafoComponent {
     }
     this.opcionesCascade("marca","marca");
     this.opcionesCascade("tip_fab","fabricante");
+    this.opcionesCascade("tip_ind","industria"); 
+    this.opcionesCascade("est_xfo","estadoEquipo"); 
+    this.opcionesCascade("modelo","modelo");    
+    this.opcionesCascade("fases","tipoTrafo");    
     
   //* Provisional despues se tomará del servicio de Trafo
-  this.fabricante = [
-    { label: 'ABB', value: 'ABB' }
-  ];
   this.propietario = [
     { label:'Cobee', value: 'cobee' },
     { label:'Desconocido', value: 'desconocido' },
@@ -79,47 +80,9 @@ export class AddedittrafoComponent {
     { label:'Particular', value: 'PAR' },
     { label:'Prefectura', value: 'prefectura' },
     { label:'Sin Datos', value: 'sin datos' },
-  ];
-  this.industria = [
-
-    { label:'ALEMANA', value: 'GER' },
-    { label:'AMERICANA', value: 'USA' },
-    { label:'ARGENTINA', value: 'ARG' },
-    { label:'BOLIVIANA', value: 'BOL' },
-    { label:'BRASILERA', value: 'BRA' },
-    { label:'CANADIENSE', value: 'CAN' },
-    { label:'CHILENA', value: 'CHI' },
-    { label:'COLOMBIANA', value: 'COL' },
-    { label:'ESPAÑOLA', value: 'ESP' },
-    { label:'JAPONESA', value: 'JAP' },
-    { label:'OTROS', value: 'OTR' },
-    { label:'PERUANA', value: 'PER' },
-    { label:'VENEZOLANA', value: 'VEN' },
-    { label:'ECUATORIANA', value: 'ECU' },
-    { label:'ITALIANO', value: 'ITA' }
+    { label:'Sin Datos', value: 'sin datos' },
   ];
   //! Es provisional despues se tomaran todos los dropdown de la base de datos
-  this.estadoEquipo = [
-    { label:'CHATARRA', value:'C' },
-    { label:'MALOGRADO', value:'M' },
-    { label:'NUEVO', value:'N' },
-    { label:'USADO', value:'U' },
-  ];
-  this.modelo = [
-    { label:'MODELO 1', value:'MOD1' },
-  ];
-  this.potNominal = [
-    { label: 900, value: 900 },
-    { label: 1000, value: 1000 },
-    { label: 1200, value: 1200 },
-    { label: 1250, value: 1250 },
-    { label: 1300, value: 1300 },
-    { label: 1500, value: 1500 },
-    { label: 1600, value: 1600 },
-    { label: 2000, value: 2000 },
-    { label: 2300, value: 2300 },
-    { label: 2500, value: 2500 },
-  ];
   this.estaInst = [
     { label:'DESCONOCIDO', value:'desconocido' },
     { label:'EN SERVICIO', value:'SER' },
@@ -129,10 +92,6 @@ export class AddedittrafoComponent {
     { label:'PROYECTADO PARA SERVICIO', value:'proyectado para servicio' },
     { label:'RETIRADO', value:'RET' },
     { label:'SIN DATOS', value:'sin datos' },
-  ];
-  this.tipoTrafo = [
-    { label:'Monofásico', value:'M' },
-    { label:'Trifásico', value:'T' },
   ]
   }
 

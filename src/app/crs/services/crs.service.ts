@@ -22,7 +22,10 @@ export class CrsService {
 
   //getById
   getCrById(value: string, id: string): Observable<Cr>  {
-    const url = `${this.baseUrl}/mantto/${value}/${id}`;
+    // const url = `${this.baseUrl}/mantto/${value}/${id}`;
+    console.log("valor: ", value, "id: ", id);
+    
+    const url = `${this.baseUrl}/mantto/cr/${id}`;
     return this.http.get<Cr>(url);
   }
 
