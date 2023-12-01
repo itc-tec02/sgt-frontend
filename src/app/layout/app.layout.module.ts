@@ -22,6 +22,9 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
 import { HomeModule } from './home/home.module';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { TreeSelectModule } from 'primeng/treeselect';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 import { TrafosModule } from '../trafos/trafos.module'
 import { OttsModule } from '../otts/otts.module';
@@ -30,9 +33,13 @@ import { PotenciasModule } from '../potencias/potencias.module';
 import { CrModule } from '../crs/crs.module';
 import { GrupoModule } from '../grupos/grupos.module';
 import { UsuariosModule } from '../usuarios/usuarios.module';
+
 import { AddOrEditPotenciasComponent } from '../potencias/pages/add-or-edit-potencias/add-or-edit-potencias.component';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { SpeedDialModule } from 'primeng/speeddial';
+
+import { ConfirmationService } from 'primeng/api';
+
 
 
 @NgModule({
@@ -63,6 +70,9 @@ import { SpeedDialModule } from 'primeng/speeddial';
         TreeSelectModule,
         SplitButtonModule,
         SpeedDialModule,
+        DialogModule,
+        ConfirmDialogModule,
+        ConfirmPopupModule,
 
         //*Modulos Personalizados
         HomeModule,
@@ -74,6 +84,7 @@ import { SpeedDialModule } from 'primeng/speeddial';
         GrupoModule,
         UsuariosModule,
     ],
+    providers: [ConfirmationService],
     exports: [AppLayoutComponent]
 })
 export class AppLayoutModule { }
